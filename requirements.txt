@@ -1,0 +1,4 @@
+# -*- coding: utf-8 -*-
+pyyaml>=6.0.0
+# tkinter是Python标准库，无需单独安装
+# 后续添加其他依赖... 
