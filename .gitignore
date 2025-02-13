@@ -1,10 +1,6 @@
-# 忽略虚拟环境
-/.venv/
+# 排除虚拟环境
+.venv/
 
-# 忽略IDE配置
+# 排除IDE配置
 .vscode/
-.idea/
-
-# 忽略本地缓存
-__pycache__/
-*.py[cod]
+.idea/ 
