@@ -1,0 +1,27 @@
+# HELP python_gc_objects_collected_total Objects collected during gc
+# TYPE python_gc_objects_collected_total counter
+python_gc_objects_collected_total{generation="0"} 279.0
+python_gc_objects_collected_total{generation="1"} 11.0
+python_gc_objects_collected_total{generation="2"} 0.0
+# HELP python_gc_objects_uncollectable_total Uncollectable objects found during GC
+# TYPE python_gc_objects_uncollectable_total counter
+python_gc_objects_uncollectable_total{generation="0"} 0.0
+python_gc_objects_uncollectable_total{generation="1"} 0.0
+python_gc_objects_uncollectable_total{generation="2"} 0.0
+# HELP python_gc_collections_total Number of times this generation was collected
+# TYPE python_gc_collections_total counter
+python_gc_collections_total{generation="0"} 47.0
+python_gc_collections_total{generation="1"} 4.0
+python_gc_collections_total{generation="2"} 0.0
+# HELP python_info Python platform information
+# TYPE python_info gauge
+python_info{implementation="CPython",major="3",minor="12",patchlevel="9",version="3.12.9"} 1.0
+# HELP aiwriter_api_calls_total Total API calls
+# TYPE aiwriter_api_calls_total counter
+# HELP aiwriter_api_duration_seconds API response time in seconds
+# TYPE aiwriter_api_duration_seconds histogram
+# HELP aiwriter_memory_usage_bytes Current memory usage in bytes
+# TYPE aiwriter_memory_usage_bytes gauge
+aiwriter_memory_usage_bytes 0.0
+# HELP aiwriter_invalid_requests_total Total invalid requests
+# TYPE aiwriter_invalid_requests_total counter

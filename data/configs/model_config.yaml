@@ -1,0 +1,14 @@
+# 系统模型配置
+version: 1.0
+models:
+  DeepSeek-V3:
+    provider: "DeepSeek"
+    base_url: "https://api.deepseek.com/v1"
+    model: "deepseek-chat"
+    context_window: 65636
+
+  DeepSeek-R1:
+    provider: "DeepSeek"
+    base_url: "https://api.deepseek.com/v1"
+    model: "deepseek-reasoner"
+    context_window: 65636

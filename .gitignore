@@ -3,4 +3,23 @@
 
 # 排除IDE配置
 .vscode/
-.idea/ 
+.idea/
+
+# 防止提交包含敏感信息
+*.yaml
+!model_config.yaml
+!user_config.yaml
+
+# 添加忽略已删除文件
+ui/panels/settingPanel.py
+
+# Python
+__pycache__/
+*.py[cod]
+*.so
+.Python
+
+# Build
+build/
+dist/
+*.egg-info/ 
