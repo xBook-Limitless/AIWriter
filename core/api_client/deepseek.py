@@ -5,35 +5,44 @@ import os
 import httpx
 from modules.AuthModule import validate_token
 import logging
-from utils.config_loader import get_version_info
+from utils.config_loader import get_version_info, get_api_key
 from cryptography.fernet import Fernet
 
 class DeepSeekAPIClient:
     def __init__(self):
         self.key_cache = {}  # 简单缓存机制
 
-    def _fetch_encrypted_key(self) -> str:
-        """从代理服务器获取加密密钥"""
-        try:
-            resp = httpx.post(
-                "https://your-proxy.com/api/get-key",
-                headers={"Authorization": f"Bearer {self._get_user_token()}"},
-                timeout=5
-            )
-            resp.raise_for_status()
-            return resp.json()["encrypted_key"]
-        except httpx.HTTPError as e:
-            self._handle_error(e)
+    # def _fetch_encrypted_key(self) -> str:
+    #     """从代理服务器获取加密密钥"""
+    #     try:
+    #         resp = httpx.post(
+    #             "https://your-proxy.com/api/get-key",
+    #             headers={"Authorization": f"Bearer {self._get_user_token()}"},
+    #             timeout=5
+    #         )
+    #         resp.raise_for_status()
+    #         return resp.json()["encrypted_key"]
+    #     except httpx.HTTPError as e:
+    #         self._handle_error(e)
+            
+    # def _get_api_key(self) -> str:
+    #     """获取解密后的API密钥"""
+    #     if cached := self.key_cache.get('api_key'):
+    #         return cached
+        
+    #     encrypted = self._fetch_encrypted_key()
+    #     decrypted = decrypt_key(encrypted)
+    #     self.key_cache['api_key'] = decrypted
+    #     return decrypted
+    
+    # def decrypt_key(encrypted: str) -> str:
+    #     """解密临时密钥"""
+    #     f = Fernet(os.getenv('APP_JWT_SECRET').encode())
+    #     return f.decrypt(encrypted.encode()).decode()
 
     def _get_api_key(self) -> str:
-        """获取解密后的API密钥"""
-        if cached := self.key_cache.get('api_key'):
-            return cached
-        
-        encrypted = self._fetch_encrypted_key()
-        decrypted = decrypt_key(encrypted)
-        self.key_cache['api_key'] = decrypted
-        return decrypted
+        """直接从本地配置获取API密钥"""
+        return get_api_key().get("api_key", "")
 
     def generate(self, messages: list) -> str:
         """直接调用第三方API生成内容"""
@@ -128,11 +137,6 @@ class DeepSeekAPIClient:
                            f"API请求失败: {str(error)}")
         messagebox.showerror("请求错误", msg)
         logging.error(f"API Error: {error}")
-
-def decrypt_key(encrypted: str) -> str:
-    """解密临时密钥"""
-    f = Fernet(os.getenv('APP_JWT_SECRET').encode())
-    return f.decrypt(encrypted.encode()).decode()
 
 # 单例实例
 api_client = DeepSeekAPIClient()

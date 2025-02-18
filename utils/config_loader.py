@@ -34,3 +34,18 @@ def save_config(file_name: str, config: dict):
             yaml.safe_dump(config, f, allow_unicode=True)
     except Exception as e:
         print(f"保存配置文件 {file_name} 失败: {str(e)}") 
+
+def get_api_key():
+    """获取API密钥配置"""
+    try:
+        config_path = Path(__file__).parent.parent / 'data/configs/apikey.yaml'
+        with open(config_path, 'r', encoding='utf-8') as f:
+            return yaml.safe_load(f) or {}
+    except FileNotFoundError:
+        return {}
+
+def save_api_key(data: dict):
+    """保存API密钥配置"""
+    config_path = Path(__file__).parent.parent / 'data/configs/apikey.yaml'
+    with open(config_path, 'w', encoding='utf-8') as f:
+        yaml.safe_dump(data, f, allow_unicode=True) 

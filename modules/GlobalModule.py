@@ -143,28 +143,30 @@ class GenerationParameters:
         self.stream = kwargs.get('stream', False)
         self.response_format = kwargs.get('response_format', {"type": "text"})
 
-class SecurityConfig:
-    def __init__(self):
-        self.enable_ssl_pinning = True
-        self.api_whitelist = ["your-proxy-server.com"]
-        self.request_timeout = 30  # 秒
-        self.retry_policy = {
-            'max_attempts': 3,
-            'backoff_factor': 0.5
-        }
-
 global_config = LocalConfig()
-global_config.security = SecurityConfig()
 
-# 验证安全配置加载
-print(global_config.security.enable_ssl_pinning)  # True
-print(global_config.security.api_whitelist)  # ["your-proxy-server.com"]
+# class SecurityConfig:
+#     def __init__(self):
+#         self.enable_ssl_pinning = True
+#         self.api_whitelist = ["your-proxy-server.com"]
+#         self.request_timeout = 30  # 秒
+#         self.retry_policy = {
+#             'max_attempts': 3,
+#             'backoff_factor': 0.5
+#         }
 
-def initialize_security():
-    if global_config.security.enable_ssl_pinning:
-        # 实现SSL证书固定逻辑
-        import ssl
-        ctx = ssl.create_default_context()
-        ctx.load_verify_locations(cafile="proxy_server.pem") 
+
+# global_config.security = SecurityConfig()
+
+# # 验证安全配置加载
+# print(global_config.security.enable_ssl_pinning)  # True
+# print(global_config.security.api_whitelist)  # ["your-proxy-server.com"]
+
+# def initialize_security():
+#     if global_config.security.enable_ssl_pinning:
+#         # 实现SSL证书固定逻辑
+#         import ssl
+#         ctx = ssl.create_default_context()
+#         ctx.load_verify_locations(cafile="proxy_server.pem") 
 
 

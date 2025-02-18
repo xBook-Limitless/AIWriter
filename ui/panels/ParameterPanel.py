@@ -258,7 +258,7 @@ class ParameterPanel(ttk.Labelframe):
         self._create_max_tokens()
         self._create_response_format()
         self._create_stream_switch()
-        self._create_api_key_management()
+        # self._create_api_key_management()
         self._setup_layout()
 
     def _create_preset_selector(self):
@@ -587,44 +587,44 @@ class ParameterPanel(ttk.Labelframe):
             # 兼容旧版本配置对象
             global_config.model_config.update_model(selected)
 
-    def _create_api_key_management(self):
-        """新增API密钥管理板块"""
-        key_frame = ttk.Labelframe(self, text="用户认证管理")
+    # def _create_api_key_management(self):
+    #     """新增API密钥管理板块"""
+    #     key_frame = ttk.Labelframe(self, text="用户认证管理")
         
-        # 用户令牌输入
-        ttk.Label(key_frame, text="用户令牌:").grid(row=0, column=0, padx=5)
-        self.user_token_entry = ttk.Entry(key_frame, show="*", width=30)
-        self.user_token_entry.grid(row=0, column=1, padx=5)
-        ttk.Button(key_frame, text="刷新令牌", 
-                  command=self._refresh_user_token).grid(row=0, column=2)
+    #     # 用户令牌输入
+    #     ttk.Label(key_frame, text="用户令牌:").grid(row=0, column=0, padx=5)
+    #     self.user_token_entry = ttk.Entry(key_frame, show="*", width=30)
+    #     self.user_token_entry.grid(row=0, column=1, padx=5)
+    #     ttk.Button(key_frame, text="刷新令牌", 
+    #               command=self._refresh_user_token).grid(row=0, column=2)
         
-        # 状态指示灯
-        self.token_status = ttk.Label(key_frame, text="●", foreground="gray")
-        self.token_status.grid(row=0, column=3, padx=5)
+    #     # 状态指示灯
+    #     self.token_status = ttk.Label(key_frame, text="●", foreground="gray")
+    #     self.token_status.grid(row=0, column=3, padx=5)
         
-        key_frame.grid(row=9, column=0, columnspan=3, sticky="ew", pady=5)
-        self._add_tooltip(key_frame, "管理API访问凭证\n令牌有效期为1小时")
+    #     key_frame.grid(row=9, column=0, columnspan=3, sticky="ew", pady=5)
+    #     self._add_tooltip(key_frame, "管理API访问凭证\n令牌有效期为1小时")
 
-    def _refresh_user_token(self):
-        """生成新的JWT令牌"""
-        try:
-            from modules.AuthModule import generate_jwt_token
-            new_token = generate_jwt_token(self._get_device_id())
-            self.user_token_entry.delete(0, tk.END)
-            self.user_token_entry.insert(0, new_token)
-            self._update_token_status(True)
-        except Exception as e:
-            self._update_token_status(False)
-            messagebox.showerror("令牌生成错误", str(e))
+    # def _refresh_user_token(self):
+    #     """生成新的JWT令牌"""
+    #     try:
+    #         from modules.AuthModule import generate_jwt_token
+    #         new_token = generate_jwt_token(self._get_device_id())
+    #         self.user_token_entry.delete(0, tk.END)
+    #         self.user_token_entry.insert(0, new_token)
+    #         self._update_token_status(True)
+    #     except Exception as e:
+    #         self._update_token_status(False)
+    #         messagebox.showerror("令牌生成错误", str(e))
 
-    def _get_device_id(self):
-        """获取设备唯一标识"""
-        import hashlib, uuid
-        return hashlib.sha256(str(uuid.getnode()).encode()).hexdigest()
+    # def _get_device_id(self):
+    #     """获取设备唯一标识"""
+    #     import hashlib, uuid
+    #     return hashlib.sha256(str(uuid.getnode()).encode()).hexdigest()
 
-    def _update_token_status(self, valid: bool):
-        """更新令牌状态指示"""
-        color = "green" if valid else "red"
-        self.token_status.config(foreground=color)
-        # 3秒后恢复灰色
-        self.after(3000, lambda: self.token_status.config(foreground="gray")) 
+    # def _update_token_status(self, valid: bool):
+    #     """更新令牌状态指示"""
+    #     color = "green" if valid else "red"
+    #     self.token_status.config(foreground=color)
+    #     # 3秒后恢复灰色
+    #     self.after(3000, lambda: self.token_status.config(foreground="gray")) 

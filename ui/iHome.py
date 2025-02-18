@@ -5,9 +5,7 @@ from utils.config_loader import get_version_info
 from tkinter import Toplevel, Label
 from tkinter import messagebox
 from ui.panels.ParameterPanel import ParameterPanel
-from flask import Flask, jsonify
-from flask_login import LoginManager
-import os
+from ui.panels.GetApiKey import GetApiKeyPanel
 
 # 将Tooltip类定义移到文件顶部
 class Tooltip:
@@ -57,6 +55,7 @@ def create_main_window():
         
         # 设置菜单
         settings_menu = tk.Menu(menu_bar, tearoff=0)
+        settings_menu.add_command(label="API密钥管理", command=lambda: show_api_key_panel(root))
         settings_menu.add_command(label="主题", command=lambda: change_theme())
         settings_menu.add_separator()
         settings_menu.add_command(label="退出程序", command=root.destroy)
@@ -88,6 +87,12 @@ def create_main_window():
 
     return root
 
+# 新增显示密钥面板的函数
+def show_api_key_panel(parent):
+    panel = Toplevel(parent)
+    panel.title("API密钥管理")
+    GetApiKeyPanel(panel).pack(padx=20, pady=20)
+
 # 添加自定义验证函数
 def validate_max_tokens(new_value):
     """验证最大Token数输入"""
@@ -96,9 +101,9 @@ def validate_max_tokens(new_value):
     value = int(new_value)
     return 1 <= value <= 6400
 
-app = Flask(__name__)
-login_manager = LoginManager()
-login_manager.init_app(app)
+# app = Flask(__name__)
+# login_manager = LoginManager()
+# login_manager.init_app(app)
 
 if __name__ == "__main__":
     root = create_main_window()
