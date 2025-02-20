@@ -100,10 +100,10 @@ class DeepSeekAPIClient:
             "User-Agent": f"NovelWriter/{get_version_info()['version']}"
         }
 
-    def _get_user_token(self) -> str:
-        """从界面获取用户令牌"""
-        from ui.panels import ParameterPanel
-        return ParameterPanel.instance.user_token_entry.get()
+    # def _get_user_token(self) -> str:
+    #     """从界面获取用户令牌"""
+    #     from ui.panels import ParameterPanel
+    #     return ParameterPanel.instance.user_token_entry.get()
 
     def _build_params(self, messages: list) -> dict:
         """构建请求参数"""

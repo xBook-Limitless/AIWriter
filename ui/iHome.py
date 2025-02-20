@@ -7,6 +7,11 @@ from tkinter import messagebox
 from ui.panels.ParameterPanel import ParameterPanel
 from ui.panels.GetApiKey import GetApiKeyPanel
 from tkinter import Menu
+from ui.panels.BaseConfiguration import BaseConfiguration
+import json
+from pathlib import Path
+from tkinter import filedialog
+import yaml
 
 # 将Tooltip类定义移到文件顶部
 class Tooltip:
@@ -58,6 +63,9 @@ def create_main_window():
         settings_menu = tk.Menu(menu_bar, tearoff=0)
         settings_menu.add_command(label="API密钥管理", command=lambda: show_api_key_panel(root))
         settings_menu.add_command(label="主题", command=lambda: change_theme())
+        settings_menu.add_separator()
+        settings_menu.add_command(label="导出小说框架", command=lambda: export_novel_structure(root))
+        settings_menu.add_command(label="导入小说框架", command=lambda: import_novel_structure(root))
         settings_menu.add_separator()
         settings_menu.add_command(label="退出程序", command=root.destroy)
         
@@ -121,6 +129,16 @@ def create_main_window():
         ).pack(side=tk.LEFT, padx=5)
 
         control_frame.pack(fill=tk.X, pady=5)
+
+        # 添加分页容器（在控制按钮下方）
+        notebook = ttk.Notebook(root)
+        
+        # 创建小说框架分页
+        novel_frame = ttk.Frame(notebook)
+        notebook.add(novel_frame, text="小说框架")
+        BaseConfiguration(novel_frame).pack(padx=5, pady=5, fill=tk.BOTH, expand=True)
+        
+        notebook.pack(fill=tk.BOTH, expand=True, padx=5, pady=5)
 
         # 启动连接监控
         global_api_config.connection_monitor.start_monitoring()
@@ -187,6 +205,86 @@ def force_check_status(label):
     global_api_config.connection_monitor._check_status()
     color = "green" if global_api_config.connection_monitor.status else "red"
     label.config(foreground=color)
+
+def export_novel_structure(parent):
+    """导出小说框架数据"""
+    try:
+        # 读取当前配置
+        config_file = Path("data/configs/novel_structure.yaml")
+        if not config_file.exists():
+            messagebox.showwarning("提示", "没有可导出的配置")
+            return
+            
+        with open(config_file, "r", encoding='utf-8') as f:
+            data = yaml.safe_load(f)
+        
+        # 获取作品名称
+        base_config = data.get("base_config", {})
+        title = base_config.get("title", "未命名作品").strip() or "未命名作品"
+        
+        # 创建保存路径
+        save_dir = Path(f"data/NovelData/{title}")
+        save_dir.mkdir(parents=True, exist_ok=True)
+        
+        # 保存JSON
+        json_path = save_dir / f"{title}_框架.json"
+        with open(json_path, "w", encoding='utf-8') as f:
+            json.dump(data, f, indent=2, ensure_ascii=False)
+            
+        # 保存TXT
+        txt_path = save_dir / f"{title}_框架.txt"
+        with open(txt_path, "w", encoding='utf-8') as f:
+            # 基础信息
+            txt_content = f"作品名称：{base_config.get('title', '')}\n"
+            txt_content += f"创作类型：{base_config.get('creation_type', '')}\n"
+            txt_content += f"主类型：{base_config.get('main_type', '')}\n"
+            txt_content += f"子类型：{base_config.get('sub_type', '')}\n\n"
+            
+            # 其他模块占位
+            txt_content += "=== 其他模块配置 ===\n"
+            txt_content += "（完整配置请查看JSON文件）"
+            
+            f.write(txt_content)
+            
+        messagebox.showinfo("导出成功", 
+            f"已导出到：\n{save_dir}\n"
+            f"JSON文件：{json_path.name}\n"
+            f"TXT文件：{txt_path.name}")
+            
+    except Exception as e:
+        messagebox.showerror("导出失败", f"错误信息：{str(e)}")
+
+def import_novel_structure(parent):
+    """导入小说框架数据"""
+    try:
+        file_path = filedialog.askopenfilename(
+            parent=parent,
+            title="选择要导入的框架文件",
+            filetypes=[("JSON文件", "*.json"), ("YAML文件", "*.yaml"), ("所有文件", "*.*")]
+        )
+        if not file_path:
+            return
+            
+        target_file = Path("data/configs/novel_structure.yaml")
+        target_file.parent.mkdir(exist_ok=True)
+        
+        # 读取文件内容
+        with open(file_path, "r", encoding='utf-8') as f:
+            if file_path.endswith(".json"):
+                data = json.load(f)
+            else:  # 支持yaml格式
+                data = yaml.safe_load(f)
+        
+        # 写入配置文件时添加sort_keys=False
+        with open(target_file, "w", encoding='utf-8') as f:
+            yaml.dump(data, f, allow_unicode=True, sort_keys=False)
+        
+        messagebox.showinfo("导入成功", 
+            "配置已导入，部分功能可能需要重启后生效\n"
+            f"文件路径：{target_file}")
+            
+    except Exception as e:
+        messagebox.showerror("导入失败", f"错误信息：{str(e)}")
 
 if __name__ == "__main__":
     root = create_main_window()
