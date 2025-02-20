@@ -5,10 +5,48 @@ models:
     provider: "DeepSeek"
     base_url: "https://api.deepseek.com/v1"
     model: "deepseek-chat"
-    context_window: 65636
+    context_window: 65536
 
   DeepSeek-R1:
     provider: "DeepSeek"
     base_url: "https://api.deepseek.com/v1"
     model: "deepseek-reasoner"
-    context_window: 65636
+    context_window: 65536
+
+  Qwen-V3:
+    provider: "Qwen"
+    base_url: "https://dashscope.aliyuncs.com/compatible-mode/v1"
+    model: "deepseek-v3"
+    context_window: 65536
+
+  Qwen-R1:
+    provider: "Qwen"
+    base_url: "https://dashscope.aliyuncs.com/compatible-mode/v1"
+    model: "deepseek-r1"
+    context_window: 65536
+    
+  Qwen-max:
+    provider: "Qwen"
+    base_url: "https://dashscope.aliyuncs.com/api/v1"
+    model: "qwen-max"
+    context_window: 6000
+
+  Qwen-Plus:
+    provider: "Qwen"
+    base_url: "https://dashscope.aliyuncs.com/compatible-mode/v1"
+    model: "qwen-plus"
+    context_window: 131072
+
+  Qwen-Turbo:
+    provider: "Qwen"
+    base_url: "https://dashscope.aliyuncs.com/compatible-mode/v1"
+    model: "qwen-turbo"
+    context_window: 1000000
+
+  Qwen-Long:
+    provider: "Qwen"
+    base_url: "https://dashscope.aliyuncs.com/compatible-mode/v1"
+    model: "qwen-long"
+    context_window: 10000000
+
+  

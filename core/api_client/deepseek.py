@@ -41,8 +41,10 @@ class DeepSeekAPIClient:
     #     return f.decrypt(encrypted.encode()).decode()
 
     def _get_api_key(self) -> str:
-        """直接从本地配置获取API密钥"""
-        return get_api_key().get("api_key", "")
+        """根据模型配置获取对应密钥"""
+        from utils.config_loader import get_api_key
+        provider = global_config.model_config.provider  # 从模型配置获取提供商
+        return get_api_key()["providers"].get(provider, "")
 
     def generate(self, messages: list) -> str:
         """直接调用第三方API生成内容"""

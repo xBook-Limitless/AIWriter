@@ -40,9 +40,12 @@ def get_api_key():
     try:
         config_path = Path(__file__).parent.parent / 'data/configs/apikey.yaml'
         with open(config_path, 'r', encoding='utf-8') as f:
-            return yaml.safe_load(f) or {}
+            data = yaml.safe_load(f) or {}
+            # 确保providers结构存在
+            data.setdefault("providers", {"DeepSeek": "", "Qwen": ""})
+            return data
     except FileNotFoundError:
-        return {}
+        return {"providers": {"DeepSeek": "", "Qwen": ""}}
 
 def save_api_key(data: dict):
     """保存API密钥配置"""
