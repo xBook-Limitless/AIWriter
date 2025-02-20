@@ -2,6 +2,9 @@ from __future__ import annotations
 from typing import Optional, TYPE_CHECKING
 from utils.config_loader import load_config
 import os
+import threading
+import httpx
+from datetime import datetime
 
 
 # 全局API配置变量（运行时动态修改）
@@ -30,6 +33,7 @@ class GlobalAPIConfig:
         self.model_config = APIModelConfig()
         self.generation_param = GenerationParameter()
         self.model_mapping = self._load_model_config()
+        self.connection_monitor = ConnectionMonitor()
 
     def _load_model_config(self) -> dict:
         """从配置文件加载模型映射"""
@@ -143,7 +147,41 @@ class GenerationParameters:
         self.stream = kwargs.get('stream', False)
         self.response_format = kwargs.get('response_format', {"type": "text"})
 
-global_config = LocalConfig()
+class ConnectionMonitor:
+    def __init__(self):
+        self._status = False
+        self._timer = None
+        self.last_check = "尚未检查"
+        
+    def start_monitoring(self, interval=60):
+        """启动定时状态检查"""
+        self._check_status()
+        self._timer = threading.Timer(interval, self.start_monitoring, [interval])
+        self._timer.daemon = True
+        self._timer.start()
+        
+    def _check_status(self):
+        """实际执行状态检查"""
+        try:
+            from utils.config_loader import get_api_key
+            api_key = get_api_key()["providers"].get(global_config.model_config.provider, "")
+            
+            response = httpx.get(
+                f"{global_config.model_config.base_url}/models",
+                headers={"Authorization": f"Bearer {api_key}"},
+                timeout=5
+            )
+            self._status = response.status_code == 200
+            self.last_check = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        except Exception as e:
+            self._status = False
+            self.last_check = f"检查失败: {str(e)}"
+            
+    @property
+    def status(self):
+        return self._status
+
+global_config = GlobalAPIConfig()
 
 # class SecurityConfig:
 #     def __init__(self):

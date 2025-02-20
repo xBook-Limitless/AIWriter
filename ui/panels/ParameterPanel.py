@@ -32,9 +32,10 @@ class Tooltip:
             self.tipwindow.destroy()
         self.tipwindow = None
 
-class ParameterPanel(ttk.Labelframe):
-    def __init__(self, master, **kw):
-        super().__init__(master, **kw)
+class ParameterPanel(ttk.Frame):
+    def __init__(self, master):
+        super().__init__(master)
+        master.protocol("WM_DELETE_WINDOW", self._on_close)  # 处理关闭事件
         self.style = ttk.Style()
         self.style.configure('TLabelframe.Label', font=('微软雅黑', 10, 'bold'))
         self.preset_configs = self._load_presets()  # 先加载预设
@@ -251,14 +252,14 @@ class ParameterPanel(ttk.Labelframe):
     }
 
     def create_widgets(self):
-        self._create_preset_selector()
-        self._create_temperature_control()
-        self._create_top_p_control()
-        self._create_penalty_controls()
-        self._create_max_tokens()
-        self._create_response_format()
-        self._create_stream_switch()
-        # self._create_api_key_management()
+        self._create_model_selector()  # row=0
+        self._create_preset_selector() # row=1
+        self._create_temperature_control() # row=2
+        self._create_top_p_control() # row=3
+        self._create_penalty_controls() # row=4
+        self._create_max_tokens() # row=5
+        self._create_response_format() # row=6
+        self._create_stream_switch() # row=7
         self._setup_layout()
 
     def _create_preset_selector(self):
@@ -292,33 +293,33 @@ class ParameterPanel(ttk.Labelframe):
         # column=1: 第二列
         # sticky='ew': 水平拉伸
         # padx=5: 右侧间距
-        self.preset_combo.grid(row=1, column=1, sticky='ew', padx=5)
+        self.preset_combo.grid(row=1, column=1, sticky='w', padx=5)
         
         # 绑定预设选择事件
         self.preset_combo.bind("<<ComboboxSelected>>", self._apply_preset)
 
     def _create_temperature_control(self):
         # 温度控件
-        temp_label = ttk.Label(self, text="温度 (0.0-1.5):", anchor='w')
+        temp_label = ttk.Label(self, text="温度 (0.0-2.0):", anchor='w')
         temp_label.grid(row=2, column=0, sticky='ew', padx=20)
-        # 温度标签提示
         self._add_tooltip(temp_label, 
-            "控制生成随机性\n0.0-严谨准确\n1.0-富有创意"
+            "控制生成随机性\n0.0-严谨准确\n2.0-高度创意"
         )
         self.temp_value = ttk.Label(self)
         self.temp_value.config(width=6, anchor='center')
         self.temp_slider = ttk.Scale(
             self, 
             from_=0.0, 
-            to=1.5, 
+            to=2.0,
             command=self._update_temp,
             length=200
         )
         self.temp_slider.set(global_config.generation_param.temperature)
         self.temp_slider.grid(row=2, column=1, sticky='', padx=5)
+        self.temp_value.grid(row=2, column=2, padx=5)
 
     def _update_temp(self, value):
-        val = float(value)
+        val = min(max(float(value), 0.0), 2.0)
         global_config.generation_param.temperature = val
         self.temp_value.config(text=f"{val:.1f}")
 
@@ -511,10 +512,17 @@ class ParameterPanel(ttk.Labelframe):
         self.update_idletasks()
 
     def _setup_layout(self):
+        """调整布局适应独立窗口"""
+        self.pack(expand=True, fill=tk.BOTH, padx=10, pady=10)
         # 列配置
-        self.columnconfigure(0, weight=0, minsize=120, pad=20)
-        self.columnconfigure(1, weight=0, minsize=200)
-        self.columnconfigure(2, weight=0, minsize=60)
+        self.columnconfigure(0, weight=0, minsize=120)
+        self.columnconfigure(1, weight=0)  # 取消拉伸
+        self.columnconfigure(2, weight=0)
+        
+        # 设置所有控件左对齐
+        for child in self.winfo_children():
+            if isinstance(child, ttk.Combobox) or isinstance(child, ttk.Scale):
+                child.grid_configure(sticky='w')
 
     def _add_tooltip(self, widget, text):
         tooltip = Tooltip(widget, text)  # 需要确保Tooltip类可用
@@ -559,7 +567,12 @@ class ParameterPanel(ttk.Labelframe):
         # sticky='ew': 水平拉伸填充
         # padx=5: 水平间距
         # pady=5: 垂直间距
-        self.model_combo.grid(row=0, column=1, sticky='ew', padx=5, pady=5)
+        self.model_combo.grid(
+            row=0, column=1, 
+            sticky='w',  # 左对齐
+            padx=5, 
+            pady=5
+        )
         
         # 绑定选择事件：当用户选择新模型时触发_update_model方法
         self.model_combo.bind("<<ComboboxSelected>>", self._update_model)
@@ -587,44 +600,6 @@ class ParameterPanel(ttk.Labelframe):
             # 兼容旧版本配置对象
             global_config.model_config.update_model(selected)
 
-    # def _create_api_key_management(self):
-    #     """新增API密钥管理板块"""
-    #     key_frame = ttk.Labelframe(self, text="用户认证管理")
-        
-    #     # 用户令牌输入
-    #     ttk.Label(key_frame, text="用户令牌:").grid(row=0, column=0, padx=5)
-    #     self.user_token_entry = ttk.Entry(key_frame, show="*", width=30)
-    #     self.user_token_entry.grid(row=0, column=1, padx=5)
-    #     ttk.Button(key_frame, text="刷新令牌", 
-    #               command=self._refresh_user_token).grid(row=0, column=2)
-        
-    #     # 状态指示灯
-    #     self.token_status = ttk.Label(key_frame, text="●", foreground="gray")
-    #     self.token_status.grid(row=0, column=3, padx=5)
-        
-    #     key_frame.grid(row=9, column=0, columnspan=3, sticky="ew", pady=5)
-    #     self._add_tooltip(key_frame, "管理API访问凭证\n令牌有效期为1小时")
-
-    # def _refresh_user_token(self):
-    #     """生成新的JWT令牌"""
-    #     try:
-    #         from modules.AuthModule import generate_jwt_token
-    #         new_token = generate_jwt_token(self._get_device_id())
-    #         self.user_token_entry.delete(0, tk.END)
-    #         self.user_token_entry.insert(0, new_token)
-    #         self._update_token_status(True)
-    #     except Exception as e:
-    #         self._update_token_status(False)
-    #         messagebox.showerror("令牌生成错误", str(e))
-
-    # def _get_device_id(self):
-    #     """获取设备唯一标识"""
-    #     import hashlib, uuid
-    #     return hashlib.sha256(str(uuid.getnode()).encode()).hexdigest()
-
-    # def _update_token_status(self, valid: bool):
-    #     """更新令牌状态指示"""
-    #     color = "green" if valid else "red"
-    #     self.token_status.config(foreground=color)
-    #     # 3秒后恢复灰色
-    #     self.after(3000, lambda: self.token_status.config(foreground="gray")) 
+    def _on_close(self):
+        """关闭窗口时销毁"""
+        self.master.destroy()
