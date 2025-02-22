@@ -3,12 +3,23 @@ from tkinter import ttk
 import yaml
 from pathlib import Path
 from tkinter import messagebox
+from ui.panels.RoleConfiguration import RoleConfiguration
 
 class BaseConfiguration(ttk.Frame):
     """作品基础配置面板"""
     
     CREATION_TYPES = {
-        "小说": {
+        "严肃小说": {
+            "主类型": ["现实主义文学", "历史小说", "社会派小说", "纯文学", "传记文学"],
+            "子类型": {
+                "现实主义文学": ["乡土文学", "都市生活", "工业题材", "军旅生活"],
+                "历史小说": ["古代历史", "近代风云", "历史传记", "历史架空"],
+                "社会派小说": ["社会批判", "人性探索", "伦理困境", "政治寓言"],
+                "纯文学": ["实验文学", "意识流", "诗化小说", "元小说"],
+                "传记文学": ["人物传记", "回忆录", "口述历史", "家族史诗"]
+            }
+        },
+        "网络小说": {
             "主类型": ["玄幻", "科幻", "机甲", "仙侠", "诸天"],
             "子类型": {
                 "玄幻": ["东方玄幻", "异世大陆", "高武世界", "王朝争霸"],
@@ -52,42 +63,53 @@ class BaseConfiguration(ttk.Frame):
 
     def _create_widgets(self):
         """创建界面组件"""
-        # 创建带边框的容器
-        frame = ttk.LabelFrame(self, text="基础设置", width=400, height=220)
-        frame.pack_propagate(False)  # 固定容器大小
-        frame.pack(side=tk.LEFT, anchor='nw', padx=0, pady=0, fill=tk.NONE, expand=False)
+        main_frame = ttk.Frame(self)
+        main_frame.pack(fill=tk.NONE, expand=False, anchor=tk.NW)  # 完全禁止扩展
 
-        # 作品名称
-        ttk.Label(frame, text="作品名称：").grid(row=0, column=0, padx=5, pady=5, sticky="e")
-        self.title_entry = ttk.Entry(frame, width=30)
-        self.title_entry.grid(row=0, column=1, padx=5, pady=5, sticky="w")  # 取消合并列
+        # 基础属性框（宽度调整为原0.8倍）
+        base_width = int(320 * 0.8)  # 原320→256
+        base_frame = ttk.LabelFrame(main_frame, text="基础属性", width=base_width, height=300)
+        base_frame.pack_propagate(False)
+        base_frame.pack(side=tk.LEFT, padx=5, pady=5, anchor=tk.NW, fill=tk.NONE, expand=False)
+
+        # 角色设定框（保持固定尺寸）
+        role_frame = ttk.LabelFrame(main_frame, text="角色设定", width=720, height=295)
+        role_frame.pack_propagate(False)
+        role_frame.pack(side=tk.LEFT, padx=5, pady=5, anchor=tk.NW, fill=tk.NONE, expand=False)
+
+        # 调整基础属性框内部组件宽度
+        ttk.Label(base_frame, text="作品名称：").grid(row=0, column=0, padx=5, pady=5, sticky="e")  # 缩小间距
+        self.title_entry = ttk.Entry(base_frame, width=20)  # 原22→18
+        self.title_entry.grid(row=0, column=1, padx=3, pady=3, sticky="w")
 
         # 创作类型
-        ttk.Label(frame, text="创作类型：").grid(row=1, column=0, padx=5, pady=5, sticky="e")
-        self.creation_type = ttk.Combobox(frame, values=list(self.CREATION_TYPES.keys()), 
-                                        state="readonly", width=27)
+        ttk.Label(base_frame, text="创作类型：").grid(row=1, column=0, padx=5, pady=5, sticky="e")
+        self.creation_type = ttk.Combobox(base_frame, values=list(self.CREATION_TYPES.keys()), 
+                                        state="readonly", width=18)
         self.creation_type.grid(row=1, column=1, padx=5, pady=5, sticky="w")
         self.creation_type.bind("<<ComboboxSelected>>", self._update_main_types)
 
         # 主类型
-        ttk.Label(frame, text="主类型：").grid(row=2, column=0, padx=5, pady=5, sticky="e")
-        self.main_type = ttk.Combobox(frame, state="readonly", width=27)
+        ttk.Label(base_frame, text="主类型：").grid(row=2, column=0, padx=5, pady=5, sticky="e")
+        self.main_type = ttk.Combobox(base_frame, state="readonly", width=18)
         self.main_type.grid(row=2, column=1, padx=5, pady=5, sticky="w")
         self.main_type.bind("<<ComboboxSelected>>", self._update_sub_types)
 
         # 子类型
-        ttk.Label(frame, text="子类型：").grid(row=3, column=0, padx=5, pady=5, sticky="e")
-        self.sub_type = ttk.Combobox(frame, state="readonly", width=27)
+        ttk.Label(base_frame, text="子类型：").grid(row=3, column=0, padx=5, pady=5, sticky="e")
+        self.sub_type = ttk.Combobox(base_frame, state="readonly", width=18)
         self.sub_type.grid(row=3, column=1, padx=5, pady=5, sticky="w")
 
         # 按钮容器
-        btn_frame = ttk.Frame(frame)
+        btn_frame = ttk.Frame(base_frame)
         btn_frame.grid(row=4, column=0, columnspan=2, pady=10)
         
         # 保存按钮
-        ttk.Button(btn_frame, text="保存配置", command=self._save_config).pack(side=tk.LEFT, padx=5)
-        # 新增导入按钮
-        ttk.Button(btn_frame, text="导入配置", command=self._import_config).pack(side=tk.LEFT, padx=5)
+        ttk.Button(btn_frame, text="保存属性", command=self._save_config).pack(side=tk.LEFT, padx=5)
+
+        # 角色配置组件
+        self.role_config = RoleConfiguration(role_frame)
+        self.role_config.pack(fill=tk.BOTH, expand=True, padx=5, pady=5)
 
     def _update_main_types(self, event=None):
         """更新主类型选项"""
@@ -95,6 +117,8 @@ class BaseConfiguration(ttk.Frame):
         if selected:
             main_types = self.CREATION_TYPES[selected]["主类型"]
             self.main_type["values"] = main_types
+            # 触发角色配置更新
+            self.role_config.update_by_creation_type(selected)
             # 自动选择第一个选项并触发子类型更新
             if main_types:
                 self.main_type.set(main_types[0])
@@ -149,24 +173,6 @@ class BaseConfiguration(ttk.Frame):
             
             with open(self.config_file, "w", encoding='utf-8') as f:
                 yaml.dump(all_config, f, allow_unicode=True, sort_keys=False)  # 禁止自动排序
-            messagebox.showinfo("成功", "配置已保存")
+            messagebox.showinfo("成功", "基础属性已保存")
         except Exception as e:
             messagebox.showerror("错误", f"保存失败：{str(e)}")
-
-    def _import_config(self):
-        """导入配置文件"""
-        try:
-            with open(self.config_file, "r", encoding='utf-8') as f:
-                all_config = yaml.safe_load(f) or {}
-            config = all_config.get("base_config", {})
-            
-            self.title_entry.delete(0, tk.END)
-            self.title_entry.insert(0, config.get("title", ""))
-            self.creation_type.set(config.get("creation_type", ""))
-            self._update_main_types()
-            self.main_type.set(config.get("main_type", ""))
-            self._update_sub_types()
-            self.sub_type.set(config.get("sub_type", ""))
-            messagebox.showinfo("成功", "配置已导入")
-        except Exception as e:
-            messagebox.showerror("错误", f"导入失败：{str(e)}")

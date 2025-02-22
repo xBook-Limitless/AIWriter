@@ -159,6 +159,12 @@ def create_main_window():
 
         status_label.bind("<Button-3>", show_status_menu)
 
+    # root.geometry("900x600")  # 确保窗口足够大
+    # root.minsize(900, 600)   # 设置最小尺寸
+
+    style = ttk.Style()
+    style.theme_use("clam")  # 改为经典主题测试
+
     return root
 
 # 新增显示密钥面板的函数

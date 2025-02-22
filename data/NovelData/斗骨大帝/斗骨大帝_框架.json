@@ -1,11 +1,26 @@
 {
   "base_config": {
     "title": "斗骨大帝",
-    "creation_type": "小说",
+    "creation_type": "网络小说",
     "main_type": "玄幻",
     "sub_type": "东方玄幻"
   },
-  "character": null,
-  "plot_setting": null,
-  "worldview": null
+  "role_config": {
+    "current_role": "role_1",
+    "roles": [
+      {
+        "id": "role_1",
+        "role_type": "主角",
+        "name": "帝衍",
+        "gender": "男",
+        "age": "20",
+        "identity": "斗骨大帝",
+        "appearance": "一身黑衣，面容俊朗，眼神深邃",
+        "belongings": "一把骨剑，一把骨刀",
+        "goal": "成为斗骨大帝",
+        "motive": "成为斗骨大帝",
+        "tagline": "站着如喽啰"
+      }
+    ]
+  }
 }
