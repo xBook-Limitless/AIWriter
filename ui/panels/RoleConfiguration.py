@@ -4,6 +4,8 @@ import yaml
 from pathlib import Path
 from tkinter import messagebox
 import time
+import os
+import traceback
 
 class RoleConfiguration(ttk.Frame):
     """角色配置面板"""
@@ -243,32 +245,40 @@ class RoleConfiguration(ttk.Frame):
             self.roles = {}
 
     def _save_config(self):
-        """保持新版数据格式"""
+        """正确收集并保存修改后的数据"""
         try:
-            # 读取完整配置
+            # 确保收集当前表单数据
+            if self.current_role_id:
+                # 获取所有输入框的当前值
+                current_data = {
+                    "role_type": self.role_type.get(),
+                    **{k: v.get() for k, v in self.entries.items()}
+                }
+                # 更新到角色字典
+                self.roles[self.current_role_id] = current_data
+            
+            # 读取现有配置
+            all_config = {}
             if self.config_file.exists():
                 with open(self.config_file, "r", encoding='utf-8') as f:
                     all_config = yaml.safe_load(f) or {}
-            else:
-                all_config = {}
 
-            # 准备角色数据
-            role_config = {
+            # 更新角色配置部分
+            all_config["role_config"] = {
                 "current_role": self.current_role_id,
-                "roles": self.roles  # 直接保存字典
+                "roles": self.roles
             }
-            
-            all_config["role_config"] = role_config
-            
-            # 确保目录存在
+
+            # 确保配置目录存在
             self.config_file.parent.mkdir(parents=True, exist_ok=True)
-            
-            # 保存配置
+
+            # 写入完整配置
             with open(self.config_file, "w", encoding='utf-8') as f:
                 yaml.dump(all_config, f, allow_unicode=True, sort_keys=False)
-
+            
         except Exception as e:
-            messagebox.showerror("错误", f"保存失败：{str(e)}")
+            error_msg = f"保存失败：{str(e)}\n跟踪信息：{traceback.format_exc()}"
+            messagebox.showerror("错误", error_msg)
 
     def _update_role_list(self):
         """更新下拉框后自动选择有效项"""
@@ -406,26 +416,28 @@ class RoleConfiguration(ttk.Frame):
             **{k: v.get() for k, v in self.entries.items()}
         }
         
-        # 调整模板格式
+        # 修正后的预览模板
         preview_template = (
+            "▬ 核心定位 ▬\n"
+            "●{role_type}\n\n"
             "▬ 基础信息 ▬\n"
-            "·姓名：{name}\n"
-            "·性别：{gender}\n"
-            "·年龄：{age}\n"
-            "·身份：{identity}\n\n"
+            "●姓名：{name}\n"
+            "●性别：{gender}\n"
+            "●年龄：{age}\n"
+            "●身份：{identity}\n\n"
             "▬ 人物画像 ▬\n"
-            "·外貌：{appearance}\n"
-            "·物品：{belongings}\n\n"
+            "●外貌：{appearance}\n"
+            "●物品：{belongings}\n\n"
             "▬ 行为动机 ▬\n"
-            "·目标：{goal}\n"
-            "·动机：{motive}\n\n"
+            "●显性目标：{goal}\n"
+            "●隐性动机：{motive}\n\n"
             "▬ 标志特征 ▬\n"
-            "·金句：{tagline}"
+            "●人物金句：{tagline}"
         )
         
         # 处理空值
         preview_content = preview_template.format(
-            role_type=data['role_type'] or "未指定",
+            role_type=data['role_type'] or "未指定类型",
             name=data['name'] or "未知",
             gender=data['gender'] or "未知", 
             age=data['age'] or "未知",
@@ -472,18 +484,39 @@ class RoleConfiguration(ttk.Frame):
         ).pack(pady=5)
 
     def _save_edit_content(self, content):
-        """静默保存编辑内容"""
+        """保存完整档案时进行有效性验证"""
         try:
             parsed_data = self._parse_free_text(content)
+            
+            # 获取当前创作类型
+            with open(self.config_file, "r", encoding='utf-8') as f:
+                creation_type = yaml.safe_load(f).get("base_config", {}).get("creation_type", "网络小说")
+            
+            # 验证角色定位
+            valid_role_types = self.ROLE_TYPES.get(creation_type, [])
+            if parsed_data.get("role_type") and parsed_data["role_type"] not in valid_role_types:
+                raise ValueError(f"角色定位必须为：{', '.join(valid_role_types)}")
+            
+            # 验证性别
+            valid_genders = ["男", "女", "其他"]
+            if parsed_data.get("gender") and parsed_data["gender"] not in valid_genders:
+                raise ValueError(f"性别必须为：{', '.join(valid_genders)}")
+            
             if self.current_role_id:
+                # 更新数据并刷新界面
                 self.roles[self.current_role_id].update(parsed_data)
-                self._show_role_data(self.roles[self.current_role_id])
-                self._save_config()  # 自动保存不提示
+                self._show_role_data(self.roles[self.current_role_id])  # 同步表单
+                self._update_preview()  # 同步预览
+                self._save_config()     # 保存到文件
+                messagebox.showinfo("成功", "修改已同步到所有界面")
+            else:
+                messagebox.showerror("错误", "请先选择要编辑的角色")
+
         except Exception as e:
-            messagebox.showerror("解析错误", f"无法保存修改：{str(e)}")
+            messagebox.showerror("验证失败", str(e))
 
     def _parse_free_text(self, text):
-        """将自由文本解析为结构化数据"""
+        """增强段落标题处理"""
         field_map = {
             "核心定位": "role_type",
             "姓名": "name",
@@ -499,18 +532,29 @@ class RoleConfiguration(ttk.Frame):
         
         parsed = {}
         current_field = None
+        in_section = False  # 新增状态标记
         
         for line in text.split('\n'):
             line = line.strip()
             if not line:
-                continue
+                continue  # 跳过空行
             
-            # 跳过段落标题
-            if line.startswith('▬'):
+            # 识别段落标题行
+            if line.startswith('▬') and line.endswith('▬'):
                 current_field = None
+                in_section = True
+                continue
+            elif in_section:
+                # 段落标题后的首行重置状态
+                in_section = False
+                current_field = None
+
+            # 处理核心定位特殊格式
+            if line.startswith('●') and '：' not in line and current_field is None:
+                parsed['role_type'] = line[1:].strip()
                 continue
             
-            # 解析字段行
+            # 仅处理包含冒号的字段行
             if '：' in line:
                 field_part, value_part = line.split('：', 1)
                 field_key = field_part.strip().lstrip('●│')
@@ -518,7 +562,7 @@ class RoleConfiguration(ttk.Frame):
                     current_field = field_map[field_key]
                     parsed[current_field] = value_part.strip()
             elif current_field:
-                # 处理多行内容
+                # 仅当已有当前字段时追加内容
                 parsed[current_field] += '\n' + line.strip()
             
         return parsed
