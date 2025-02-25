@@ -78,26 +78,26 @@ class BaseConfiguration(ttk.Frame):
         role_frame.pack(side=tk.LEFT, padx=5, pady=5, anchor=tk.NW, fill=tk.NONE, expand=False)
 
         # 调整基础属性框内部组件宽度
-        ttk.Label(base_frame, text="作品名称：").grid(row=0, column=0, padx=5, pady=5, sticky="e")  # 缩小间距
-        self.title_entry = ttk.Entry(base_frame, width=20)  # 原22→18
-        self.title_entry.grid(row=0, column=1, padx=3, pady=3, sticky="w")
+        ttk.Label(base_frame, text="作品名称:").grid(row=0, column=0, padx=5, pady=5, sticky="e")  # 缩小间距
+        self.title_entry = ttk.Entry(base_frame, width=22)  # 原22→18
+        self.title_entry.grid(row=0, column=1, padx=5, pady=3, sticky="w")
 
         # 创作类型
-        ttk.Label(base_frame, text="创作类型：").grid(row=1, column=0, padx=5, pady=5, sticky="e")
+        ttk.Label(base_frame, text="创作类型:").grid(row=1, column=0, padx=5, pady=5, sticky="e")
         self.creation_type = ttk.Combobox(base_frame, values=list(self.CREATION_TYPES.keys()), 
-                                        state="readonly", width=18)
+                                        state="readonly", width=20)
         self.creation_type.grid(row=1, column=1, padx=5, pady=5, sticky="w")
         self.creation_type.bind("<<ComboboxSelected>>", self._update_main_types)
 
         # 主类型
-        ttk.Label(base_frame, text="主类型：").grid(row=2, column=0, padx=5, pady=5, sticky="e")
-        self.main_type = ttk.Combobox(base_frame, state="readonly", width=18)
+        ttk.Label(base_frame, text="主类型:").grid(row=2, column=0, padx=5, pady=5, sticky="e")
+        self.main_type = ttk.Combobox(base_frame, state="readonly", width=20)
         self.main_type.grid(row=2, column=1, padx=5, pady=5, sticky="w")
         self.main_type.bind("<<ComboboxSelected>>", self._update_sub_types)
 
         # 子类型
-        ttk.Label(base_frame, text="子类型：").grid(row=3, column=0, padx=5, pady=5, sticky="e")
-        self.sub_type = ttk.Combobox(base_frame, state="readonly", width=18)
+        ttk.Label(base_frame, text="子类型:").grid(row=3, column=0, padx=5, pady=5, sticky="e")
+        self.sub_type = ttk.Combobox(base_frame, state="readonly", width=20)
         self.sub_type.grid(row=3, column=1, padx=5, pady=5, sticky="w")
 
         # 按钮容器
