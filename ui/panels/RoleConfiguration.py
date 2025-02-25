@@ -35,6 +35,8 @@ class RoleConfiguration(ttk.Frame):
         self.current_role_id = None
         self.roles = {}
         self.operation_history = []  # 统一操作历史记录
+        self.reasoning_window = None
+        self.reasoning_text = None
         self._create_widgets()  # 确保先创建组件
         self._load_config()     # 后加载配置
         self._update_preview()  # 最后初始化预览
@@ -876,8 +878,11 @@ class RoleConfiguration(ttk.Frame):
         self.status_label = ttk.Label(gen_win, text="就绪")
         self.status_label.pack(side=tk.BOTTOM, pady=5)
 
+        # 将编辑器保存为实例变量
+        self.ai_editor = editor  # 新增
+
     def _start_generation(self, window, prompt, editor):
-        """新增：启动生成线程"""
+        """启动生成线程"""
         if self.generating:
             messagebox.showwarning("提示", "生成正在进行中", parent=window)
             return
@@ -895,7 +900,7 @@ class RoleConfiguration(ttk.Frame):
                 for chunk in api_client.stream_generate(messages):
                     if self.stop_generation:
                         break
-                    window.after(0, self._update_editor, editor, chunk)
+                    window.after(0, self._update_editor, self.ai_editor, chunk)
                 status = "已停止" if self.stop_generation else "生成完成"
                 window.after(0, lambda: self.status_label.config(text=status))
             except Exception as e:
@@ -974,31 +979,46 @@ class RoleConfiguration(ttk.Frame):
             editor.focus_force()
 
     def _update_editor(self, editor, chunk):
-        """通用的流式更新方法"""
+        """增强数据解析健壮性的流式更新方法"""
         try:
-            chunk = chunk.strip()
-            if not chunk or chunk == "data: [DONE]":
+            # 过滤空数据和非数据块
+            if not chunk.strip() or chunk == "data: [DONE]":
                 return
-            
-            if chunk.startswith("data:"):
-                json_str = chunk[5:].strip()
+
+            # 确保数据格式正确
+            if chunk.startswith("data: "):
+                json_str = chunk[6:].strip()
                 if not json_str:
                     return
-                
-                data = json.loads(json_str)
-                if not data.get("choices") or not isinstance(data["choices"], list):
+
+                try:
+                    data = json.loads(json_str)
+                except json.JSONDecodeError:
+                    # 处理不完整JSON数据
+                    logging.warning(f"不完整数据块: {json_str}")
                     return
-                
-                delta = data["choices"][0].get("delta", {})
-                if "content" in delta:
-                    editor.insert(tk.END, delta["content"])
-                    editor.see(tk.END)
-                    editor.update_idletasks()
-                    
-        except json.JSONDecodeError as e:
-            logging.error(f"JSON解析失败: {str(e)}")
+
+                # 提取增量内容
+                delta = data.get("choices", [{}])[0].get("delta", {})
+                reasoning = delta.get("reasoning_content", "")
+                content = delta.get("content", "")
+
+                # 安全更新界面
+                if reasoning:
+                    self.master.after(0, self._safe_update_reasoning, reasoning)
+                if content:
+                    # 将最终回答更新到生成助手的编辑框
+                    self.master.after(0, self._safe_update_editor, editor, content)
+
         except Exception as e:
-            logging.error(f"流式处理错误: {str(e)}")
+            logging.error(f"流式处理异常: {str(e)}", exc_info=True)
+
+    def _safe_update_editor(self, editor, content):
+        """安全更新生成助手的编辑框"""
+        if editor.winfo_exists():
+            editor.insert(tk.END, content)
+            editor.see(tk.END)
+            editor.update_idletasks()
 
     def _safe_close(self, window):
         """安全关闭窗口检查"""
@@ -1009,10 +1029,80 @@ class RoleConfiguration(ttk.Frame):
         else:
             window.destroy()
 
-    def _create_form_entry(self, parent, label_text, row):
-        """创建输入框时初始化历史跟踪"""
-        var, entry = super()._create_form_entry(parent, label_text, row)
-        # 强制初始化历史记录
-        entry.edit_history = [entry.get()]
-        entry.edit_pointer = 0
-        return var, entry
+    def _create_reasoning_window(self):
+        """安全创建思维链窗口"""
+        # 先初始化窗口对象为None
+        if not hasattr(self, 'reasoning_window'):
+            self.reasoning_window = None
+        
+        # 检查窗口有效性
+        if self.reasoning_window is None or not self.reasoning_window.winfo_exists():
+            self.reasoning_window = tk.Toplevel(self.master)
+            self.reasoning_window.title("模型思维链")
+            self.reasoning_window.protocol("WM_DELETE_WINDOW", self._hide_reasoning_window)
+            self.reasoning_text = tk.Text(self.reasoning_window, wrap=tk.WORD, width=80, height=20)
+            self.reasoning_text.pack(fill=tk.BOTH, expand=True)
+            self.reasoning_window.withdraw()  # 初始隐藏
+
+    def _hide_reasoning_window(self):
+        """隐藏窗口代替销毁"""
+        if self.reasoning_window.winfo_exists():
+            self.reasoning_window.withdraw()
+
+    def show_reasoning_window(self):
+        """安全显示窗口"""
+        if (hasattr(self, 'reasoning_window') and 
+            self.reasoning_window is not None and 
+            self.reasoning_window.winfo_exists()):
+            self.reasoning_window.deiconify()
+            self.reasoning_window.lift()
+
+    def update_reasoning_display(self, content):
+        """更新思维链显示"""
+        self.master.after(0, lambda: self._safe_update_reasoning(content))
+        
+    def _stream_callback(self, chunk):
+        try:
+            if isinstance(chunk, str):
+                chunk = json.loads(chunk.replace("data: ", ""))
+            
+            reasoning_content = chunk.get("reasoning_content", "")
+            final_content = chunk.get("content", "")
+            
+            # 更新思维链窗口
+            if reasoning_content:
+                self.master.after(0, self._safe_update_reasoning, reasoning_content)
+            
+            # 更新主界面
+            if final_content:
+                self.master.after(0, self._safe_update_main, final_content)
+            
+        except Exception as e:
+            logging.error(f"流式处理错误: {str(e)}", exc_info=True)
+
+    def _safe_update_reasoning(self, content):
+        """安全更新思维链显示"""
+        try:
+            # 确保窗口存在
+            self._create_reasoning_window()
+            
+            # 检查文本框有效性
+            if not hasattr(self, 'reasoning_text') or not self.reasoning_text.winfo_exists():
+                self.reasoning_text = tk.Text(self.reasoning_window)
+                self.reasoning_text.pack(fill=tk.BOTH, expand=True)
+            
+            # 显示窗口并更新内容
+            self.show_reasoning_window()
+            self.reasoning_text.insert(tk.END, content)
+            self.reasoning_text.see(tk.END)
+            
+        except Exception as e:
+            logging.error(f"更新思维链失败: {str(e)}")
+
+    def _safe_update_main(self, content):
+        """安全更新主界面"""
+        if self.preview_text.winfo_exists():
+            self.preview_text.config(state=tk.NORMAL)
+            self.preview_text.insert(tk.END, content)
+            self.preview_text.see(tk.END)
+            self.preview_text.config(state=tk.DISABLED)
