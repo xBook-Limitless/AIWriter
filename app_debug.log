@@ -1,0 +1,61 @@
+2025-02-24 12:54:56,275 - DEBUG - load_ssl_context verify=True cert=None trust_env=True http2=False
+2025-02-24 12:54:56,275 - DEBUG - load_verify_locations cafile='C:\\Users\\iem98\\OneDrive\\Desktop\\AiWriter\\.venv\\Lib\\site-packages\\certifi\\cacert.pem'
+2025-02-24 12:54:56,445 - DEBUG - connect_tcp.started host='api.deepseek.com' port=443 local_address=None timeout=5 socket_options=None
+2025-02-24 12:54:56,486 - DEBUG - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x000001CBF22C85C0>
+2025-02-24 12:54:56,486 - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x000001CBF232E150> server_hostname='api.deepseek.com' timeout=5
+2025-02-24 12:54:56,505 - DEBUG - start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x000001CBF20592B0>
+2025-02-24 12:54:56,505 - DEBUG - send_request_headers.started request=<Request [b'GET']>
+2025-02-24 12:54:56,505 - DEBUG - send_request_headers.complete
+2025-02-24 12:54:56,505 - DEBUG - send_request_body.started request=<Request [b'GET']>
+2025-02-24 12:54:56,505 - DEBUG - send_request_body.complete
+2025-02-24 12:54:56,505 - DEBUG - receive_response_headers.started request=<Request [b'GET']>
+2025-02-24 12:54:56,527 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Mon, 24 Feb 2025 04:54:57 GMT'), (b'Content-Type', b'application/json'), (b'Content-Length', b'154'), (b'Connection', b'keep-alive'), (b'Set-Cookie', b'HWWAFSESTIME=1740372895838; path=/'), (b'Set-Cookie', b'HWWAFSESID=660a38b8852f15018e; path=/'), (b'vary', b'origin, access-control-request-method, access-control-request-headers'), (b'access-control-allow-credentials', b'true'), (b'x-ds-trace-id', b'd7777d657fa89789d037dbac0885c53e'), (b'Strict-Transport-Security', b'max-age=31536000; includeSubDomains; preload'), (b'X-Content-Type-Options', b'nosniff'), (b'Server', b'elb')])
+2025-02-24 12:54:56,531 - INFO - HTTP Request: GET https://api.deepseek.com/v1/models "HTTP/1.1 200 OK"
+2025-02-24 12:54:56,531 - DEBUG - receive_response_body.started request=<Request [b'GET']>
+2025-02-24 12:54:56,531 - DEBUG - receive_response_body.complete
+2025-02-24 12:54:56,531 - DEBUG - response_closed.started
+2025-02-24 12:54:56,531 - DEBUG - response_closed.complete
+2025-02-24 12:54:56,532 - DEBUG - close.started
+2025-02-24 12:54:56,532 - DEBUG - close.complete
+2025-02-24 12:56:54,726 - DEBUG - load_ssl_context verify=True cert=None trust_env=True http2=False
+2025-02-24 12:56:54,727 - DEBUG - load_verify_locations cafile='C:\\Users\\iem98\\OneDrive\\Desktop\\AiWriter\\.venv\\Lib\\site-packages\\certifi\\cacert.pem'
+2025-02-24 12:56:54,894 - DEBUG - connect_tcp.started host='api.deepseek.com' port=443 local_address=None timeout=5 socket_options=None
+2025-02-24 12:56:54,948 - DEBUG - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x00000179E6028920>
+2025-02-24 12:56:54,948 - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x00000179E608DFD0> server_hostname='api.deepseek.com' timeout=5
+2025-02-24 12:56:54,969 - DEBUG - start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x00000179E60286B0>
+2025-02-24 12:56:54,969 - DEBUG - send_request_headers.started request=<Request [b'GET']>
+2025-02-24 12:56:54,969 - DEBUG - send_request_headers.complete
+2025-02-24 12:56:54,969 - DEBUG - send_request_body.started request=<Request [b'GET']>
+2025-02-24 12:56:54,969 - DEBUG - send_request_body.complete
+2025-02-24 12:56:54,969 - DEBUG - receive_response_headers.started request=<Request [b'GET']>
+2025-02-24 12:56:54,995 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Mon, 24 Feb 2025 04:56:56 GMT'), (b'Content-Type', b'application/json'), (b'Content-Length', b'154'), (b'Connection', b'keep-alive'), (b'Set-Cookie', b'HWWAFSESTIME=1740373012066; path=/'), (b'Set-Cookie', b'HWWAFSESID=594cf9d52029a03fdd; path=/'), (b'vary', b'origin, access-control-request-method, access-control-request-headers'), (b'access-control-allow-credentials', b'true'), (b'x-ds-trace-id', b'9a174ae4989578b8549021de25447dca'), (b'Strict-Transport-Security', b'max-age=31536000; includeSubDomains; preload'), (b'X-Content-Type-Options', b'nosniff'), (b'Server', b'elb')])
+2025-02-24 12:56:54,996 - INFO - HTTP Request: GET https://api.deepseek.com/v1/models "HTTP/1.1 200 OK"
+2025-02-24 12:56:54,996 - DEBUG - receive_response_body.started request=<Request [b'GET']>
+2025-02-24 12:56:54,996 - DEBUG - receive_response_body.complete
+2025-02-24 12:56:54,996 - DEBUG - response_closed.started
+2025-02-24 12:56:54,996 - DEBUG - response_closed.complete
+2025-02-24 12:56:54,997 - DEBUG - close.started
+2025-02-24 12:56:54,997 - DEBUG - close.complete
+2025-02-24 12:58:41,771 - INFO - === 系统信息 ===
+2025-02-24 12:58:41,832 - INFO - 操作系统: Windows 11
+2025-02-24 12:58:41,832 - INFO - Python版本: 3.12.9
+2025-02-24 12:58:41,834 - INFO - Tkinter版本: 8.6.15
+2025-02-24 12:58:41,908 - DEBUG - load_ssl_context verify=True cert=None trust_env=True http2=False
+2025-02-24 12:58:41,909 - DEBUG - load_verify_locations cafile='C:\\Users\\iem98\\OneDrive\\Desktop\\AiWriter\\.venv\\Lib\\site-packages\\certifi\\cacert.pem'
+2025-02-24 12:58:42,070 - DEBUG - connect_tcp.started host='api.deepseek.com' port=443 local_address=None timeout=5 socket_options=None
+2025-02-24 12:58:42,107 - DEBUG - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x000001641FE2C860>
+2025-02-24 12:58:42,108 - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x0000016420059F50> server_hostname='api.deepseek.com' timeout=5
+2025-02-24 12:58:42,126 - DEBUG - start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x000001641FFABE90>
+2025-02-24 12:58:42,126 - DEBUG - send_request_headers.started request=<Request [b'GET']>
+2025-02-24 12:58:42,127 - DEBUG - send_request_headers.complete
+2025-02-24 12:58:42,127 - DEBUG - send_request_body.started request=<Request [b'GET']>
+2025-02-24 12:58:42,127 - DEBUG - send_request_body.complete
+2025-02-24 12:58:42,127 - DEBUG - receive_response_headers.started request=<Request [b'GET']>
+2025-02-24 12:58:42,161 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Mon, 24 Feb 2025 04:58:43 GMT'), (b'Content-Type', b'application/json'), (b'Content-Length', b'154'), (b'Connection', b'keep-alive'), (b'Set-Cookie', b'HWWAFSESTIME=1740373119711; path=/'), (b'Set-Cookie', b'HWWAFSESID=9bd409dad0034427ba; path=/'), (b'vary', b'origin, access-control-request-method, access-control-request-headers'), (b'access-control-allow-credentials', b'true'), (b'x-ds-trace-id', b'10aada27219ae32dc9930fe7f7c80f37'), (b'Strict-Transport-Security', b'max-age=31536000; includeSubDomains; preload'), (b'X-Content-Type-Options', b'nosniff'), (b'Server', b'elb')])
+2025-02-24 12:58:42,163 - INFO - HTTP Request: GET https://api.deepseek.com/v1/models "HTTP/1.1 200 OK"
+2025-02-24 12:58:42,163 - DEBUG - receive_response_body.started request=<Request [b'GET']>
+2025-02-24 12:58:42,163 - DEBUG - receive_response_body.complete
+2025-02-24 12:58:42,164 - DEBUG - response_closed.started
+2025-02-24 12:58:42,164 - DEBUG - response_closed.complete
+2025-02-24 12:58:42,164 - DEBUG - close.started
+2025-02-24 12:58:42,164 - DEBUG - close.complete

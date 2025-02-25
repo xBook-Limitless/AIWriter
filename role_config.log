@@ -1,0 +1,78 @@
+2025-02-24 10:08:50,772 - httpx - DEBUG - load_ssl_context verify=True cert=None trust_env=True http2=False
+2025-02-24 10:08:50,772 - httpx - DEBUG - load_verify_locations cafile='C:\\Users\\iem98\\OneDrive\\Desktop\\AiWriter\\.venv\\Lib\\site-packages\\certifi\\cacert.pem'
+2025-02-24 10:08:50,922 - httpcore.connection - DEBUG - connect_tcp.started host='api.deepseek.com' port=443 local_address=None timeout=5 socket_options=None
+2025-02-24 10:08:50,985 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x00000191FEDFBC50>
+2025-02-24 10:08:50,985 - httpcore.connection - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x00000191FF0C8F50> server_hostname='api.deepseek.com' timeout=5
+2025-02-24 10:08:51,007 - httpcore.connection - DEBUG - start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x00000191FD5ABEC0>
+2025-02-24 10:08:51,007 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'GET']>
+2025-02-24 10:08:51,007 - httpcore.http11 - DEBUG - send_request_headers.complete
+2025-02-24 10:08:51,007 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'GET']>
+2025-02-24 10:08:51,007 - httpcore.http11 - DEBUG - send_request_body.complete
+2025-02-24 10:08:51,007 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'GET']>
+2025-02-24 10:08:51,039 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Mon, 24 Feb 2025 02:08:51 GMT'), (b'Content-Type', b'application/json'), (b'Content-Length', b'154'), (b'Connection', b'keep-alive'), (b'Set-Cookie', b'HWWAFSESID=3e52276bbd1a66c4d1; path=/'), (b'Set-Cookie', b'HWWAFSESTIME=1740362931164; path=/'), (b'vary', b'origin, access-control-request-method, access-control-request-headers'), (b'access-control-allow-credentials', b'true'), (b'x-ds-trace-id', b'1995715aec1a5e074ddfd2d4116af303'), (b'Strict-Transport-Security', b'max-age=31536000; includeSubDomains; preload'), (b'X-Content-Type-Options', b'nosniff'), (b'Server', b'elb')])
+2025-02-24 10:08:51,039 - httpx - INFO - HTTP Request: GET https://api.deepseek.com/v1/models "HTTP/1.1 200 OK"
+2025-02-24 10:08:51,039 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'GET']>
+2025-02-24 10:08:51,039 - httpcore.http11 - DEBUG - receive_response_body.complete
+2025-02-24 10:08:51,039 - httpcore.http11 - DEBUG - response_closed.started
+2025-02-24 10:08:51,039 - httpcore.http11 - DEBUG - response_closed.complete
+2025-02-24 10:08:51,039 - httpcore.connection - DEBUG - close.started
+2025-02-24 10:08:51,039 - httpcore.connection - DEBUG - close.complete
+2025-02-24 10:08:56,570 - root - INFO - AI生成参数｜类型:网络小说｜候选角色:['主角', '反派', '导师', '盟友', '恋人', '喜剧角色', '成长型角色']｜最终选择:恋人
+2025-02-24 10:08:56,570 - httpx - DEBUG - load_ssl_context verify=True cert=None trust_env=True http2=False
+2025-02-24 10:08:56,570 - httpx - DEBUG - load_verify_locations cafile='C:\\Users\\iem98\\OneDrive\\Desktop\\AiWriter\\.venv\\Lib\\site-packages\\certifi\\cacert.pem'
+2025-02-24 10:08:56,744 - httpcore.connection - DEBUG - connect_tcp.started host='api.deepseek.com' port=443 local_address=None timeout=30 socket_options=None
+2025-02-24 10:08:56,760 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x00000191FF06A420>
+2025-02-24 10:08:56,760 - httpcore.connection - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x00000191FF0C99D0> server_hostname='api.deepseek.com' timeout=30
+2025-02-24 10:08:56,779 - httpcore.connection - DEBUG - start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x00000191FF0697C0>
+2025-02-24 10:08:56,779 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'POST']>
+2025-02-24 10:08:56,779 - httpcore.http11 - DEBUG - send_request_headers.complete
+2025-02-24 10:08:56,779 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'POST']>
+2025-02-24 10:08:56,779 - httpcore.http11 - DEBUG - send_request_body.complete
+2025-02-24 10:08:56,779 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'POST']>
+2025-02-24 10:08:56,935 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Mon, 24 Feb 2025 02:08:57 GMT'), (b'Content-Type', b'text/event-stream; charset=utf-8'), (b'Transfer-Encoding', b'chunked'), (b'Connection', b'keep-alive'), (b'Set-Cookie', b'HWWAFSESID=bbca9b5ea53a6abc5b; path=/'), (b'Set-Cookie', b'HWWAFSESTIME=1740362933285; path=/'), (b'cache-control', b'no-cache'), (b'vary', b'origin, access-control-request-method, access-control-request-headers'), (b'access-control-allow-credentials', b'true'), (b'x-ds-trace-id', b'bf88fed5c2f9bf1a2b213ea776e7727c'), (b'Strict-Transport-Security', b'max-age=31536000; includeSubDomains; preload'), (b'X-Content-Type-Options', b'nosniff'), (b'Server', b'elb')])
+2025-02-24 10:08:56,935 - httpx - INFO - HTTP Request: POST https://api.deepseek.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-02-24 10:08:56,938 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'POST']>
+2025-02-24 10:09:11,227 - httpcore.http11 - DEBUG - receive_response_body.complete
+2025-02-24 10:09:11,242 - httpcore.http11 - DEBUG - response_closed.started
+2025-02-24 10:09:11,242 - httpcore.http11 - DEBUG - response_closed.complete
+2025-02-24 10:09:11,242 - httpcore.connection - DEBUG - close.started
+2025-02-24 10:09:11,242 - httpcore.connection - DEBUG - close.complete
+2025-02-24 10:09:12,868 - root - DEBUG - 保存角色数据：{'role_type': '恋人', 'name': '苏瑾', 'gender': '女', 'age': '未知', 'identity': '豪门千金，家族企业继承人', 'appearance': '拥有一头乌黑亮丽的长发，皮肤白皙如雪，五官精致如画，尤其是那双深邃的眼眸，仿佛能看透人心。身材高挑，气质优雅，举手投足间都散发着高贵与自信。', 'belongings': '一枚祖传的翡翠玉佩，是她母亲留给她的唯一遗物，也是她身份的象征。', 'goal': '为了家族企业的未来，她必须找到一个合适的联姻对象，以巩固家族的地位。', 'motive': '内心深处，她渴望真正的爱情，不愿被家族的利益所束缚，但又无法摆脱家族的责任。', 'tagline': ''}
+2025-02-24 10:09:51,054 - httpx - DEBUG - load_ssl_context verify=True cert=None trust_env=True http2=False
+2025-02-24 10:09:51,054 - httpx - DEBUG - load_verify_locations cafile='C:\\Users\\iem98\\OneDrive\\Desktop\\AiWriter\\.venv\\Lib\\site-packages\\certifi\\cacert.pem'
+2025-02-24 10:09:51,397 - httpcore.connection - DEBUG - connect_tcp.started host='api.deepseek.com' port=443 local_address=None timeout=5 socket_options=None
+2025-02-24 10:09:51,413 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x00000191FF06A930>
+2025-02-24 10:09:51,413 - httpcore.connection - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x00000191FF0E93D0> server_hostname='api.deepseek.com' timeout=5
+2025-02-24 10:09:51,429 - httpcore.connection - DEBUG - start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x00000191FF06BDA0>
+2025-02-24 10:09:51,429 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'GET']>
+2025-02-24 10:09:51,429 - httpcore.http11 - DEBUG - send_request_headers.complete
+2025-02-24 10:09:51,429 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'GET']>
+2025-02-24 10:09:51,429 - httpcore.http11 - DEBUG - send_request_body.complete
+2025-02-24 10:09:51,429 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'GET']>
+2025-02-24 10:09:51,460 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Mon, 24 Feb 2025 02:09:51 GMT'), (b'Content-Type', b'application/json'), (b'Content-Length', b'154'), (b'Connection', b'keep-alive'), (b'Set-Cookie', b'HWWAFSESID=51c6a9d0834caeee80; path=/'), (b'Set-Cookie', b'HWWAFSESTIME=1740362989095; path=/'), (b'vary', b'origin, access-control-request-method, access-control-request-headers'), (b'access-control-allow-credentials', b'true'), (b'x-ds-trace-id', b'6cb639d1aa2755756a62117ac77528e2'), (b'Strict-Transport-Security', b'max-age=31536000; includeSubDomains; preload'), (b'X-Content-Type-Options', b'nosniff'), (b'Server', b'elb')])
+2025-02-24 10:09:51,460 - httpx - INFO - HTTP Request: GET https://api.deepseek.com/v1/models "HTTP/1.1 200 OK"
+2025-02-24 10:09:51,460 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'GET']>
+2025-02-24 10:09:51,460 - httpcore.http11 - DEBUG - receive_response_body.complete
+2025-02-24 10:09:51,460 - httpcore.http11 - DEBUG - response_closed.started
+2025-02-24 10:09:51,460 - httpcore.http11 - DEBUG - response_closed.complete
+2025-02-24 10:09:51,460 - httpcore.connection - DEBUG - close.started
+2025-02-24 10:09:51,460 - httpcore.connection - DEBUG - close.complete
+2025-02-24 10:10:51,470 - httpx - DEBUG - load_ssl_context verify=True cert=None trust_env=True http2=False
+2025-02-24 10:10:51,470 - httpx - DEBUG - load_verify_locations cafile='C:\\Users\\iem98\\OneDrive\\Desktop\\AiWriter\\.venv\\Lib\\site-packages\\certifi\\cacert.pem'
+2025-02-24 10:10:51,694 - httpcore.connection - DEBUG - connect_tcp.started host='api.deepseek.com' port=443 local_address=None timeout=5 socket_options=None
+2025-02-24 10:10:51,726 - httpcore.connection - DEBUG - connect_tcp.complete return_value=<httpcore._backends.sync.SyncStream object at 0x00000191FF06A690>
+2025-02-24 10:10:51,726 - httpcore.connection - DEBUG - start_tls.started ssl_context=<ssl.SSLContext object at 0x00000191FF0C9950> server_hostname='api.deepseek.com' timeout=5
+2025-02-24 10:10:51,742 - httpcore.connection - DEBUG - start_tls.complete return_value=<httpcore._backends.sync.SyncStream object at 0x00000191FF06A960>
+2025-02-24 10:10:51,742 - httpcore.http11 - DEBUG - send_request_headers.started request=<Request [b'GET']>
+2025-02-24 10:10:51,742 - httpcore.http11 - DEBUG - send_request_headers.complete
+2025-02-24 10:10:51,742 - httpcore.http11 - DEBUG - send_request_body.started request=<Request [b'GET']>
+2025-02-24 10:10:51,742 - httpcore.http11 - DEBUG - send_request_body.complete
+2025-02-24 10:10:51,742 - httpcore.http11 - DEBUG - receive_response_headers.started request=<Request [b'GET']>
+2025-02-24 10:10:51,790 - httpcore.http11 - DEBUG - receive_response_headers.complete return_value=(b'HTTP/1.1', 200, b'OK', [(b'Date', b'Mon, 24 Feb 2025 02:10:52 GMT'), (b'Content-Type', b'application/json'), (b'Content-Length', b'154'), (b'Connection', b'keep-alive'), (b'Set-Cookie', b'HWWAFSESID=e75ebb8b796c281409; path=/'), (b'Set-Cookie', b'HWWAFSESTIME=1740363048250; path=/'), (b'vary', b'origin, access-control-request-method, access-control-request-headers'), (b'access-control-allow-credentials', b'true'), (b'x-ds-trace-id', b'0d2552bebb13b7fa09913c5d0293af9c'), (b'Strict-Transport-Security', b'max-age=31536000; includeSubDomains; preload'), (b'X-Content-Type-Options', b'nosniff'), (b'Server', b'elb')])
+2025-02-24 10:10:51,790 - httpx - INFO - HTTP Request: GET https://api.deepseek.com/v1/models "HTTP/1.1 200 OK"
+2025-02-24 10:10:51,790 - httpcore.http11 - DEBUG - receive_response_body.started request=<Request [b'GET']>
+2025-02-24 10:10:51,790 - httpcore.http11 - DEBUG - receive_response_body.complete
+2025-02-24 10:10:51,790 - httpcore.http11 - DEBUG - response_closed.started
+2025-02-24 10:10:51,790 - httpcore.http11 - DEBUG - response_closed.complete
+2025-02-24 10:10:51,790 - httpcore.connection - DEBUG - close.started
+2025-02-24 10:10:51,790 - httpcore.connection - DEBUG - close.complete

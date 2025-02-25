@@ -6,6 +6,10 @@ from tkinter import messagebox
 import time
 import os
 import traceback
+import json
+import threading
+import logging
+import random  # 新增随机模块
 
 class RoleConfiguration(ttk.Frame):
     """角色配置面板"""
@@ -118,7 +122,8 @@ class RoleConfiguration(ttk.Frame):
         ttk.Button(btn_frame, text="新建", width=5, command=self._add_role).pack(side=tk.LEFT, padx=1)
         ttk.Button(btn_frame, text="删除", width=5, command=self._delete_role).pack(side=tk.LEFT, padx=1)
         ttk.Button(btn_frame, text="撤销", width=5, command=self._undo_last).pack(side=tk.LEFT, padx=1)
-        ttk.Button(btn_frame, text="保存角色", width=7, command=self._save_config).pack(side=tk.LEFT, padx=1)
+        ttk.Button(btn_frame, text="保存", width=5, command=self._save_config).pack(side=tk.LEFT, padx=1)
+        ttk.Button(btn_frame, text="AI生成", width=5, command=self._ai_generate_role).pack(side=tk.LEFT, padx=1)  # 新增AI生成按钮
 
         # 初始化角色类型
         self._update_role_types()
@@ -179,16 +184,17 @@ class RoleConfiguration(ttk.Frame):
         except Exception as e:
             messagebox.showerror("错误", f"更新角色类型失败：{str(e)}")
 
-    def _add_role(self):
-        """生成唯一连续ID"""
+    def _add_role(self, silent=False):
+        """生成唯一连续ID（新增静默模式参数）"""
         new_index = len(self.roles) + 1
         while f"role_{new_index}" in self.roles:
             new_index += 1
         new_id = f"role_{new_index}"
-        self.current_role_id = new_id
+        
+        # 创建新角色数据
         new_role = {
             "role_type": "",
-            "name": "",
+            "name": "新角色" if silent else "",  # 静默模式自动命名
             "gender": "",
             "age": "",
             "identity": "",
@@ -199,10 +205,15 @@ class RoleConfiguration(ttk.Frame):
             "tagline": ""
         }
         self.roles[new_id] = new_role
-        # 记录新建操作
-        self._record_operation('create', new_id, None)
-        self._update_role_list()
-        self._show_role_data(new_role)
+        
+        # 非静默模式立即更新界面
+        if not silent:
+            self.current_role_id = new_id
+            self._update_role_list()
+            self._show_role_data(new_role)
+            self._record_operation('create', new_id, None)
+        
+        return new_id  # 始终返回新角色ID
 
     def _load_config(self):
         """修复旧版配置兼容性问题"""
@@ -245,43 +256,43 @@ class RoleConfiguration(ttk.Frame):
             self.roles = {}
 
     def _save_config(self):
-        """正确收集并保存修改后的数据"""
-        try:
-            # 确保收集当前表单数据
-            if self.current_role_id:
-                # 获取所有输入框的当前值
-                current_data = {
-                    "role_type": self.role_type.get(),
-                    **{k: v.get() for k, v in self.entries.items()}
-                }
-                # 更新到角色字典
-                self.roles[self.current_role_id] = current_data
-            
-            # 读取现有配置
-            all_config = {}
-            if self.config_file.exists():
-                with open(self.config_file, "r", encoding='utf-8') as f:
-                    all_config = yaml.safe_load(f) or {}
-
-            # 更新角色配置部分
-            all_config["role_config"] = {
-                "current_role": self.current_role_id,
-                "roles": self.roles
+        """保存时自动记录修改"""
+        if self.current_role_id and self.current_role_id in self.roles:
+            # 记录修改前的状态
+            prev_data = self.roles[self.current_role_id].copy()
+            # 获取当前表单数据
+            current_data = {
+                "role_type": self.role_type.get(),
+                **{k: v.get() for k, v in self.entries.items()}
             }
-
-            # 确保配置目录存在
-            self.config_file.parent.mkdir(parents=True, exist_ok=True)
-
-            # 写入完整配置
-            with open(self.config_file, "w", encoding='utf-8') as f:
-                yaml.dump(all_config, f, allow_unicode=True, sort_keys=False)
+            # 如果数据有变化才记录
+            if prev_data != current_data:
+                self._record_operation('update', self.current_role_id, prev_data)
             
-        except Exception as e:
-            error_msg = f"保存失败：{str(e)}\n跟踪信息：{traceback.format_exc()}"
-            messagebox.showerror("错误", error_msg)
+            # 更新到角色字典
+            self.roles[self.current_role_id] = current_data
+        
+        # 读取现有配置
+        all_config = {}
+        if self.config_file.exists():
+            with open(self.config_file, "r", encoding='utf-8') as f:
+                all_config = yaml.safe_load(f) or {}
 
-    def _update_role_list(self):
-        """更新下拉框后自动选择有效项"""
+        # 更新角色配置部分
+        all_config["role_config"] = {
+            "current_role": self.current_role_id,
+            "roles": self.roles
+        }
+
+        # 确保配置目录存在
+        self.config_file.parent.mkdir(parents=True, exist_ok=True)
+
+        # 写入完整配置
+        with open(self.config_file, "w", encoding='utf-8') as f:
+            yaml.dump(all_config, f, allow_unicode=True, sort_keys=False)
+
+    def _update_role_list(self, select_id=None):
+        """支持指定选中角色"""
         self.role_map = {}  # 每次更新前重置
         display_names = []
         
@@ -301,9 +312,12 @@ class RoleConfiguration(ttk.Frame):
         
         # 自动选择有效角色
         if self.roles:
-            if self.current_role_id not in self.roles:
-                self.current_role_id = next(iter(self.roles))
-            current_name = self._get_display_name(self.current_role_id)
+            target_id = select_id if select_id else self.current_role_id
+            if target_id not in self.roles:
+                target_id = next(iter(self.roles))
+            
+            self.current_role_id = target_id  # 确保当前角色ID有效
+            current_name = self._get_display_name(target_id)
             self.role_selector.set(current_name)
         else:
             self.role_selector.set('')
@@ -329,8 +343,12 @@ class RoleConfiguration(ttk.Frame):
                 messagebox.showwarning("警告", "该角色已不存在")
                 self._update_role_list()
 
-    def _show_role_data(self, data):
-        """显示前验证当前角色"""
+    def _show_role_data(self, data, keep_position=False):
+        """显示角色数据时保持滚动位置"""
+        if keep_position:
+            # 记录当前滚动位置
+            scroll_position = self.preview_text.yview()
+        
         if self.current_role_id and self.current_role_id in self.roles:
             current_name = self._get_display_name(self.current_role_id)
             self.role_selector.set(current_name)
@@ -342,9 +360,14 @@ class RoleConfiguration(ttk.Frame):
                 else:
                     entry.delete(0, tk.END)
                     entry.insert(0, value)
-            self._update_preview()
+            self._update_preview(force=True)
         else:
             self._clear_form()
+
+        if keep_position:
+            # 恢复滚动位置
+            self.preview_text.yview_moveto(scroll_position[0])
+            self.update_idletasks()
 
     def _delete_role(self):
         """删除角色后强制更新界面"""
@@ -395,68 +418,122 @@ class RoleConfiguration(ttk.Frame):
         self._update_role_types(creation_type)
 
     def _setup_preview_bindings(self):
-        """绑定输入框变更事件"""
-        if not hasattr(self, 'preview_text'):
-            return
-
+        """为预览框添加事件绑定"""
+        # 双击预览框打开完整编辑
+        self.preview_text.bind("<Double-Button-1>", self._open_full_edit)
+        
+        # 新增：为所有输入框添加撤销支持
         for entry in self.entries.values():
-            if isinstance(entry, ttk.Combobox):
-                entry.bind("<<ComboboxSelected>>", self._update_preview)
-            else:
-                entry.bind("<KeyRelease>", self._update_preview)
-        self.role_type.bind("<<ComboboxSelected>>", self._update_preview)
+            entry.bind("<Control-z>", self._undo_last_entry)
+            entry.bind("<Control-Z>", self._undo_last_entry)  # 处理大写锁定情况
 
-    def _update_preview(self, event=None):
-        """生成格式优化的预览内容"""
-        if not hasattr(self, 'preview_text') or self.preview_text is None:
-            return  # 防止组件未初始化时调用
+    def _track_entry_changes(self, var, entry):
+        """增强历史记录跟踪"""
+        entry.edit_history = [entry.get()]  # 初始化时包含当前值
+        entry.edit_pointer = 0
         
-        data = {
-            'role_type': self.role_type.get(),
-            **{k: v.get() for k, v in self.entries.items()}
-        }
+        def on_change(*args):
+            current = entry.get()
+            last = entry.edit_history[entry.edit_pointer]
+            
+            # 忽略重复值
+            if current == last:
+                return
+                
+            # 添加新记录前截断指针后的历史
+            entry.edit_history = entry.edit_history[:entry.edit_pointer+1]
+            entry.edit_history.append(current)
+            entry.edit_pointer += 1
+            
+            # 保持最多20步历史
+            if len(entry.edit_history) > 20:
+                # 移除最旧记录时调整指针
+                removed_count = len(entry.edit_history) - 20
+                entry.edit_history = entry.edit_history[removed_count:]
+                entry.edit_pointer -= removed_count
+                
+            # 延迟自动保存
+            self.after(2000, self._save_config)
         
-        # 修正后的预览模板
-        preview_template = (
-            "▬ 核心定位 ▬\n"
-            "●{role_type}\n\n"
-            "▬ 基础信息 ▬\n"
-            "●姓名：{name}\n"
-            "●性别：{gender}\n"
-            "●年龄：{age}\n"
-            "●身份：{identity}\n\n"
-            "▬ 人物画像 ▬\n"
-            "●外貌：{appearance}\n"
-            "●物品：{belongings}\n\n"
-            "▬ 行为动机 ▬\n"
-            "●显性目标：{goal}\n"
-            "●隐性动机：{motive}\n\n"
-            "▬ 标志特征 ▬\n"
-            "●人物金句：{tagline}"
-        )
-        
-        # 处理空值
-        preview_content = preview_template.format(
-            role_type=data['role_type'] or "未指定类型",
-            name=data['name'] or "未知",
-            gender=data['gender'] or "未知", 
-            age=data['age'] or "未知",
-            identity=data['identity'] or "未定义",
-            appearance=data['appearance'] or "暂无描述",
-            belongings=data['belongings'] or "无特殊物品",
-            goal=data['goal'] or "目标未明确",
-            motive=data['motive'] or "动机待挖掘",
-            tagline=data['tagline'] or "暂无特色标签"
-        )
-        
-        # 插入文本时应用格式
-        self.preview_text.config(state=tk.NORMAL)
-        self.preview_text.delete(1.0, tk.END)
-        self.preview_text.insert(tk.END, preview_content, 'left')  # 应用左对齐标签
-        self.preview_text.config(state=tk.DISABLED)
+        var.trace_add("write", on_change)
 
-    def _open_full_edit(self):
-        """打开居中显示的完整编辑窗口"""
+    def _undo_last_entry(self, event):
+        """支持多步撤销"""
+        widget = event.widget
+        if not widget:
+            return
+        
+        try:
+            if not hasattr(widget, 'edit_history') or len(widget.edit_history) < 2:
+                return
+                
+            # 允许逐步回退直到历史记录开头
+            if widget.edit_pointer > 0:
+                widget.edit_pointer -= 1
+                prev_text = widget.edit_history[widget.edit_pointer]
+                
+                # 静默更新
+                widget.config(state=tk.NORMAL)
+                widget.delete(0, tk.END)
+                widget.insert(0, prev_text)
+                widget.config(state=tk.NORMAL)
+                
+                # 触发预览更新
+                self._update_preview()
+                
+        except Exception as e:
+            logging.error(f"撤销失败：{str(e)}")
+        return "break"
+
+    def _update_preview(self, event=None, force=False):
+        """添加强制刷新逻辑"""
+        if force or self.current_role_id:
+            data = {
+                'role_type': self.role_type.get(),
+                **{k: v.get() for k, v in self.entries.items()}
+            }
+            
+            # 严格保持原始字段名称和顺序
+            preview_template = (
+                "▬ 核心定位 ▬\n"
+                "●角色定位：{role_type}\n\n"
+                "▬ 基础信息 ▬\n"
+                "●姓名：{name}\n"
+                "●性别：{gender}\n"
+                "●年龄：{age}\n"
+                "●身份地位：{identity}\n\n"
+                "▬ 人物画像 ▬\n"
+                "●外貌特征：{appearance}\n"
+                "●随身物品：{belongings}\n\n"
+                "▬ 行为动机 ▬\n"
+                "●显性目标：{goal}\n"
+                "●隐性动机：{motive}\n\n"
+                "▬ 标志特征 ▬\n"
+                "●人设金句：{tagline}"
+            )
+            
+            # 保持原始空值处理方式
+            preview_content = preview_template.format(
+                role_type=data['role_type'] or "未指定类型",
+                name=data['name'] or "未知",
+                gender=data['gender'] or "未知", 
+                age=data['age'] or "未知",
+                identity=data['identity'] or "未定义",
+                appearance=data['appearance'] or "暂无描述",
+                belongings=data['belongings'] or "无特殊物品",
+                goal=data['goal'] or "目标未明确",
+                motive=data['motive'] or "动机待挖掘",
+                tagline=data['tagline'] or "暂无特色标签"
+            )
+            
+            # 更新预览内容
+            self.preview_text.config(state=tk.NORMAL)
+            self.preview_text.delete(1.0, tk.END)
+            self.preview_text.insert(tk.END, preview_content)
+            self.preview_text.config(state=tk.DISABLED)
+
+    def _open_full_edit(self, event=None):
+        """修复文本编辑器撤销检查"""
         edit_win = tk.Toplevel(self)
         edit_win.title("完整角色档案编辑")
         
@@ -468,20 +545,54 @@ class RoleConfiguration(ttk.Frame):
         y = (edit_win.winfo_screenheight() // 2) - (height // 2)
         edit_win.geometry(f'{width}x{height}+{x}+{y}')
 
-        # 编辑组件
-        from tkinter.scrolledtext import ScrolledText
-        editor = ScrolledText(edit_win, wrap=tk.WORD, font=('宋体', 11))
+        # 添加文本编辑器的撤销功能
+        editor = tk.Text(edit_win, wrap=tk.WORD, font=('宋体', 11), undo=True)
         editor.pack(fill=tk.BOTH, expand=True, padx=10, pady=10)
-        
-        # 加载当前内容
         editor.insert(tk.END, self.preview_text.get(1.0, tk.END))
         
+        # 正确配置撤销功能
+        editor.configure(
+            undo=True, 
+            autoseparators=True, 
+            maxundo=50
+        )
+        
+        # 绑定快捷键（移除不存在的edit_canundo检查）
+        editor.bind("<Control-z>", lambda e: self._safe_undo(editor))
+        editor.bind("<Control-y>", lambda e: self._safe_redo(editor))
+        editor.bind("<Control-Z>", lambda e: self._safe_redo(editor))
+
+        # 初始化撤销栈
+        editor.edit_reset()
+        editor.edit_modified(False)
+
         # 保存按钮
         ttk.Button(
             edit_win, 
             text="保存修改",
             command=lambda: self._save_edit_content(editor.get(1.0, tk.END))
         ).pack(pady=5)
+
+    def _safe_undo(self, editor):
+        """增强文本编辑器撤销"""
+        try:
+            # 检查是否可以撤销
+            editor.edit_undo()
+            # 自动重置修改标志
+            editor.edit_modified(False)
+        except tk.TclError as e:
+            if "nothing to undo" not in str(e):
+                logging.error(f"编辑器撤销失败：{str(e)}")
+        return "break"
+
+    def _safe_redo(self, editor):
+        """增强的通用重做方法"""
+        try:
+            editor.edit_redo()
+        except tk.TclError as e:
+            if "nothing to redo" not in str(e):
+                logging.error(f"重做失败：{str(e)}")
+        return "break"
 
     def _save_edit_content(self, content):
         """保存完整档案时进行有效性验证"""
@@ -516,55 +627,70 @@ class RoleConfiguration(ttk.Frame):
             messagebox.showerror("验证失败", str(e))
 
     def _parse_free_text(self, text):
-        """增强段落标题处理"""
+        logging.debug(f"开始解析文本：\n{text}")
         field_map = {
-            "核心定位": "role_type",
+            "角色定位": "role_type",
             "姓名": "name",
             "性别": "gender",
             "年龄": "age",
-            "身份": "identity",
-            "外貌": "appearance",
-            "物品": "belongings",
-            "目标": "goal",
-            "动机": "motive",
-            "金句": "tagline"
+            "身份地位": "identity",
+            "外貌特征": "appearance",
+            "随身物品": "belongings",
+            "显性目标": "goal",
+            "隐性动机": "motive",
+            "人设金句": "tagline"
         }
-        
-        parsed = {}
-        current_field = None
-        in_section = False  # 新增状态标记
-        
-        for line in text.split('\n'):
-            line = line.strip()
-            if not line:
-                continue  # 跳过空行
-            
-            # 识别段落标题行
-            if line.startswith('▬') and line.endswith('▬'):
-                current_field = None
-                in_section = True
-                continue
-            elif in_section:
-                # 段落标题后的首行重置状态
-                in_section = False
-                current_field = None
 
-            # 处理核心定位特殊格式
-            if line.startswith('●') and '：' not in line and current_field is None:
-                parsed['role_type'] = line[1:].strip()
+        valid_roles = set()
+        for role_list in self.ROLE_TYPES.values():
+            valid_roles.update(role_list)
+
+        lines = [line.strip() for line in text.split('\n') if line.strip()]
+        parsed = {}
+        
+        # 增强核心定位解析
+        core_section_found = False
+        for i, line in enumerate(lines):
+            if '▬ 核心定位 ▬' in line:
+                core_section_found = True
+                # 查找后续所有以●开头的行
+                for j in range(i+1, len(lines)):
+                    if lines[j].startswith('●'):
+                        role_line = lines[j]
+                        # 提取角色定位（兼容带[]和不带的情况）
+                        role_type = role_line.split('：')[-1].strip().strip('[]')
+                        if role_type in valid_roles:
+                            parsed['role_type'] = role_type
+                            break
+                break  # 找到核心定位段落后立即退出循环
+        
+        if not core_section_found:
+            raise ValueError("必须包含核心定位段落（▬ 核心定位 ▬）")
+
+        # 其他字段解析优化
+        current_section = None
+        for line in lines:
+            if line.startswith('▬'):
+                current_section = line.replace('▬', '').strip()
                 continue
             
-            # 仅处理包含冒号的字段行
-            if '：' in line:
-                field_part, value_part = line.split('：', 1)
-                field_key = field_part.strip().lstrip('●│')
-                if field_key in field_map:
-                    current_field = field_map[field_key]
-                    parsed[current_field] = value_part.strip()
-            elif current_field:
-                # 仅当已有当前字段时追加内容
-                parsed[current_field] += '\n' + line.strip()
-            
+            if line.startswith('●'):
+                parts = line[1:].split('：', 1)
+                if len(parts) == 2:
+                    field_key = parts[0].strip()
+                    value = parts[1].strip().strip('[]')  # 去除可能存在的方括号
+                    if field_key in field_map:
+                        parsed[field_map[field_key]] = value
+                    else:
+                        logging.warning(f"忽略未知字段：{field_key}")
+        
+        # 最终验证
+        if 'role_type' not in parsed:
+            raise ValueError("必须明确指定角色定位")
+        if parsed['role_type'] not in valid_roles:
+            raise ValueError(f"角色类型必须来自：{', '.join(valid_roles)}")
+
+        logging.debug(f"解析结果：{json.dumps(parsed, ensure_ascii=False)}")
         return parsed
 
     def _clear_form(self):
@@ -578,43 +704,315 @@ class RoleConfiguration(ttk.Frame):
         self.entries["gender"].set("男")
         self._update_preview()
 
-    def _record_operation(self, op_type, role_id, data):
-        """记录操作历史"""
-        self.operation_history.append({
-            'type': op_type,
-            'role_id': role_id,
-            'data': data,
-            'timestamp': time.time()
-        })
-        # 保留最近10条记录
-        if len(self.operation_history) > 10:
+    def _record_operation(self, op_type, role_id, snapshot=None):
+        """增强操作记录逻辑"""
+        # 自动记录完整快照
+        if op_type in ['create', 'delete']:
+            self.operation_history.append({
+                'type': op_type,
+                'role_id': role_id,
+                'data': self.roles.get(role_id) if op_type == 'delete' else None
+            })
+        elif op_type == 'update' and role_id in self.roles:
+            # 自动保存修改前的完整数据
+            self.operation_history.append({
+                'type': 'update',
+                'role_id': role_id,
+                'data': snapshot.copy() if snapshot else self.roles[role_id].copy()
+            })
+        # 限制历史记录长度
+        if len(self.operation_history) > 50:
             self.operation_history.pop(0)
 
     def _undo_last(self):
-        """撤销操作时恢复原始ID"""
+        """增强撤销功能"""
         if not self.operation_history:
+            messagebox.showinfo("提示", "没有可撤销的操作")
             return
-        
+
         last_op = self.operation_history.pop()
         
-        if last_op['type'] == 'delete':
-            # 恢复删除前的状态
-            self.roles = last_op['data']['original_roles']
-            self.current_role_id = last_op['data']['original_current']
-            self._update_role_list()
-            self._show_role_data(self.roles[self.current_role_id])
-            self._save_config()
-        elif last_op['type'] == 'create':
-            # 删除新建的角色
-            if last_op['role_id'] in self.roles:
+        try:
+            if last_op['type'] == 'create':
+                # 撤销新建：删除角色
                 del self.roles[last_op['role_id']]
                 if self.current_role_id == last_op['role_id']:
-                    if self.roles:
-                        self.current_role_id = next(iter(self.roles))
-                        self._show_role_data(self.roles[self.current_role_id])
-                    else:
-                        self.current_role_id = None
-                        self._clear_form()
-            self._update_role_list()
+                    self.current_role_id = next(iter(self.roles)) if self.roles else None
+                self._update_role_list()
+                
+            elif last_op['type'] == 'delete':
+                # 撤销删除：恢复角色数据
+                self.roles[last_op['role_id']] = last_op['data']
+                self.current_role_id = last_op['role_id']
+                self._update_role_list()
+                
+            elif last_op['type'] == 'update':
+                # 撤销修改：恢复数据
+                role_id = last_op['role_id']
+                self.roles[role_id] = last_op['data']
+                if self.current_role_id == role_id:
+                    self._show_role_data(self.roles[role_id])
+                
+            self._save_config()  # 撤销后自动保存
+            
+        except Exception as e:
+            messagebox.showerror("撤销失败", str(e))
+
+    def _ai_generate_role(self):
+        """打开AI生成窗口"""
+        from core.api_client.deepseek import api_client
         
-        self._save_config()
+        try:
+            with open(self.config_file, "r", encoding='utf-8') as f:
+                novel_config = yaml.safe_load(f).get("base_config", {})
+                novel_name = novel_config.get("novel_name", "当前小说")
+                creation_type = novel_config.get("creation_type")  # 直接使用配置项
+                
+                if not creation_type:
+                    raise ValueError("配置文件中缺少创作类型(creation_type)")
+                
+                # 严格匹配当前类型
+                if creation_type not in self.ROLE_TYPES:
+                    raise ValueError(f"无效的创作类型：{creation_type}，请使用：{', '.join(self.ROLE_TYPES.keys())}")
+                
+                available_roles = self.ROLE_TYPES[creation_type]
+                existing_roles = [r["role_type"] for r in self.roles.values()]
+                candidates = [rt for rt in available_roles if rt not in existing_roles]
+                selected_role = random.choice(candidates) if candidates else random.choice(available_roles)
+
+        except Exception as e:
+            messagebox.showerror("配置错误", f"加载配置失败：{str(e)}")
+            return
+
+        # 更新提示词中的类型引用
+        prompt = f"""你是一个专业的{creation_type}作家，请为《{novel_name}》生成一个{selected_role}的详细角色设定。要求包含：
+        1. 姓名要符合{creation_type}的{selected_role}定位
+        2. 年龄需要与{selected_role}的典型设定匹配
+        3. 身份地位要体现{creation_type}中{selected_role}的特点
+        4. 显性目标和隐性动机要有戏剧冲突
+        5. 人设金句要突出角色性格
+
+        必须严格遵循以下要求：
+        1. 角色定位必须从以下列表选择：{", ".join(available_roles)}
+        2. 不要自行发明新的角色类型
+        3. 所有字段必须完整填写
+        
+        如：●姓名：夜无殇
+        ...（其他字段保持相同格式）
+        
+        请严格使用以下格式（不要使用方括号）：
+        
+        ▬ 核心定位 ▬
+        ●角色定位：[角色定位]
+        ▬ 基础信息 ▬
+        ●姓名：[姓名]
+        ●性别：[性别]
+        ●年龄：[年龄]
+        ●身份地位：[身份地位]
+        ▬ 人物画像 ▬
+        ●外貌特征：[详细描述]
+        ●随身物品：[特征物品]
+        ▬ 行为动机 ▬
+        ●显性目标：[明确目标]
+        ●隐性动机：[隐藏动机]
+        ▬ 标志特征 ▬
+        ●人设金句：[人设金句]"""
+
+        # 创建生成窗口（仅界面，不启动生成）
+        gen_win = tk.Toplevel(self)
+        gen_win.title("AI角色生成助手")
+        
+        # 窗口居中显示
+        gen_win.update_idletasks()  # 确保获取准确的窗口尺寸
+        width = 600
+        height = 500
+        x = (gen_win.winfo_screenwidth() - width) // 2
+        y = (gen_win.winfo_screenheight() - height) // 2
+        gen_win.geometry(f"{width}x{height}+{x}+{y}")
+        gen_win.resizable(False, False)
+        
+        # 拦截关闭事件
+        gen_win.protocol("WM_DELETE_WINDOW", lambda: self._safe_close(gen_win))
+
+        # 生成窗口组件
+        editor = tk.Text(
+            gen_win, 
+            wrap=tk.WORD, 
+            font=('宋体', 11), 
+            undo=True,  # 启用内置撤销
+            autoseparators=True,
+            maxundo=50
+        )
+        editor.pack(fill=tk.BOTH, expand=True, padx=10, pady=10)
+        
+        # 绑定撤销快捷键
+        editor.bind("<Control-z>", lambda e: self._safe_undo(editor))
+        editor.bind("<Control-y>", lambda e: self._safe_redo(editor))
+        editor.bind("<Control-Z>", lambda e: self._safe_redo(editor))
+        
+        # 初始化撤销栈
+        editor.edit_reset()
+        editor.edit_modified(False)
+
+        # 按钮容器
+        btn_frame = ttk.Frame(gen_win)
+        btn_frame.pack(pady=5)
+        
+        # 新增生成控制变量
+        self.generating = False
+        self.stop_generation = False
+        
+        # 操作按钮（调整顺序和功能）
+        ttk.Button(btn_frame, text="开始生成", width=12, 
+                 command=lambda: self._start_generation(gen_win, prompt, editor)).pack(side=tk.LEFT, padx=3)
+        ttk.Button(btn_frame, text="停止生成", width=12, 
+                 command=self._stop_generation).pack(side=tk.LEFT, padx=3)
+        ttk.Button(btn_frame, text="保存新角色", width=12,
+                 command=lambda: self._safe_save(editor, gen_win)).pack(side=tk.LEFT, padx=3)
+        ttk.Button(btn_frame, text="清空内容", width=12,
+                 command=lambda: editor.delete(1.0, tk.END)).pack(side=tk.LEFT, padx=3)
+
+        # 初始化状态标签
+        self.status_label = ttk.Label(gen_win, text="就绪")
+        self.status_label.pack(side=tk.BOTTOM, pady=5)
+
+    def _start_generation(self, window, prompt, editor):
+        """新增：启动生成线程"""
+        if self.generating:
+            messagebox.showwarning("提示", "生成正在进行中", parent=window)
+            return
+        
+        from core.api_client.deepseek import api_client
+        
+        def generate_thread():
+            self.generating = True
+            self.stop_generation = False
+            window.after(0, lambda: self.status_label.config(text="生成中..."))
+            editor.delete(1.0, tk.END)  # 清空编辑器内容
+            
+            try:
+                messages = [{"role": "user", "content": prompt}]
+                for chunk in api_client.stream_generate(messages):
+                    if self.stop_generation:
+                        break
+                    window.after(0, self._update_editor, editor, chunk)
+                status = "已停止" if self.stop_generation else "生成完成"
+                window.after(0, lambda: self.status_label.config(text=status))
+            except Exception as e:
+                window.after(0, messagebox.showerror, "生成失败", str(e), parent=window)
+            finally:
+                self.generating = False
+                self.stop_generation = False
+
+        threading.Thread(target=generate_thread, daemon=True).start()
+
+    def _stop_generation(self):
+        """增强停止生成逻辑"""
+        if self.generating:
+            self.stop_generation = True
+            self.status_label.config(text="正在停止...")
+            # 添加1秒延迟确保状态更新
+            self.after(1000, lambda: [
+                setattr(self, 'generating', False),
+                setattr(self, 'stop_generation', False),
+                self.status_label.config(text="已停止")
+            ])
+
+    def _save_as_new_role(self, editor, gen_window):
+        """保存角色时保持生成窗口打开"""
+        try:
+            # 获取编辑器内容前先聚焦窗口
+            gen_window.focus_force()
+            content = editor.get(1.0, tk.END)
+            
+            # 解析前强制更新界面
+            self.update_idletasks()
+            
+            parsed = self._parse_free_text(content)
+            if not parsed.get('name'):
+                raise ValueError("角色必须包含姓名")
+
+            # 创建新角色但不切换焦点
+            new_id = self._add_role(silent=True)  # 新增静默模式
+            
+            # 更新数据但不立即刷新界面
+            if new_id in self.roles:
+                self.roles[new_id].update(parsed)
+                self.current_role_id = new_id  # 设置为当前角色
+                
+                # 延迟更新界面组件
+                self.after(100, lambda: [
+                    self._update_role_list(select_id=new_id),
+                    self._show_role_data(self.roles[new_id]),
+                    self._save_config()
+                ])
+                
+                # 创建新角色时记录完整操作
+                self._record_operation('create', new_id)
+                self._record_operation('update', new_id, {})  # 记录初始空状态
+                
+                messagebox.showinfo("保存成功", f"{parsed['name']} 已保存", parent=gen_window)
+            else:
+                raise ValueError("角色创建失败")
+
+        except Exception as e:
+            messagebox.showerror("错误", f"保存失败：{str(e)}", parent=gen_window)
+            logging.error(f"保存错误：{traceback.format_exc()}")
+
+    def _safe_save(self, editor, gen_window):
+        """优化后的保存操作"""
+        # 保存前记录生成窗口位置
+        win_x = gen_window.winfo_x()
+        win_y = gen_window.winfo_y()
+        
+        try:
+            self._save_as_new_role(editor, gen_window)
+            # 保存后保持窗口位置
+            gen_window.geometry(f"+{win_x}+{win_y}")
+            gen_window.lift()  # 保持窗口在最前
+        finally:
+            editor.focus_force()
+
+    def _update_editor(self, editor, chunk):
+        """通用的流式更新方法"""
+        try:
+            chunk = chunk.strip()
+            if not chunk or chunk == "data: [DONE]":
+                return
+            
+            if chunk.startswith("data:"):
+                json_str = chunk[5:].strip()
+                if not json_str:
+                    return
+                
+                data = json.loads(json_str)
+                if not data.get("choices") or not isinstance(data["choices"], list):
+                    return
+                
+                delta = data["choices"][0].get("delta", {})
+                if "content" in delta:
+                    editor.insert(tk.END, delta["content"])
+                    editor.see(tk.END)
+                    editor.update_idletasks()
+                    
+        except json.JSONDecodeError as e:
+            logging.error(f"JSON解析失败: {str(e)}")
+        except Exception as e:
+            logging.error(f"流式处理错误: {str(e)}")
+
+    def _safe_close(self, window):
+        """安全关闭窗口检查"""
+        if self.generating:
+            messagebox.showwarning("操作阻止", 
+                "生成正在进行中，请先点击【停止生成】再关闭窗口！", 
+                parent=window)
+        else:
+            window.destroy()
+
+    def _create_form_entry(self, parent, label_text, row):
+        """创建输入框时初始化历史跟踪"""
+        var, entry = super()._create_form_entry(parent, label_text, row)
+        # 强制初始化历史记录
+        entry.edit_history = [entry.get()]
+        entry.edit_pointer = 0
+        return var, entry

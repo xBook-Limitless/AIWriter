@@ -71,25 +71,27 @@ class DeepSeekAPIClient:
         api_key = self._get_api_key()
         
         try:
-            with httpx.Client(timeout=None) as client:
-                response = client.stream(
+            with httpx.Client(timeout=30) as client:  # 增加超时时间
+                with client.stream(
                     "POST",
                     f"{global_config.model_config.base_url}/chat/completions",
                     headers={
                         "Authorization": f"Bearer {api_key}",
-                        "Content-Type": "application/json"
+                        "Content-Type": "application/json",
+                        "Accept": "text/event-stream"  # 明确指定接受类型
                     },
                     json={
                         "model": global_config.model_config.model,
                         "messages": messages,
                         "temperature": global_config.generation_param.temperature,
                         "max_tokens": self._calculate_max_tokens(messages),
-                        "stream": True  # 启用流式
+                        "stream": True
                     }
-                )
-                for chunk in response.iter_lines():
-                    yield chunk
-                
+                ) as response:
+                    response.raise_for_status()
+                    for line in response.iter_lines():
+                        if line and line.startswith('data:'):
+                            yield line
         except httpx.HTTPError as e:
             self._handle_api_error(e)
 
