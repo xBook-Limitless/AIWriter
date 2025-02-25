@@ -1,0 +1,42 @@
+2025-02-26 06:55:37,048 - crash - ERROR - 严重错误: 'NoneType' object has no attribute 'winfo_exists'
+2025-02-26 06:55:37,049 - crash - ERROR - Traceback (most recent call last):
+  File "C:\Users\iem98\OneDrive\Desktop\AiWriter\main.py", line 45, in main
+    window = create_main_window()
+             ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\iem98\OneDrive\Desktop\AiWriter\ui\iHome.py", line 138, in create_main_window
+    BaseConfiguration(novel_frame).pack(padx=5, pady=5, fill=tk.BOTH, expand=True)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\iem98\OneDrive\Desktop\AiWriter\ui\panels\BaseConfiguration.py", line 61, in __init__
+    self._create_widgets()
+  File "C:\Users\iem98\OneDrive\Desktop\AiWriter\ui\panels\BaseConfiguration.py", line 111, in _create_widgets
+    self.role_config = RoleConfiguration(role_frame)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\iem98\OneDrive\Desktop\AiWriter\ui\panels\RoleConfiguration.py", line 47, in __init__
+    self._init_reasoning_window()  # 在初始化时创建窗口
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\iem98\OneDrive\Desktop\AiWriter\ui\panels\RoleConfiguration.py", line 1066, in _init_reasoning_window
+    if hasattr(self, 'reasoning_window') and self.reasoning_window.winfo_exists():
+                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'winfo_exists'
+
+2025-02-26 06:56:23,368 - crash - ERROR - 严重错误: 'NoneType' object has no attribute 'winfo_exists'
+2025-02-26 06:56:23,369 - crash - ERROR - Traceback (most recent call last):
+  File "C:\Users\iem98\OneDrive\Desktop\AiWriter\main.py", line 45, in main
+    window = create_main_window()
+             ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\iem98\OneDrive\Desktop\AiWriter\ui\iHome.py", line 138, in create_main_window
+    BaseConfiguration(novel_frame).pack(padx=5, pady=5, fill=tk.BOTH, expand=True)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\iem98\OneDrive\Desktop\AiWriter\ui\panels\BaseConfiguration.py", line 61, in __init__
+    self._create_widgets()
+  File "C:\Users\iem98\OneDrive\Desktop\AiWriter\ui\panels\BaseConfiguration.py", line 111, in _create_widgets
+    self.role_config = RoleConfiguration(role_frame)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\iem98\OneDrive\Desktop\AiWriter\ui\panels\RoleConfiguration.py", line 47, in __init__
+    self._init_reasoning_window()  # 在初始化时创建窗口
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\iem98\OneDrive\Desktop\AiWriter\ui\panels\RoleConfiguration.py", line 1066, in _init_reasoning_window
+    # 修复属性检查顺序
+                       
+AttributeError: 'NoneType' object has no attribute 'winfo_exists'
+

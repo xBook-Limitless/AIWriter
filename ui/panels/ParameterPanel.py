@@ -252,14 +252,14 @@ class ParameterPanel(ttk.Frame):
     }
 
     def create_widgets(self):
-        self._create_model_selector()  # row=0
+        # self._create_model_selector()  # row=0 -- 在__init__中已经创建
         self._create_preset_selector() # row=1
         self._create_temperature_control() # row=2
         self._create_top_p_control() # row=3
         self._create_penalty_controls() # row=4
         self._create_max_tokens() # row=5
         self._create_response_format() # row=6
-        self._create_stream_switch() # row=7
+        # self._create_stream_switch() # row=7 -- 移除流式输出开关
         self._setup_layout()
 
     def _create_preset_selector(self):
@@ -300,13 +300,12 @@ class ParameterPanel(ttk.Frame):
 
     def _create_temperature_control(self):
         # 温度控件
-        temp_label = ttk.Label(self, text="温度 (0.0-2.0):", anchor='w')
-        temp_label.grid(row=2, column=0, sticky='ew', padx=20)
-        self._add_tooltip(temp_label, 
-            "控制生成随机性\n0.0-严谨准确\n2.0-高度创意"
-        )
-        self.temp_value = ttk.Label(self)
-        self.temp_value.config(width=6, anchor='center')
+        temp_frame = ttk.Frame(self)
+        temp_label = ttk.Label(self, text="温度:")
+        temp_label.grid(row=2, column=0, sticky='w', padx=5, pady=2)
+        
+        self.temp_value = ttk.Label(self, text="0.7")
+        
         self.temp_slider = ttk.Scale(
             self, 
             from_=0.0, 
@@ -314,13 +313,13 @@ class ParameterPanel(ttk.Frame):
             command=self._update_temp,
             length=200
         )
-        self.temp_slider.set(global_config.generation_param.temperature)
+        self.temp_slider.set(global_config.generation_params.temperature)
         self.temp_slider.grid(row=2, column=1, sticky='', padx=5)
         self.temp_value.grid(row=2, column=2, padx=5)
 
     def _update_temp(self, value):
         val = min(max(float(value), 0.0), 2.0)
-        global_config.generation_param.temperature = val
+        global_config.generation_params.temperature = val
         self.temp_value.config(text=f"{val:.1f}")
 
     def _create_top_p_control(self):
@@ -331,7 +330,7 @@ class ParameterPanel(ttk.Frame):
         self._add_tooltip(top_p_label,
             "控制采样范围\n0.1-仅考虑前10%可能\n1.0-考虑所有可能"
         )
-        self.top_p_value = ttk.Label(self, text=f"{global_config.generation_param.top_p:.2f}")
+        self.top_p_value = ttk.Label(self, text=f"{global_config.generation_params.top_p:.2f}")
         self.top_p_value.grid(row=3, column=2, padx=5)
         
         self.top_p_slider = ttk.Scale(
@@ -340,11 +339,11 @@ class ParameterPanel(ttk.Frame):
             to=1.0,
             length=200,
             command=lambda v: [
-                setattr(global_config.generation_param, 'top_p', float(v)),
+                setattr(global_config.generation_params, 'top_p', float(v)),
                 self.top_p_value.config(text=f"{float(v):.2f}")
             ]
         )
-        self.top_p_slider.set(global_config.generation_param.top_p)
+        self.top_p_slider.set(global_config.generation_params.top_p)
         self.top_p_slider.grid(row=3, column=1, sticky='', padx=5)
 
     def _create_penalty_controls(self):
@@ -355,7 +354,7 @@ class ParameterPanel(ttk.Frame):
         self._add_tooltip(freq_label,
             "惩罚重复内容\n正值减少重复\n负值增加重复"
         )
-        self.freq_penalty_value = ttk.Label(self, text=f"{global_config.generation_param.frequency_penalty:.1f}")
+        self.freq_penalty_value = ttk.Label(self, text=f"{global_config.generation_params.frequency_penalty:.1f}")
         self.freq_penalty_value.grid(row=4, column=2, padx=5)
         
         self.freq_penalty_slider = ttk.Scale(
@@ -364,11 +363,11 @@ class ParameterPanel(ttk.Frame):
             to=2.0,
             length=200,
             command=lambda v: [
-                setattr(global_config.generation_param, 'frequency_penalty', float(v)),
+                setattr(global_config.generation_params, 'frequency_penalty', float(v)),
                 self.freq_penalty_value.config(text=f"{float(v):.1f}")
             ]
         )
-        self.freq_penalty_slider.set(global_config.generation_param.frequency_penalty)
+        self.freq_penalty_slider.set(global_config.generation_params.frequency_penalty)
         self.freq_penalty_slider.grid(row=4, column=1, sticky='', padx=5)
 
         # 存在惩罚
@@ -377,7 +376,7 @@ class ParameterPanel(ttk.Frame):
         self._add_tooltip(pres_label,
             "惩罚已存在内容\n正值避免重复提及\n负值鼓励重复提及"
         )
-        self.pres_penalty_value = ttk.Label(self, text=f"{global_config.generation_param.presence_penalty:.1f}")
+        self.pres_penalty_value = ttk.Label(self, text=f"{global_config.generation_params.presence_penalty:.1f}")
         self.pres_penalty_value.grid(row=5, column=2, padx=5)
         
         self.pres_penalty_slider = ttk.Scale(
@@ -386,11 +385,11 @@ class ParameterPanel(ttk.Frame):
             to=2.0,
             length=200,
             command=lambda v: [
-                setattr(global_config.generation_param, 'presence_penalty', float(v)),
+                setattr(global_config.generation_params, 'presence_penalty', float(v)),
                 self.pres_penalty_value.config(text=f"{float(v):.1f}")
             ]
         )
-        self.pres_penalty_slider.set(global_config.generation_param.presence_penalty)
+        self.pres_penalty_slider.set(global_config.generation_params.presence_penalty)
         self.pres_penalty_slider.grid(row=5, column=1, sticky='', padx=5)
 
     def _create_max_tokens(self):
@@ -422,7 +421,7 @@ class ParameterPanel(ttk.Frame):
         )
         
         # 设置初始值
-        self.max_tokens_spin.set(global_config.generation_param.max_tokens)
+        self.max_tokens_spin.set(global_config.generation_params.max_tokens)
         
         # 绑定焦点离开事件：确保输入值合法
         self.max_tokens_spin.bind("<FocusOut>", self._update_max_tokens)
@@ -445,26 +444,21 @@ class ParameterPanel(ttk.Frame):
             state="readonly",
             width=10
         )
-        self.format_combo.set(global_config.generation_param.response_format.get("type", "text"))
+        self.format_combo.set(global_config.generation_params.response_format.get("type", "text"))
         self.format_combo.grid(row=7, column=1, sticky=tk.W, padx=5, pady=(5, 0))
         self.format_combo.bind("<<ComboboxSelected>>", self._update_response_format)
 
     def _update_response_format(self, event):
         selected = self.format_combo.get()
-        global_config.generation_param.response_format = {"type": selected}
+        global_config.generation_params.response_format = {"type": selected}
 
-    def _create_stream_switch(self):
-        """创建流式生成开关"""
-        self.stream_var = tk.BooleanVar(value=global_config.generation_param.stream)
-        self.stream_check = ttk.Checkbutton(
-            self,
-            text=" 启用流式生成",
-            variable=self.stream_var,
-            command=lambda: setattr(global_config.generation_param, 'stream', self.stream_var.get()),
-            compound='left'
-        )
-        self.stream_check.grid(row=8, column=0, columnspan=3, sticky=tk.W, padx=20, pady=5)
-        self._add_tooltip(self.stream_check, "实时逐字输出模式\n适合长文本但增加资源消耗")
+    def _create_parameter_input(self):
+        """创建参数输入区域"""
+        self._create_temperature_slider()  # row=2-3
+        self._create_top_p_slider()        # row=4-5
+        self._create_max_tokens_slider()   # row=6-7
+        self._create_response_format()    # row=8-9
+        self._create_penalties()          # row=10-13
 
     def _validate_max_tokens(self, new_value):
         """验证最大Token数输入"""
@@ -478,10 +472,10 @@ class ParameterPanel(ttk.Frame):
         try:
             value = int(self.max_tokens_spin.get())
             safe_value = max(1, min(value, 8192))
-            global_config.generation_param.max_tokens = safe_value
+            global_config.generation_params.max_tokens = safe_value
             self.max_tokens_spin.set(safe_value)
         except ValueError:
-            self.max_tokens_spin.set(global_config.generation_param.max_tokens)
+            self.max_tokens_spin.set(global_config.generation_params.max_tokens)
 
     def _apply_preset(self, event):
         """应用预设配置"""
@@ -492,8 +486,8 @@ class ParameterPanel(ttk.Frame):
             return
         
         for param, value in config.items():
-            if hasattr(global_config.generation_param, param):
-                setattr(global_config.generation_param, param, value)
+            if hasattr(global_config.generation_params, param):
+                setattr(global_config.generation_params, param, value)
                 
                 # 更新各个控件
                 if param == 'temperature':
@@ -507,7 +501,7 @@ class ParameterPanel(ttk.Frame):
                 elif param == 'max_tokens':
                     safe_value = max(1, min(value, 8192))  # 确保不超过全局限制
                     self.max_tokens_spin.set(safe_value)
-                    global_config.generation_param.max_tokens = safe_value
+                    global_config.generation_params.max_tokens = safe_value
         
         self.update_idletasks()
 

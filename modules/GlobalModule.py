@@ -13,25 +13,25 @@ class APIModelConfig:
     def __init__(self):
         self.provider: str = "DeepSeek"  # 服务商名称
         self.base_url: str = "https://api.deepseek.com/v1"
-        self.model: str = "deepseek-chat"  # 官方模型标识
+        self.model: str = "deepseek-reasoner"  # 官方模型标识
         self.context_window: int = 128000  # 最新支持128k上下文
+        self.name: str = "DeepSeek-R1"  # 默认模型名称
 
 class GenerationParameter:
     """生成参数配置"""
-    def __init__(self):
-        self.temperature: float = 1.0      # 0.0-2.0
-        self.top_p: float = 1.0           # 0.0-1.0
-        self.max_tokens: int = 4000       # 根据context_window自动限制
-        self.stream: bool = False
-        self.response_format: dict = {"type": "text"}
-        self.frequency_penalty: float = 0.0  # [-2.0, 2.0]
-        self.presence_penalty: float = 0.0   # [-2.0, 2.0]
+    def __init__(self, **kwargs):
+        self.temperature: float = kwargs.get('temperature', 1.0)  # 0.0-2.0
+        self.top_p: float = kwargs.get('top_p', 1.0)           # 0.0-1.0
+        self.max_tokens: int = kwargs.get('max_tokens', 2000)  # 根据context_window自动限制
+        self.response_format: dict = kwargs.get('response_format', {"type": "text"})
+        self.frequency_penalty: float = kwargs.get('frequency_penalty', 0.0)  # [-2.0, 2.0]
+        self.presence_penalty: float = kwargs.get('presence_penalty', 0.0)   # [-2.0, 2.0]
 
 class GlobalAPIConfig:
     """统一配置入口"""
     def __init__(self):
         self.model_config = APIModelConfig()
-        self.generation_param = GenerationParameter()
+        self.generation_params = GenerationParameter()  # 修正变量名
         self.model_mapping = self._load_model_config()
         self.connection_monitor = ConnectionMonitor()
 
@@ -53,7 +53,7 @@ class GlobalAPIConfig:
         self.update_model(selected)
 
     def update_model(self, model_name: str):
-        """保持与LocalConfig的接口一致"""
+        """更新模型配置"""
         config = self.model_mapping.get(model_name)
         if config:
             # 更新模型基础配置
@@ -70,8 +70,8 @@ class GlobalAPIConfig:
     def _adjust_parameters(self, config: dict):
         """自动调整生成参数"""
         safe_max_tokens = int(config["context_window"] * 0.8)
-        if self.generation_param.max_tokens > safe_max_tokens:
-            self.generation_param.max_tokens = safe_max_tokens
+        if self.generation_params.max_tokens > safe_max_tokens:
+            self.generation_params.max_tokens = safe_max_tokens
 
     def save_config(self):
         """保存当前配置"""
@@ -100,52 +100,6 @@ class GlobalAPIConfig:
         
         if errors:
             raise ValueError("配置错误: " + "; ".join(errors))
-
-class LocalConfig:
-    def __init__(self):
-        self.model_config = APIModelConfig()
-        self.generation_param = GenerationParameters(
-            temperature=0.7,
-            max_tokens=2000,
-            top_p=0.95,
-            frequency_penalty=0.0,
-            presence_penalty=0.0,
-            stream=False,
-            response_format={"type": "text"}
-        )
-
-    def update_model(self, model_name: str):
-        """根据模型名称更新配置"""
-        # 从全局配置获取模型映射
-        model_config = load_config('model_config.yaml') or {}
-        config = model_config.get('models', {}).get(model_name)
-        
-        if config:
-            # 更新模型基础配置
-            self.model_config.__dict__.update({
-                'provider': config.get('provider', 'DeepSeek'),
-                'base_url': config.get('base_url', 'https://api.deepseek.com/v1'),
-                'model': config.get('model', 'deepseek-chat'),
-                'context_window': config.get('context_window', 128000)
-            })
-            # 自动调整生成参数
-            self._adjust_parameters(config)
-    
-    def _adjust_parameters(self, config: dict):
-        """自动调整生成参数"""
-        safe_max_tokens = int(config.get("context_window", 128000) * 0.8)
-        if self.generation_param.max_tokens > safe_max_tokens:
-            self.generation_param.max_tokens = safe_max_tokens
-
-class GenerationParameters:
-    def __init__(self, **kwargs):
-        self.temperature = kwargs.get('temperature', 1.0)
-        self.max_tokens = kwargs.get('max_tokens', 2000)
-        self.top_p = kwargs.get('top_p', 1.0)
-        self.frequency_penalty = kwargs.get('frequency_penalty', 0.0)
-        self.presence_penalty = kwargs.get('presence_penalty', 0.0)
-        self.stream = kwargs.get('stream', False)
-        self.response_format = kwargs.get('response_format', {"type": "text"})
 
 class ConnectionMonitor:
     def __init__(self):

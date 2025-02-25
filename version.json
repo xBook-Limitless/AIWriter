@@ -1,0 +1,9 @@
+{
+    "version": "1.0.0",
+    "build_date": "2024-02-25",
+    "build_type": "development",
+    "description": "AI写作助手 - 支持小说创作、角色生成",
+    "author": "AiWriter Team",
+    "license": "MIT",
+    "homepage": "https://github.com/yourusername/AiWriter"
+} 

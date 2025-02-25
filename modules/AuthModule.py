@@ -22,11 +22,13 @@ def validate_token(token: str) -> bool:
     except jwt.PyJWTError:
         return False
 
-# 示例JWT生成（有效期1小时）
-token = generate_jwt_token("device_123")
-print(validate_token(token))  # 输出True
+# 将测试代码移到主程序区域
+if __name__ == "__main__":
+    # 示例JWT生成（有效期1小时）
+    token = generate_jwt_token("device_123")
+    print(validate_token(token))  # 输出True
 
-# 过期测试
-expired_payload = {"exp": datetime.utcnow() - timedelta(hours=1)}
-expired_token = jwt.encode(expired_payload, JWT_SECRET, algorithm="HS256")
-print(validate_token(expired_token))  # 输出False 
+    # 过期测试
+    expired_payload = {"exp": datetime.utcnow() - timedelta(hours=1)}
+    expired_token = jwt.encode(expired_payload, JWT_SECRET, algorithm="HS256")
+    print(validate_token(expired_token))  # 输出False 

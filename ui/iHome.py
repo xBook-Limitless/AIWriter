@@ -111,13 +111,12 @@ def create_main_window():
                 f"服务商: {global_api_config.model_config.provider}\n"
                 f"AI模型: {global_api_config.model_config.model}\n"
                 f"━━━━━━━━━━━━━━━━\n"
-                f"温度: {global_api_config.generation_param.temperature:.2f} (0.0-2.0)\n"
-                f"核心采样: {global_api_config.generation_param.top_p:.2f}\n"
-                f"频率惩罚: {global_api_config.generation_param.frequency_penalty:.1f}\n"
-                f"存在惩罚: {global_api_config.generation_param.presence_penalty:.1f}\n"
-                f"输出格式: {global_api_config.generation_param.response_format.get('type', 'text')}\n"
-                f"流式输出: {'启用' if global_api_config.generation_param.stream else '禁用'}\n"
-                f"最大长度: {global_api_config.generation_param.max_tokens:,} tokens"
+                f"温度: {global_api_config.generation_params.temperature:.2f} (0.0-2.0)\n"
+                f"核心采样: {global_api_config.generation_params.top_p:.2f}\n"
+                f"频率惩罚: {global_api_config.generation_params.frequency_penalty:.1f}\n"
+                f"存在惩罚: {global_api_config.generation_params.presence_penalty:.1f}\n"
+                f"输出格式: {global_api_config.generation_params.response_format.get('type', 'text')}\n"
+                f"最大长度: {global_api_config.generation_params.max_tokens:,} tokens"
             )
         )
 

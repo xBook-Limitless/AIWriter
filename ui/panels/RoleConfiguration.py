@@ -882,29 +882,68 @@ class RoleConfiguration(ttk.Frame):
         self.ai_editor = editor  # 新增
 
     def _start_generation(self, window, prompt, editor):
-        """启动生成线程"""
+        """启动生成线程，安全处理流式输出"""
         if self.generating:
             messagebox.showwarning("提示", "生成正在进行中", parent=window)
             return
         
         from core.api_client.deepseek import api_client
         
+        # 确保在生成前创建思维链窗口
+        self._create_reasoning_window()
+        if self.reasoning_window and self.reasoning_text:
+            self.reasoning_text.delete(1.0, tk.END)  # 清空思维链窗口
+            
+        # 判断当前是否为DeepSeek-R1或Qwen-R1模型
+        from modules.GlobalModule import global_config
+        model_name = global_config.model_config.name
+        show_reasoning = "DeepSeek-R1" in model_name or "Qwen-R1" in model_name
+        
+        # 如果是支持思维链的模型，显示思维链窗口
+        if show_reasoning:
+            self.show_reasoning_window()
+        
+        def safe_update_ui(func, *args):
+            """确保UI组件存在时才更新"""
+            if window.winfo_exists():
+                window.after(0, func, *args)
+        
+        def safe_callback(chunk):
+            """安全处理回调，确保窗口存在"""
+            if not window.winfo_exists():
+                return
+                
+            try:
+                self._stream_callback(chunk)
+            except Exception as e:
+                logging.error(f"回调处理异常: {str(e)}")
+        
         def generate_thread():
             self.generating = True
             self.stop_generation = False
-            window.after(0, lambda: self.status_label.config(text="生成中..."))
-            editor.delete(1.0, tk.END)  # 清空编辑器内容
+            
+            # 安全更新UI
+            safe_update_ui(lambda: self.status_label.config(text="生成中..."))
+            safe_update_ui(editor.delete, 1.0, tk.END)  # 清空编辑器内容
             
             try:
                 messages = [{"role": "user", "content": prompt}]
-                for chunk in api_client.stream_generate(messages):
-                    if self.stop_generation:
+                
+                # 使用安全回调处理流式输出
+                for chunk in api_client.stream_generate(messages, callback=safe_callback):
+                    if self.stop_generation or not window.winfo_exists():
                         break
-                    window.after(0, self._update_editor, self.ai_editor, chunk)
-                status = "已停止" if self.stop_generation else "生成完成"
-                window.after(0, lambda: self.status_label.config(text=status))
+                    
+                    # 内容会通过回调处理，这里不需要再次处理
+                
+                # 安全更新状态
+                if window.winfo_exists() and hasattr(self, 'status_label') and self.status_label.winfo_exists():
+                    status = "已停止" if self.stop_generation else "生成完成"
+                    safe_update_ui(lambda: self.status_label.config(text=status))
             except Exception as e:
-                window.after(0, messagebox.showerror, "生成失败", str(e), parent=window)
+                logging.exception(f"生成过程出错: {str(e)}")
+                if window.winfo_exists():
+                    safe_update_ui(messagebox.showerror, "生成失败", str(e), parent=window)
             finally:
                 self.generating = False
                 self.stop_generation = False
@@ -912,16 +951,28 @@ class RoleConfiguration(ttk.Frame):
         threading.Thread(target=generate_thread, daemon=True).start()
 
     def _stop_generation(self):
-        """增强停止生成逻辑"""
+        """安全停止生成逻辑"""
         if self.generating:
             self.stop_generation = True
-            self.status_label.config(text="正在停止...")
-            # 添加1秒延迟确保状态更新
-            self.after(1000, lambda: [
-                setattr(self, 'generating', False),
-                setattr(self, 'stop_generation', False),
+            # 确保状态标签存在
+            if hasattr(self, 'status_label') and self.status_label.winfo_exists():
+                self.status_label.config(text="正在停止...")
+            
+            # 直接更新状态，不使用延迟
+            self.generating = False
+            
+            # 避免使用afterx延迟回调，防止窗口关闭后出错
+            # self.after(1000, lambda: [
+            #    setattr(self, 'generating', False),
+            #    setattr(self, 'stop_generation', False),
+            #    self.status_label.config(text="已停止")
+            # ])
+            
+            # 直接设置状态
+            self.stop_generation = False
+            # 仅当标签仍存在时更新
+            if hasattr(self, 'status_label') and self.status_label.winfo_exists():
                 self.status_label.config(text="已停止")
-            ])
 
     def _save_as_new_role(self, editor, gen_window):
         """保存角色时保持生成窗口打开"""
@@ -978,40 +1029,49 @@ class RoleConfiguration(ttk.Frame):
         finally:
             editor.focus_force()
 
-    def _update_editor(self, editor, chunk):
-        """增强数据解析健壮性的流式更新方法"""
+    def _stream_callback(self, chunk):
+        """处理流式返回的回调函数"""
         try:
-            # 过滤空数据和非数据块
-            if not chunk.strip() or chunk == "data: [DONE]":
+            # 如果chunk是字典，可能包含思维链内容
+            if isinstance(chunk, dict):
+                # 处理思维链内容
+                if "reasoning_content" in chunk:
+                    reasoning = chunk["reasoning_content"]
+                    if reasoning:
+                        self._safe_update_reasoning(reasoning)
                 return
+            
+            # 如果是普通文本内容，即增量内容，直接更新到编辑器
+            if isinstance(chunk, str):
+                self._safe_update_editor(self.ai_editor, chunk)
+            
+        except Exception as e:
+            logging.error(f"流式处理错误: {str(e)}", exc_info=True)
 
-            # 确保数据格式正确
-            if chunk.startswith("data: "):
-                json_str = chunk[6:].strip()
-                if not json_str:
-                    return
-
-                try:
-                    data = json.loads(json_str)
-                except json.JSONDecodeError:
-                    # 处理不完整JSON数据
-                    logging.warning(f"不完整数据块: {json_str}")
-                    return
-
-                # 提取增量内容
-                delta = data.get("choices", [{}])[0].get("delta", {})
-                reasoning = delta.get("reasoning_content", "")
-                content = delta.get("content", "")
-
-                # 安全更新界面
-                if reasoning:
-                    self.master.after(0, self._safe_update_reasoning, reasoning)
-                if content:
-                    # 将最终回答更新到生成助手的编辑框
-                    self.master.after(0, self._safe_update_editor, editor, content)
-
+    def _update_editor(self, editor, chunk):
+        """处理流式增量更新"""
+        try:
+            # 如果chunk是字典，处理思维链内容
+            if isinstance(chunk, dict):
+                if "reasoning_content" in chunk:
+                    reasoning = chunk["reasoning_content"]
+                    if reasoning:
+                        self.master.after(0, self._safe_update_reasoning, reasoning)
+                return
+            
+            # 处理纯文本增量（流式输出的字符）
+            if isinstance(chunk, str):
+                self.master.after(0, self._safe_update_editor, editor, chunk)
+                return
+                
         except Exception as e:
             logging.error(f"流式处理异常: {str(e)}", exc_info=True)
+            # 异常情况下，尝试直接显示内容
+            try:
+                if isinstance(chunk, str):
+                    self.master.after(0, self._safe_update_editor, editor, chunk)
+            except:
+                pass
 
     def _safe_update_editor(self, editor, content):
         """安全更新生成助手的编辑框"""
@@ -1022,12 +1082,27 @@ class RoleConfiguration(ttk.Frame):
 
     def _safe_close(self, window):
         """安全关闭窗口检查"""
-        if self.generating:
-            messagebox.showwarning("操作阻止", 
-                "生成正在进行中，请先点击【停止生成】再关闭窗口！", 
-                parent=window)
-        else:
+        try:
+            if self.generating:
+                # 先停止生成
+                self.stop_generation = True
+                self.generating = False
+                
+                messagebox.showwarning("操作阻止", 
+                    "生成正在进行中，请先点击【停止生成】再关闭窗口！", 
+                    parent=window)
+                return
+            
+            # 安全清理资源
+            self.ai_editor = None  # 移除编辑器引用
             window.destroy()
+        except Exception as e:
+            logging.error(f"关闭窗口时出错: {str(e)}")
+            # 确保窗口被销毁
+            try:
+                window.destroy()
+            except:
+                pass
 
     def _create_reasoning_window(self):
         """安全创建思维链窗口"""
@@ -1061,43 +1136,32 @@ class RoleConfiguration(ttk.Frame):
         """更新思维链显示"""
         self.master.after(0, lambda: self._safe_update_reasoning(content))
         
-    def _stream_callback(self, chunk):
-        try:
-            if isinstance(chunk, str):
-                chunk = json.loads(chunk.replace("data: ", ""))
-            
-            reasoning_content = chunk.get("reasoning_content", "")
-            final_content = chunk.get("content", "")
-            
-            # 更新思维链窗口
-            if reasoning_content:
-                self.master.after(0, self._safe_update_reasoning, reasoning_content)
-            
-            # 更新主界面
-            if final_content:
-                self.master.after(0, self._safe_update_main, final_content)
-            
-        except Exception as e:
-            logging.error(f"流式处理错误: {str(e)}", exc_info=True)
-
     def _safe_update_reasoning(self, content):
-        """安全更新思维链显示"""
+        """安全更新思维链显示，保持流式输出效果"""
         try:
             # 确保窗口存在
             self._create_reasoning_window()
             
             # 检查文本框有效性
             if not hasattr(self, 'reasoning_text') or not self.reasoning_text.winfo_exists():
-                self.reasoning_text = tk.Text(self.reasoning_window)
+                self.reasoning_text = tk.Text(self.reasoning_window, wrap=tk.WORD)
                 self.reasoning_text.pack(fill=tk.BOTH, expand=True)
             
-            # 显示窗口并更新内容
+            # 显示窗口
             self.show_reasoning_window()
+            
+            # 直接在末尾追加内容（不管是否新行）
             self.reasoning_text.insert(tk.END, content)
+            
+            # 滚动到最底部
             self.reasoning_text.see(tk.END)
+            
+            # 立即更新窗口，确保内容实时显示
+            self.reasoning_window.update_idletasks()
             
         except Exception as e:
             logging.error(f"更新思维链失败: {str(e)}")
+            traceback.print_exc()
 
     def _safe_update_main(self, content):
         """安全更新主界面"""
