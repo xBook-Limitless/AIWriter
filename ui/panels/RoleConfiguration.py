@@ -847,6 +847,26 @@ class RoleConfiguration(ttk.Frame):
         )
         editor.pack(fill=tk.BOTH, expand=True, padx=10, pady=10)
         
+        # 配置思维链的文本样式标签
+        editor.tag_configure("reasoning", 
+                            foreground="gray", 
+                            font=('宋体', 9, 'italic'))
+        
+        # 添加思维链标题样式
+        editor.tag_configure("reasoning_title", 
+                           foreground="#555555",
+                           font=('宋体', 9, 'bold'),
+                           background="#F5F5F5",
+                           spacing1=5,  # 段前空间
+                           spacing3=3)  # 段后空间
+                           
+        # 添加正式内容标记样式
+        editor.tag_configure("content_start", 
+                            foreground="#0066CC",
+                            font=('宋体', 10, 'bold'),
+                            spacing1=8,
+                            spacing3=8)
+        
         # 绑定撤销快捷键
         editor.bind("<Control-z>", lambda e: self._safe_undo(editor))
         editor.bind("<Control-y>", lambda e: self._safe_redo(editor))
@@ -889,19 +909,12 @@ class RoleConfiguration(ttk.Frame):
         
         from core.api_client.deepseek import api_client
         
-        # 确保在生成前创建思维链窗口
-        self._create_reasoning_window()
-        if self.reasoning_window and self.reasoning_text:
-            self.reasoning_text.delete(1.0, tk.END)  # 清空思维链窗口
-            
+        # 不再需要单独创建思维链窗口
+        
         # 判断当前是否为DeepSeek-R1或Qwen-R1模型
         from modules.GlobalModule import global_config
         model_name = global_config.model_config.name
-        show_reasoning = "DeepSeek-R1" in model_name or "Qwen-R1" in model_name
-        
-        # 如果是支持思维链的模型，显示思维链窗口
-        if show_reasoning:
-            self.show_reasoning_window()
+        self.show_reasoning = "DeepSeek-R1" in model_name or "Qwen-R1" in model_name
         
         def safe_update_ui(func, *args):
             """确保UI组件存在时才更新"""
@@ -910,7 +923,7 @@ class RoleConfiguration(ttk.Frame):
         
         def safe_callback(chunk):
             """安全处理回调，确保窗口存在"""
-            if not window.winfo_exists():
+            if not window.winfo_exists() or self.stop_generation:
                 return
                 
             try:
@@ -932,6 +945,12 @@ class RoleConfiguration(ttk.Frame):
                 # 使用安全回调处理流式输出
                 for chunk in api_client.stream_generate(messages, callback=safe_callback):
                     if self.stop_generation or not window.winfo_exists():
+                        logging.info("检测到停止信号，中断生成")
+                        break
+                    
+                    # 直接检查停止标志
+                    if self.stop_generation:
+                        logging.info("再次检测到停止信号，确保中断")
                         break
                     
                     # 内容会通过回调处理，这里不需要再次处理
@@ -947,32 +966,48 @@ class RoleConfiguration(ttk.Frame):
             finally:
                 self.generating = False
                 self.stop_generation = False
+                logging.info("生成线程结束")
 
         threading.Thread(target=generate_thread, daemon=True).start()
 
     def _stop_generation(self):
         """安全停止生成逻辑"""
         if self.generating:
+            # 设置停止标志并立即更新UI
             self.stop_generation = True
+            logging.info("设置停止标志")
+            
+            # 通知API客户端停止生成
+            try:
+                from core.api_client.deepseek import api_client
+                setattr(api_client, '_generation_stopped', True)
+                logging.info("已设置API客户端停止标志")
+            except Exception as e:
+                logging.error(f"设置API客户端停止标志失败: {str(e)}")
+            
             # 确保状态标签存在
             if hasattr(self, 'status_label') and self.status_label.winfo_exists():
                 self.status_label.config(text="正在停止...")
             
-            # 直接更新状态，不使用延迟
-            self.generating = False
+            # 强制中断生成过程
+            self.update_idletasks()  # 立即刷新界面
             
-            # 避免使用afterx延迟回调，防止窗口关闭后出错
-            # self.after(1000, lambda: [
-            #    setattr(self, 'generating', False),
-            #    setattr(self, 'stop_generation', False),
-            #    self.status_label.config(text="已停止")
-            # ])
+            # 添加计时器确保状态正确更新
+            def ensure_stopped():
+                logging.info("确认停止状态")
+                self.generating = False
+                # 仅当标签仍存在时更新
+                if hasattr(self, 'status_label') and self.status_label.winfo_exists():
+                    self.status_label.config(text="已停止")
+                # 双重保险:再次设置API客户端停止标志
+                try:
+                    from core.api_client.deepseek import api_client
+                    setattr(api_client, '_generation_stopped', True)
+                except:
+                    pass
             
-            # 直接设置状态
-            self.stop_generation = False
-            # 仅当标签仍存在时更新
-            if hasattr(self, 'status_label') and self.status_label.winfo_exists():
-                self.status_label.config(text="已停止")
+            # 使用短延迟确保UI更新
+            self.after(300, ensure_stopped)
 
     def _save_as_new_role(self, editor, gen_window):
         """保存角色时保持生成窗口打开"""
@@ -1035,10 +1070,14 @@ class RoleConfiguration(ttk.Frame):
             # 如果chunk是字典，可能包含思维链内容
             if isinstance(chunk, dict):
                 # 处理思维链内容
-                if "reasoning_content" in chunk:
+                if "reasoning_content" in chunk and self.show_reasoning:
                     reasoning = chunk["reasoning_content"]
                     if reasoning:
-                        self._safe_update_reasoning(reasoning)
+                        self._display_reasoning(reasoning)
+                        
+                # 检查是否包含thinking_finished标记
+                if chunk.get("thinking_finished") and hasattr(self, 'ai_editor') and self.ai_editor.winfo_exists():
+                    self._mark_thinking_finished()
                 return
             
             # 如果是普通文本内容，即增量内容，直接更新到编辑器
@@ -1053,10 +1092,10 @@ class RoleConfiguration(ttk.Frame):
         try:
             # 如果chunk是字典，处理思维链内容
             if isinstance(chunk, dict):
-                if "reasoning_content" in chunk:
+                if "reasoning_content" in chunk and self.show_reasoning:
                     reasoning = chunk["reasoning_content"]
                     if reasoning:
-                        self.master.after(0, self._safe_update_reasoning, reasoning)
+                        self.master.after(0, self._display_reasoning, reasoning)
                 return
             
             # 处理纯文本增量（流式输出的字符）
@@ -1079,19 +1118,65 @@ class RoleConfiguration(ttk.Frame):
             editor.insert(tk.END, content)
             editor.see(tk.END)
             editor.update_idletasks()
+            
+    def _display_reasoning(self, content):
+        """以灰色斜体显示思维链内容"""
+        try:
+            if not hasattr(self, 'ai_editor') or not self.ai_editor.winfo_exists():
+                return
+                
+            editor = self.ai_editor
+            
+            # 获取当前编辑器内容是否已经有思维链内容
+            # 通过搜索标记判断
+            has_reasoning = False
+            try:
+                current_tags = editor.tag_names("end-2c")
+                has_reasoning = "reasoning" in current_tags
+            except:
+                has_reasoning = False
+            
+            # 如果之前没有思维链内容，先添加标题
+            if not has_reasoning:
+                editor.insert(tk.END, "\n【思考中...】\n", "reasoning_title")
+            
+            # 插入思维链内容
+            editor.insert(tk.END, content, "reasoning")
+            
+            # 滚动到最新位置
+            editor.see(tk.END)
+            editor.update_idletasks()
+            
+        except Exception as e:
+            logging.error(f"显示思维链失败: {str(e)}")
+            
+    def _mark_thinking_finished(self):
+        """标记思维链结束，正式内容开始"""
+        try:
+            if not hasattr(self, 'ai_editor') or not self.ai_editor.winfo_exists():
+                return
+                
+            editor = self.ai_editor
+            
+            # 添加正式内容开始标记
+            editor.insert(tk.END, "\n▼ 正式内容 ▼\n", "content_start")
+            
+            # 滚动到最新位置
+            editor.see(tk.END)
+            editor.update_idletasks()
+            
+        except Exception as e:
+            logging.error(f"标记思维链结束失败: {str(e)}")
 
     def _safe_close(self, window):
         """安全关闭窗口检查"""
         try:
             if self.generating:
-                # 先停止生成
-                self.stop_generation = True
-                self.generating = False
-                
+                # 提示用户但不停止生成，让窗口继续保持打开状态
                 messagebox.showwarning("操作阻止", 
                     "生成正在进行中，请先点击【停止生成】再关闭窗口！", 
                     parent=window)
-                return
+                return  # 不关闭窗口，不停止生成
             
             # 安全清理资源
             self.ai_editor = None  # 移除编辑器引用
@@ -1103,70 +1188,3 @@ class RoleConfiguration(ttk.Frame):
                 window.destroy()
             except:
                 pass
-
-    def _create_reasoning_window(self):
-        """安全创建思维链窗口"""
-        # 先初始化窗口对象为None
-        if not hasattr(self, 'reasoning_window'):
-            self.reasoning_window = None
-        
-        # 检查窗口有效性
-        if self.reasoning_window is None or not self.reasoning_window.winfo_exists():
-            self.reasoning_window = tk.Toplevel(self.master)
-            self.reasoning_window.title("模型思维链")
-            self.reasoning_window.protocol("WM_DELETE_WINDOW", self._hide_reasoning_window)
-            self.reasoning_text = tk.Text(self.reasoning_window, wrap=tk.WORD, width=80, height=20)
-            self.reasoning_text.pack(fill=tk.BOTH, expand=True)
-            self.reasoning_window.withdraw()  # 初始隐藏
-
-    def _hide_reasoning_window(self):
-        """隐藏窗口代替销毁"""
-        if self.reasoning_window.winfo_exists():
-            self.reasoning_window.withdraw()
-
-    def show_reasoning_window(self):
-        """安全显示窗口"""
-        if (hasattr(self, 'reasoning_window') and 
-            self.reasoning_window is not None and 
-            self.reasoning_window.winfo_exists()):
-            self.reasoning_window.deiconify()
-            self.reasoning_window.lift()
-
-    def update_reasoning_display(self, content):
-        """更新思维链显示"""
-        self.master.after(0, lambda: self._safe_update_reasoning(content))
-        
-    def _safe_update_reasoning(self, content):
-        """安全更新思维链显示，保持流式输出效果"""
-        try:
-            # 确保窗口存在
-            self._create_reasoning_window()
-            
-            # 检查文本框有效性
-            if not hasattr(self, 'reasoning_text') or not self.reasoning_text.winfo_exists():
-                self.reasoning_text = tk.Text(self.reasoning_window, wrap=tk.WORD)
-                self.reasoning_text.pack(fill=tk.BOTH, expand=True)
-            
-            # 显示窗口
-            self.show_reasoning_window()
-            
-            # 直接在末尾追加内容（不管是否新行）
-            self.reasoning_text.insert(tk.END, content)
-            
-            # 滚动到最底部
-            self.reasoning_text.see(tk.END)
-            
-            # 立即更新窗口，确保内容实时显示
-            self.reasoning_window.update_idletasks()
-            
-        except Exception as e:
-            logging.error(f"更新思维链失败: {str(e)}")
-            traceback.print_exc()
-
-    def _safe_update_main(self, content):
-        """安全更新主界面"""
-        if self.preview_text.winfo_exists():
-            self.preview_text.config(state=tk.NORMAL)
-            self.preview_text.insert(tk.END, content)
-            self.preview_text.see(tk.END)
-            self.preview_text.config(state=tk.DISABLED)

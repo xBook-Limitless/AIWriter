@@ -27,7 +27,7 @@ models:
     
   Qwen-max:
     provider: "Qwen"
-    base_url: "https://dashscope.aliyuncs.com/api/v1"
+    base_url: "https://dashscope.aliyuncs.com/compatible-mode/v1"
     model: "qwen-max"
     context_window: 6000
 
