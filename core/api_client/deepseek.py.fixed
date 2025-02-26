@@ -1,0 +1,294 @@
+﻿from openai import OpenAI
+from typing import Iterator, Optional, Dict, Any, List
+from modules.GlobalModule import global_config
+import os
+import httpx
+import time
+import logging
+from modules.AuthModule import validate_token
+from utils.config_loader import get_version_info, get_api_key
+from cryptography.fernet import Fernet
+
+logger = logging.getLogger(__name__)
+
+class DeepSeekAPIClient:
+    """DeepSeek API瀹㈡埛绔紝澶勭悊涓嶥eepSeek API鐨勬墍鏈変氦浜?""
+    
+    def __init__(self):
+        self.key_cache = {}  # 绠€鍗曠紦瀛樻満鍒?        self.max_retries = 3  # 鏈€澶ч噸璇曟鏁?        self.retry_delay = 2  # 閲嶈瘯寤惰繜锛堢锛?        logger.debug("鍒濆鍖朌eepSeek API瀹㈡埛绔?)
+
+    # def _fetch_encrypted_key(self) -> str:
+    #     """浠庝唬鐞嗘湇鍔″櫒鑾峰彇鍔犲瘑瀵嗛挜"""
+    #     try:
+    #         resp = httpx.post(
+    #             "https://your-proxy.com/api/get-key",
+    #             headers={"Authorization": f"Bearer {self._get_user_token()}"},
+    #             timeout=5
+    #         )
+    #         resp.raise_for_status()
+    #         return resp.json()["encrypted_key"]
+    #     except httpx.HTTPError as e:
+    #         self._handle_error(e)
+            
+    # def _get_api_key(self) -> str:
+    #     """鑾峰彇瑙ｅ瘑鍚庣殑API瀵嗛挜"""
+    #     if cached := self.key_cache.get('api_key'):
+    #         return cached
+        
+    #     encrypted = self._fetch_encrypted_key()
+    #     decrypted = decrypt_key(encrypted)
+    #     self.key_cache['api_key'] = decrypted
+    #     return decrypted
+    
+    # def decrypt_key(encrypted: str) -> str:
+    #     """瑙ｅ瘑涓存椂瀵嗛挜"""
+    #     f = Fernet(os.getenv('APP_JWT_SECRET').encode())
+    #     return f.decrypt(encrypted.encode()).decode()
+
+    def _get_api_key(self) -> str:
+        """鑾峰彇API瀵嗛挜
+        
+        鏍规嵁褰撳墠閫夋嫨鐨勬ā鍨嬫彁渚涘晢(global_config.model_config.provider)
+        浠巃pikey.yaml鏂囦欢鐨刾roviders閮ㄥ垎鑾峰彇瀵瑰簲鐨凙PI瀵嗛挜銆?        渚嬪锛屽綋provider涓?DeepSeek"鏃讹紝浼氳繑鍥濪eepSeek鐨凙PI瀵嗛挜锛?        褰損rovider涓?Qwen"鏃讹紝浼氳繑鍥濹wen鐨凙PI瀵嗛挜銆?        """
+        # 鐩存帴浠巃pikey.yaml鑾峰彇API瀵嗛挜
+        api_keys = get_api_key()
+        provider = global_config.model_config.provider
+        
+        # 鑾峰彇瀵瑰簲鎻愪緵鍟嗙殑API瀵嗛挜
+        key = api_keys.get('providers', {}).get(provider, "")
+        
+        if not key:
+            logger.warning(f"璀﹀憡: 娌℃湁鎵惧埌鎻愪緵鍟?{provider} 鐨凙PI瀵嗛挜")
+            
+        return key
+
+    def generate(self, messages: List[Dict[str, Any]]) -> str:
+        """鐢熸垚鏂囨湰"""
+        logger.debug(f"寮€濮嬬敓鎴愭枃鏈紝娑堟伅鏁? {len(messages)}")
+        
+        for attempt in range(self.max_retries):
+            try:
+                api_key = self._get_api_key()
+                if not api_key:
+                    logger.error("鏈壘鍒癆PI瀵嗛挜")
+                    return "閿欒: 鏈壘鍒癆PI瀵嗛挜锛岃鍦ㄨ缃腑閰嶇疆"
+                
+                client = OpenAI(
+                    api_key=api_key,
+                    base_url=global_config.model_config.base_url
+                )
+                
+                params = {
+                        "model": global_config.model_config.model,
+                        "messages": messages,
+                    "temperature": global_config.generation_params.temperature,
+                    "top_p": global_config.generation_params.top_p,
+                    "frequency_penalty": global_config.generation_params.frequency_penalty,
+                    "presence_penalty": global_config.generation_params.presence_penalty,
+                        "max_tokens": self._calculate_max_tokens(messages),
+                    "stream": False,
+                }
+                
+                logger.debug(f"浣跨敤妯″瀷: {params['model']}")
+                
+                response = client.chat.completions.create(**params)
+                return response.choices[0].message.content or ""
+                
+            except httpx.HTTPError as e:
+                logger.error(f"HTTP閿欒 (灏濊瘯 {attempt+1}/{self.max_retries}): {str(e)}")
+                if attempt < self.max_retries - 1:
+                    time.sleep(self.retry_delay)
+                else:
+                    return f"API璇锋眰澶辫触: {str(e)}"
+                    
+            except Exception as e:
+                logger.exception(f"鐢熸垚鏂囨湰鏃跺彂鐢熼敊璇? {str(e)}")
+                return f"鐢熸垚澶辫触: {str(e)}"
+    
+    def stream_generate(self, messages: List[Dict[str, Any]], callback=None) -> Iterator[str]:
+        """娴佸紡鐢熸垚鏂囨湰锛屾敮鎸佸洖璋冨嚱鏁板鐞嗘瘡涓潡"""
+        logger.debug(f"寮€濮嬫祦寮忕敓鎴愭枃鏈紝娑堟伅鏁? {len(messages)}")
+
+        # 鍒涘缓鍋滄鏍囪锛岀敤浜庡湪澶栭儴鍋滄鐢熸垚鏃跺揩閫熺粨鏉?        self._generation_stopped = False
+        
+        for attempt in range(self.max_retries):
+            try:
+                api_key = self._get_api_key()
+                if not api_key:
+                    logger.error("鏈壘鍒癆PI瀵嗛挜")
+                    error_msg = "閿欒: 鏈壘鍒癆PI瀵嗛挜锛岃鍦ㄨ缃腑閰嶇疆"
+                    if callback:
+                        callback(error_msg)
+                    yield error_msg
+                    return
+                
+                client = OpenAI(
+                    api_key=api_key,
+                    base_url=global_config.model_config.base_url
+                )
+                
+                # 鑾峰彇妯″瀷淇℃伅
+                model_name = global_config.model_config.name
+                is_reasoning_model = "DeepSeek-R1" in model_name or "Qwen-R1" in model_name
+                is_qwen_model = "Qwen" in model_name
+                
+                # 鏋勫缓鍩烘湰鍙傛暟
+                params = {
+                    'model': global_config.model_config.model,
+                    'messages': messages,
+                    'temperature': global_config.generation_params.temperature,
+                    'frequency_penalty': global_config.generation_params.frequency_penalty,
+                    'presence_penalty': global_config.generation_params.presence_penalty,
+                    'top_p': global_config.generation_params.top_p,
+                    'stream': True
+                }
+                
+                # 璁惧畾鏈€澶okens
+                params['max_tokens'] = min(
+                    global_config.generation_params.max_tokens,
+                    self._calculate_max_tokens(messages)
+                )
+                
+                # 妯″瀷鐗瑰畾鍙傛暟璋冩暣
+                if is_qwen_model:
+                    # 闈掍簯妯″瀷鐗瑰畾鍙傛暟锛屾湁浜涙ā鍨嬩笉鏀寔response_format鍙傛暟
+                    if hasattr(global_config.generation_params, 'response_format'):
+                        response_format = global_config.generation_params.response_format
+                        if isinstance(response_format, dict) and response_format.get('type') == 'json':
+                            params['response_format'] = response_format
+                else:
+                    # 闈為潚浜戞ā鍨嬩娇鐢ㄦ爣鍑嗗弬鏁?                    if hasattr(global_config.generation_params, 'response_format'):
+                        params['response_format'] = global_config.generation_params.response_format
+                
+                logger.debug(f"浣跨敤妯″瀷: {params['model']}锛屾祦寮忔ā寮忥紝鍙傛暟: {params}")
+                
+                # 鑾峰彇娴佸紡鍝嶅簲
+                stream = client.chat.completions.create(**params)
+                
+                # 璁板綍宸插鐞嗗唴瀹癸紝闃叉閲嶅
+                last_content = None
+                last_reasoning = None
+                
+                # 澶勭悊娴佸紡鍝嶅簲
+                for chunk in stream:
+                    # 澶栭儴涓柇妫€鏌?                    if getattr(self, '_generation_stopped', False):
+                        logger.info("娴佺敓鎴愯澶栭儴涓柇")
+                        break
+                        
+                    if not hasattr(chunk, 'choices') or not chunk.choices:
+                        continue
+                    
+                    # 灏濊瘯鎻愬彇鎬濈淮閾惧唴瀹癸紙浠呮敮鎸佹€濈淮閾剧殑妯″瀷锛?                    if is_reasoning_model:
+                        delta = chunk.choices[0].delta
+                        reasoning = getattr(delta, 'reasoning_content', None)
+                        
+                        # 闃叉閲嶅鍙戦€佺浉鍚岀殑鎬濈淮閾惧唴瀹?                        if reasoning and reasoning != last_reasoning:
+                            last_reasoning = reasoning
+                            if callback:
+                                # 瀵硅緝闀跨殑鎬濈淮閾惧唴瀹硅繘琛屽垎鍧楀鐞嗭紝纭繚娴佺晠鏄剧ず
+                                if len(reasoning) > 30:
+                                    # 灏嗛暱鍐呭鍒嗘垚灏忓潡锛岀‘淇濇祦鐣呮樉绀?                                    for i in range(0, len(reasoning), 30):
+                                        # 鍐嶆妫€鏌ヤ腑鏂?                                        if getattr(self, '_generation_stopped', False):
+                                            break
+                                        reasoning_chunk = reasoning[i:i+30]
+                                        callback({"reasoning_content": reasoning_chunk})
+                                        # 鐭殏寤惰繜锛屾ā鎷熸墦瀛楁晥鏋?                                        time.sleep(0.01)
+                                else:
+                                    callback({"reasoning_content": reasoning})
+                            continue  # 鎬濈淮閾惧唴瀹逛粎閫氳繃鍥炶皟浼犻€掞紝涓嶄綔涓鸿繑鍥炲€?                    
+                    # 妫€鏌ユ槸鍚︾粨鏉熸€濈淮閾?(褰揹elta涓湁鏅€氬唴瀹逛絾娌℃湁reasoning_content鏃?
+                    delta = chunk.choices[0].delta
+                    if is_reasoning_model and hasattr(delta, 'content') and delta.content and not getattr(delta, 'reasoning_content', None):
+                        # 妫€鏌ユ槸鍚﹀凡缁忓彂閫佽繃thinking_finished鏍囪
+                        if not getattr(self, '_thinking_finished_sent', False):
+                            self._thinking_finished_sent = True
+                            if callback:
+                                callback({"thinking_finished": True})
+                                time.sleep(0.2)  # 缁橴I涓€浜涙椂闂存潵澶勭悊鎬濈淮閾剧粨鏉熸爣璁?                    
+                    # 鎻愬彇鍐呭澧為噺
+                    content_delta = chunk.choices[0].delta.content
+                    
+                    # 纭繚涓嶆槸绌哄唴瀹逛笖涓嶉噸澶?                    if content_delta and content_delta != last_content:
+                        last_content = content_delta
+                        if callback:
+                            callback(content_delta)
+                        yield content_delta
+                
+                # 閲嶇疆鐘舵€佹爣璁?                self._thinking_finished_sent = False
+                self._generation_stopped = False
+                return
+                
+            except httpx.HTTPError as e:
+                error_msg = f"HTTP閿欒 (灏濊瘯 {attempt+1}/{self.max_retries}): {str(e)}"
+                logger.error(error_msg)
+                if attempt < self.max_retries - 1:
+                    time.sleep(self.retry_delay)
+                else:
+                    if callback:
+                        callback(f"API璇锋眰澶辫触: {str(e)}")
+                    yield f"API璇锋眰澶辫触: {str(e)}"
+                    
+            except Exception as e:
+                error_msg = f"娴佸紡鐢熸垚鏂囨湰鏃跺彂鐢熼敊璇? {str(e)}"
+                logger.exception(error_msg)
+                
+                # 鏀硅繘閿欒淇℃伅鍙鎬?                user_error_msg = f"鐢熸垚澶辫触: {str(e)}"
+                
+                # 閽堝璁よ瘉閿欒鎻愪緵鏇村叿浣撶殑寤鸿
+                if "AuthenticationError" in str(type(e)) or "401" in str(e):
+                    user_error_msg = (
+                        f"API瀵嗛挜璁よ瘉澶辫触: {str(e)}\n\n"
+                        f"鍙兘鐨勮В鍐虫柟妗?\n"
+                        f"1. 妫€鏌pikey.yaml涓殑瀵嗛挜鏄惁姝ｇ‘\n"
+                        f"2. 瀵逛簬Qwen妯″瀷锛岀‘淇濅娇鐢ㄧ殑鏄€氫箟鍗冮棶鎻愪緵鐨勫瘑閽n"
+                        f"3. 纭褰撳墠閫夋嫨鐨勬ā鍨?{global_config.model_config.name})涓庢偍鐨凙PI瀵嗛挜鍖归厤\n"
+                        f"4. 妫€鏌ユā鍨嬮厤缃腑鐨刡ase_url鏄惁姝ｇ‘"
+                    )
+                    
+                # 閫氳繃鍥炶皟鍙戦€佺敤鎴烽敊璇秷鎭?                if callback:
+                    callback(user_error_msg)
+                yield user_error_msg
+        
+        # 纭繚娓呯悊鐘舵€?        self._thinking_finished_sent = False
+        self._generation_stopped = False
+    
+    def _build_params(self, messages: List[Dict[str, Any]]) -> Dict[str, Any]:
+        """鏋勫缓API璇锋眰鍙傛暟"""
+        params = {
+            "model": global_config.model_config.model,
+            "messages": messages,
+            "temperature": global_config.generation_params.temperature,
+            "top_p": global_config.generation_params.top_p,
+            "max_tokens": self._calculate_max_tokens(messages),
+            "frequency_penalty": global_config.generation_params.frequency_penalty,
+            "presence_penalty": global_config.generation_params.presence_penalty,
+        }
+        
+        # 娣诲姞鍝嶅簲鏍煎紡锛堝鏋滈厤缃簡锛?        if hasattr(global_config.generation_params, 'response_format'):
+            params["response_format"] = global_config.generation_params.response_format
+            
+        return params
+    
+    def _calculate_max_tokens(self, messages: List[Dict[str, Any]]) -> int:
+        """璁＄畻鏈€澶т护鐗屾暟锛岀‘淇濅笉瓒呰繃妯″瀷涓婁笅鏂囩獥鍙?""
+        # 绠€鍗曚及绠楀凡鐢╰oken
+        used_tokens = sum(len(m.get("content", "")) // 4 for m in messages)
+        
+        # 纭繚涓嶈秴杩囨ā鍨嬩笂涓嬫枃绐楀彛鐨?0%
+        max_context = global_config.model_config.context_window
+        available = max(max_context - used_tokens, 0)
+        
+        # 鍙栭厤缃€煎拰鍙敤鍊肩殑杈冨皬鍊?        return min(global_config.generation_params.max_tokens, int(available * 0.8))
+    
+    def check_connection(self) -> bool:
+        """妫€鏌ヤ笌API鐨勮繛鎺ョ姸鎬?""
+        try:
+            client = httpx.Client(timeout=5)
+            response = client.get(f"{global_config.model_config.base_url}/models")
+            return response.status_code == 200
+        except Exception as e:
+            logger.error(f"API杩炴帴妫€鏌ュけ璐? {str(e)}")
+            return False
+
+# 鍗曚緥瀹炰緥
+api_client = DeepSeekAPIClient()

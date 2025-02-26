@@ -39,6 +39,7 @@ class RoleConfiguration(ttk.Frame):
         self.reasoning_text = None
         self._create_widgets()  # 确保先创建组件
         self._load_config()     # 后加载配置
+        self._setup_character_undo()  # 设置字符级撤销功能
         self._update_preview()  # 最后初始化预览
 
     def _create_widgets(self):
@@ -63,6 +64,8 @@ class RoleConfiguration(ttk.Frame):
         ttk.Label(top_frame, text="角色定位：").pack(side=tk.LEFT)
         self.role_type = ttk.Combobox(top_frame, state="readonly", width=10)
         self.role_type.pack(side=tk.LEFT, padx=5)
+        # 绑定角色定位变化事件
+        self.role_type.bind("<<ComboboxSelected>>", self._update_preview)
         
         # 姓名
         ttk.Label(top_frame, text="姓名：").pack(side=tk.LEFT, padx=3)
@@ -74,6 +77,8 @@ class RoleConfiguration(ttk.Frame):
         self.entries['gender'] = ttk.Combobox(top_frame, values=["男", "女", "其他"], 
                                            state="readonly", width=4)
         self.entries['gender'].pack(side=tk.LEFT, padx=2)
+        # 绑定性别变化事件
+        self.entries['gender'].bind("<<ComboboxSelected>>", self._update_preview)
         
         # 年龄
         ttk.Label(top_frame, text="年龄：").pack(side=tk.LEFT, padx=2)
@@ -97,6 +102,8 @@ class RoleConfiguration(ttk.Frame):
             ttk.Label(row_frame, text=label).pack(side=tk.LEFT, padx=3)
             if options:
                 entry = ttk.Combobox(row_frame, values=options, state="readonly", width=45)
+                # 为下拉框绑定变化事件
+                entry.bind("<<ComboboxSelected>>", self._update_preview)
             else:
                 entry = ttk.Entry(row_frame, width=48)
             entry.pack(side=tk.LEFT, padx=0, fill=tk.X, expand=True)
@@ -292,6 +299,9 @@ class RoleConfiguration(ttk.Frame):
         # 写入完整配置
         with open(self.config_file, "w", encoding='utf-8') as f:
             yaml.dump(all_config, f, allow_unicode=True, sort_keys=False)
+            
+        # 保存后更新角色选择下拉框，确保显示最新的角色名称
+        self._update_role_list(select_id=self.current_role_id)
 
     def _update_role_list(self, select_id=None):
         """支持指定选中角色"""
@@ -424,10 +434,24 @@ class RoleConfiguration(ttk.Frame):
         # 双击预览框打开完整编辑
         self.preview_text.bind("<Double-Button-1>", self._open_full_edit)
         
-        # 新增：为所有输入框添加撤销支持
-        for entry in self.entries.values():
+        # 为所有输入框添加撤销支持和实时预览更新
+        for key, entry in self.entries.items():
+            # 添加撤销支持
             entry.bind("<Control-z>", self._undo_last_entry)
             entry.bind("<Control-Z>", self._undo_last_entry)  # 处理大写锁定情况
+            
+            # 为文本输入框添加键盘事件，实现实时预览更新
+            if isinstance(entry, ttk.Entry):
+                # 创建StringVar变量跟踪输入变化
+                var = tk.StringVar()
+                var.set(entry.get())  # 初始化值
+                entry.config(textvariable=var)
+                
+                # 绑定变量变化事件
+                var.trace_add("write", lambda *args: self._update_preview())
+                
+                # 同时绑定按键释放事件作为备份
+                entry.bind("<KeyRelease>", self._update_preview)
 
     def _track_entry_changes(self, var, entry):
         """增强历史记录跟踪"""
@@ -460,32 +484,175 @@ class RoleConfiguration(ttk.Frame):
         var.trace_add("write", on_change)
 
     def _undo_last_entry(self, event):
-        """支持多步撤销"""
+        """优化的字符级撤销功能"""
         widget = event.widget
         if not widget:
-            return
+            return "break"  # 阻止默认行为
         
         try:
-            if not hasattr(widget, 'edit_history') or len(widget.edit_history) < 2:
-                return
+            # 确保widget有撤销历史
+            if not hasattr(widget, 'edit_history') or len(widget.edit_history) <= 1:
+                logging.debug(f"没有可撤销的历史记录")
+                return "break"
                 
-            # 允许逐步回退直到历史记录开头
+            # 只有当指针大于0时才能撤销
             if widget.edit_pointer > 0:
+                # 移动指针到前一个状态
                 widget.edit_pointer -= 1
                 prev_text = widget.edit_history[widget.edit_pointer]
                 
-                # 静默更新
-                widget.config(state=tk.NORMAL)
-                widget.delete(0, tk.END)
-                widget.insert(0, prev_text)
-                widget.config(state=tk.NORMAL)
+                # 更新控件内容
+                if isinstance(widget, ttk.Entry):
+                    widget.delete(0, tk.END)
+                    widget.insert(0, prev_text)
+                elif isinstance(widget, ttk.Combobox):
+                    widget.set(prev_text)
                 
-                # 触发预览更新
+                # 更新预览
                 self._update_preview()
                 
+                # 记录撤销操作
+                logging.debug(f"撤销操作: 从'{widget.edit_history[widget.edit_pointer+1]}' -> '{prev_text}', 指针位置: {widget.edit_pointer}/{len(widget.edit_history)-1}")
+            else:
+                logging.debug(f"已经是最早状态，无法继续撤销，当前指针: {widget.edit_pointer}/{len(widget.edit_history)-1}")
+                
         except Exception as e:
-            logging.error(f"撤销失败：{str(e)}")
-        return "break"
+            logging.error(f"撤销失败: {str(e)}")
+            
+        return "break"  # 阻止默认行为
+    
+    def _redo_last_entry(self, event):
+        """优化的字符级还原功能，支持连续多次还原"""
+        widget = event.widget
+        if not widget:
+            return "break"  # 阻止默认行为
+        
+        try:
+            # 确保widget有撤销历史
+            if not hasattr(widget, 'edit_history') or len(widget.edit_history) <= 1:
+                logging.debug(f"没有可还原的历史记录")
+                return "break"
+                
+            # 只有当指针小于历史记录最大索引时才能还原
+            if widget.edit_pointer < len(widget.edit_history) - 1:
+                # 移动指针到后一个状态
+                widget.edit_pointer += 1
+                next_text = widget.edit_history[widget.edit_pointer]
+                
+                # 更新控件内容
+                if isinstance(widget, ttk.Entry):
+                    widget.delete(0, tk.END)
+                    widget.insert(0, next_text)
+                elif isinstance(widget, ttk.Combobox):
+                    widget.set(next_text)
+                
+                # 更新预览
+                self._update_preview()
+                
+                # 记录还原操作
+                logging.debug(f"还原操作: 从'{widget.edit_history[widget.edit_pointer-1]}' -> '{next_text}', 指针位置: {widget.edit_pointer}/{len(widget.edit_history)-1}")
+            else:
+                logging.debug(f"已经是最新状态，无法继续还原，当前指针: {widget.edit_pointer}/{len(widget.edit_history)-1}")
+                
+        except Exception as e:
+            logging.error(f"还原失败: {str(e)}", exc_info=True)
+            
+        return "break"  # 阻止默认行为
+        
+    def _setup_character_undo(self):
+        """为所有输入控件设置字符级撤销和还原功能，优化事件处理"""
+        # 为每个输入框设置撤销历史
+        for key, entry in self.entries.items():
+            # 初始化撤销历史
+            entry.edit_history = [entry.get()]
+            entry.edit_pointer = 0
+            
+            # 绑定撤销和还原快捷键
+            entry.bind("<Control-z>", self._undo_last_entry)
+            entry.bind("<Control-Z>", self._undo_last_entry)  # 大写Z
+            entry.bind("<Control-y>", self._redo_last_entry)
+            entry.bind("<Control-Y>", self._redo_last_entry)  # 大写Y
+            
+            if isinstance(entry, ttk.Entry):
+                # 为文本输入框绑定按键事件
+                entry.bind("<Key>", lambda e, w=entry: self._on_entry_key(e, w))
+                entry.bind("<KeyRelease>", lambda e, w=entry: self._on_entry_key_release(e, w))
+                
+                # 特殊处理粘贴和剪切
+                entry.bind("<<Paste>>", lambda e, w=entry: self.after(10, lambda: self._record_entry_state(w)))
+                entry.bind("<<Cut>>", lambda e, w=entry: self.after(10, lambda: self._record_entry_state(w)))
+            
+            elif isinstance(entry, ttk.Combobox):
+                # 先解绑所有已有的ComboboxSelected事件，防止重复绑定
+                entry.unbind("<<ComboboxSelected>>")
+                # 重新绑定下拉框选择事件，确保同时更新预览和记录状态
+                entry.bind("<<ComboboxSelected>>", lambda e, w=entry: (self._record_entry_state(w), self._update_preview()))
+        
+        # 为角色类型下拉框也添加撤销和还原功能
+        self.role_type.edit_history = [self.role_type.get()]
+        self.role_type.edit_pointer = 0
+        # 先解绑所有已有的ComboboxSelected事件
+        self.role_type.unbind("<<ComboboxSelected>>")
+        # 重新绑定事件
+        self.role_type.bind("<<ComboboxSelected>>", lambda e: (self._record_entry_state(self.role_type), self._update_preview()))
+        self.role_type.bind("<Control-z>", self._undo_last_entry)
+        self.role_type.bind("<Control-Z>", self._undo_last_entry)
+        self.role_type.bind("<Control-y>", self._redo_last_entry)
+        self.role_type.bind("<Control-Y>", self._redo_last_entry)
+
+    def _on_entry_key(self, event, widget):
+        """处理输入框按键事件"""
+        # 忽略控制键和功能键
+        if event.keysym in ('Control_L', 'Control_R', 'Shift_L', 'Shift_R', 
+                           'Alt_L', 'Alt_R', 'Tab', 'Escape', 'Return'):
+            return
+            
+        # 记录按键前的状态
+        self._last_key_state = widget.get()
+    
+    def _on_entry_key_release(self, event, widget):
+        """处理输入框按键释放事件，确保不影响撤销还原功能"""
+        # 忽略控制键和功能键
+        if event.keysym in ('Control_L', 'Control_R', 'Shift_L', 'Shift_R', 
+                           'Alt_L', 'Alt_R', 'Tab', 'Escape', 'Return', 
+                           'z', 'Z', 'y', 'Y'):  # 忽略撤销还原相关按键
+            return
+            
+        # 检查内容是否变化
+        current = widget.get()
+        if hasattr(self, '_last_key_state') and self._last_key_state != current:
+            self._record_entry_state(widget)
+    
+    def _record_entry_state(self, widget):
+        """记录输入控件的当前状态，优化还原功能逻辑"""
+        current = widget.get()
+        
+        # 防止重复记录相同状态
+        if widget.edit_history and current == widget.edit_history[-1]:
+            return
+            
+        # 首先检查是否在历史中间位置编辑，如果是则截断后面的历史
+        if widget.edit_pointer < len(widget.edit_history) - 1:
+            # 记录截断前的调试信息
+            logging.debug(f"截断历史: 位置 {widget.edit_pointer+1} 到 {len(widget.edit_history)-1}")
+            widget.edit_history = widget.edit_history[:widget.edit_pointer + 1]
+            
+        # 添加新状态到历史
+        widget.edit_history.append(current)
+        widget.edit_pointer = len(widget.edit_history) - 1
+        
+        # 限制历史记录长度为20步
+        if len(widget.edit_history) > 20:
+            widget.edit_history.pop(0)
+            widget.edit_pointer -= 1
+            
+        # 记录日志
+        logging.debug(f"记录状态: '{current}', 历史长度: {len(widget.edit_history)}, 指针位置: {widget.edit_pointer}")
+        
+        # 更新预览，但避免无谓的重复更新
+        if not hasattr(self, '_last_update_time') or time.time() - self._last_update_time > 0.1:
+            self._update_preview()
+            self._last_update_time = time.time()
 
     def _update_preview(self, event=None, force=False):
         """添加强制刷新逻辑"""
@@ -535,7 +702,7 @@ class RoleConfiguration(ttk.Frame):
             self.preview_text.config(state=tk.DISABLED)
 
     def _open_full_edit(self, event=None):
-        """修复文本编辑器撤销检查"""
+        """修复文本编辑器撤销和还原功能"""
         edit_win = tk.Toplevel(self)
         edit_win.title("完整角色档案编辑")
         
@@ -559,10 +726,11 @@ class RoleConfiguration(ttk.Frame):
             maxundo=50
         )
         
-        # 绑定快捷键（移除不存在的edit_canundo检查）
+        # 绑定撤销和还原快捷键
         editor.bind("<Control-z>", lambda e: self._safe_undo(editor))
         editor.bind("<Control-y>", lambda e: self._safe_redo(editor))
-        editor.bind("<Control-Z>", lambda e: self._safe_redo(editor))
+        editor.bind("<Control-Z>", lambda e: self._safe_undo(editor))  # 修正为撤销
+        editor.bind("<Control-Y>", lambda e: self._safe_redo(editor))  # 添加大写Y绑定
 
         # 初始化撤销栈
         editor.edit_reset()
@@ -851,7 +1019,7 @@ class RoleConfiguration(ttk.Frame):
         editor.tag_configure("reasoning", 
                             foreground="gray", 
                             font=('宋体', 9, 'italic'))
-        
+          
         # 添加思维链标题样式
         editor.tag_configure("reasoning_title", 
                            foreground="#555555",
@@ -870,7 +1038,8 @@ class RoleConfiguration(ttk.Frame):
         # 绑定撤销快捷键
         editor.bind("<Control-z>", lambda e: self._safe_undo(editor))
         editor.bind("<Control-y>", lambda e: self._safe_redo(editor))
-        editor.bind("<Control-Z>", lambda e: self._safe_redo(editor))
+        editor.bind("<Control-Z>", lambda e: self._safe_undo(editor))  # 修正为撤销
+        editor.bind("<Control-Y>", lambda e: self._safe_redo(editor))  # 添加大写Y绑定
         
         # 初始化撤销栈
         editor.edit_reset()
