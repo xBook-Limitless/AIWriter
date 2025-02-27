@@ -138,6 +138,7 @@ class DeepSeekAPIClient:
                 model_name = global_config.model_config.name
                 is_reasoning_model = "DeepSeek-R1" in model_name or "Qwen-R1" in model_name
                 is_qwen_model = "Qwen" in model_name
+                is_hunyuan_model = "HunYuan" in model_name
                 
                 # 构建基本参数
                 params = {
@@ -163,8 +164,13 @@ class DeepSeekAPIClient:
                         response_format = global_config.generation_params.response_format
                         if isinstance(response_format, dict) and response_format.get('type') == 'json':
                             params['response_format'] = response_format
+                elif is_hunyuan_model:
+                    # 混元模型特殊处理
+                    # 注意：混元模型可能对某些参数有特殊要求
+                    # 例如可能不支持某些OpenAI参数或需要额外参数
+                    pass
                 else:
-                    # 非青云模型使用标准参数
+                    # 非特殊模型使用标准参数
                     if hasattr(global_config.generation_params, 'response_format'):
                         params['response_format'] = global_config.generation_params.response_format
                 
@@ -255,11 +261,21 @@ class DeepSeekAPIClient:
                 
                 # 针对认证错误提供更具体的建议
                 if "AuthenticationError" in str(type(e)) or "401" in str(e):
+                    provider = global_config.model_config.provider
+                    provider_info = ""
+                    
+                    if provider == "Qwen":
+                        provider_info = "对于Qwen模型，确保使用的是通义千问提供的密钥"
+                    elif provider == "HunYuan":
+                        provider_info = "对于HunYuan模型，确保使用的是腾讯混元提供的密钥"
+                    elif provider == "DeepSeek":
+                        provider_info = "对于DeepSeek模型，确保使用的是DeepSeek提供的密钥"
+                        
                     user_error_msg = (
                         f"API密钥认证失败: {str(e)}\n\n"
                         f"可能的解决方案:\n"
                         f"1. 检查apikey.yaml中的密钥是否正确\n"
-                        f"2. 对于Qwen模型，确保使用的是通义千问提供的密钥\n"
+                        f"2. {provider_info}\n"
                         f"3. 确认当前选择的模型({global_config.model_config.name})与您的API密钥匹配\n"
                         f"4. 检查模型配置中的base_url是否正确"
                     )

@@ -29,7 +29,7 @@ models:
     provider: "Qwen"
     base_url: "https://dashscope.aliyuncs.com/compatible-mode/v1"
     model: "qwen-max"
-    context_window: 6000
+    context_window: 32768
 
   Qwen-Plus:
     provider: "Qwen"
@@ -43,10 +43,34 @@ models:
     model: "qwen-turbo"
     context_window: 1000000
 
-  Qwen-Long:
-    provider: "Qwen"
-    base_url: "https://dashscope.aliyuncs.com/compatible-mode/v1"
-    model: "qwen-long"
-    context_window: 10000000
+  HunYuan-turbo:
+    provider: "HunYuan"
+    base_url: "https://api.hunyuan.cloud.tencent.com/v1"
+    model: "hunyuan-turbo"
+    context_window: 32768
+  
+  HunYuan-turbo-latest:
+    provider: "HunYuan"
+    base_url: "https://api.hunyuan.cloud.tencent.com/v1"
+    model: "hunyuan-turbo-latest"
+    context_window: 32768
+
+  HunYuan-large:
+    provider: "HunYuan"
+    base_url: "https://api.hunyuan.cloud.tencent.com/v1"
+    model: "hunyuan-large"
+    context_window: 32768
+
+  HunYuan-standard:
+    provider: "HunYuan"
+    base_url: "https://api.hunyuan.cloud.tencent.com/v1"
+    model: "hunyuan-standard"
+    context_window: 32768
+
+  HunYuan-standard-256K:
+    provider: "HunYuan"
+    base_url: "https://api.hunyuan.cloud.tencent.com/v1"
+    model: "hunyuan-standard-256K"
+    context_window: 262144
 
   

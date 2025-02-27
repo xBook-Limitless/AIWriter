@@ -173,6 +173,37 @@ class BaseConfiguration(ttk.Frame):
             
             with open(self.config_file, "w", encoding='utf-8') as f:
                 yaml.dump(all_config, f, allow_unicode=True, sort_keys=False)  # 禁止自动排序
+            
+            # 通知世界观面板更新
+            creation_type = self.creation_type.get()
+            # 如果在同一个窗口层级有世界观面板，可以直接触发更新
+            world_view_panel = self._find_world_view_panel()
+            if world_view_panel:
+                world_view_panel.update_by_creation_type(creation_type)
+                
             messagebox.showinfo("成功", "基础属性已保存")
         except Exception as e:
             messagebox.showerror("错误", f"保存失败：{str(e)}")
+            
+    def _find_world_view_panel(self):
+        """查找世界观面板实例"""
+        try:
+            # 尝试在应用程序中查找WorldViewPanel实例
+            parent = self.winfo_toplevel()
+            
+            # 递归查找特定类型的组件
+            def find_panel(widget):
+                from ui.panels.WorldView import WorldViewPanel
+                if isinstance(widget, WorldViewPanel):
+                    return widget
+                    
+                for child in widget.winfo_children():
+                    result = find_panel(child)
+                    if result:
+                        return result
+                return None
+                
+            return find_panel(parent)
+        except Exception as e:
+            print(f"查找世界观面板出错: {str(e)}")
+            return None

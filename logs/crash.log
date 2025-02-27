@@ -40,3 +40,31 @@ AttributeError: 'NoneType' object has no attribute 'winfo_exists'
                        
 AttributeError: 'NoneType' object has no attribute 'winfo_exists'
 
+2025-02-26 22:11:34,798 - ERROR - crash - 严重错误: 'WorldViewPanel' object has no attribute '_load_config'
+2025-02-26 22:11:34,801 - ERROR - crash - Traceback (most recent call last):
+  File "C:\Users\iem98\OneDrive\Desktop\AiWriter\main.py", line 45, in main
+    window = create_main_window()
+             ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\iem98\OneDrive\Desktop\AiWriter\ui\iHome.py", line 152, in create_main_window
+    WorldViewPanel(world_view_frame).pack(padx=5, pady=5, fill=tk.BOTH, expand=True)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\iem98\OneDrive\Desktop\AiWriter\ui\panels\WorldView.py", line 21, in __init__
+    self._load_config()
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'WorldViewPanel' object has no attribute '_load_config'. Did you mean: '_save_config'?
+
+2025-02-27 14:44:39,639 - ERROR - crash - 严重错误: 'WorldViewPanel' object has no attribute '_generate_complete_worldview'
+2025-02-27 14:44:39,639 - ERROR - crash - Traceback (most recent call last):
+  File "C:\Users\iem98\OneDrive\Desktop\AiWriter\main.py", line 45, in main
+    window = create_main_window()
+             ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\iem98\OneDrive\Desktop\AiWriter\ui\iHome.py", line 152, in create_main_window
+    WorldViewPanel(world_view_frame).pack(padx=5, pady=5, fill=tk.BOTH, expand=True)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\iem98\OneDrive\Desktop\AiWriter\ui\panels\WorldView.py", line 20, in __init__
+    self._create_widgets()
+  File "C:\Users\iem98\OneDrive\Desktop\AiWriter\ui\panels\WorldView.py", line 111, in _create_widgets
+    command=self._generate_complete_worldview,
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'WorldViewPanel' object has no attribute '_generate_complete_worldview'
+

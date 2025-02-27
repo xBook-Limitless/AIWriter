@@ -8,6 +8,7 @@ from ui.panels.ParameterPanel import ParameterPanel
 from ui.panels.GetApiKey import GetApiKeyPanel
 from tkinter import Menu
 from ui.panels.BaseConfiguration import BaseConfiguration
+from ui.panels.WorldView import WorldViewPanel
 import json
 from pathlib import Path
 from tkinter import filedialog
@@ -135,7 +136,20 @@ def create_main_window():
         # 创建小说框架分页
         novel_frame = ttk.Frame(notebook)
         notebook.add(novel_frame, text="小说框架")
-        BaseConfiguration(novel_frame).pack(padx=5, pady=5, fill=tk.BOTH, expand=True)
+        
+        # 创建小说框架内部的分页
+        novel_notebook = ttk.Notebook(novel_frame)
+        novel_notebook.pack(padx=5, pady=5, fill=tk.BOTH, expand=True)
+        
+        # 基础配置页面
+        base_config_frame = ttk.Frame(novel_notebook)
+        novel_notebook.add(base_config_frame, text="基础配置")
+        BaseConfiguration(base_config_frame).pack(padx=5, pady=5, fill=tk.BOTH, expand=True)
+        
+        # 世界观页面
+        world_view_frame = ttk.Frame(novel_notebook)
+        novel_notebook.add(world_view_frame, text="世界观构建")
+        WorldViewPanel(world_view_frame).pack(padx=5, pady=5, fill=tk.BOTH, expand=True)
         
         notebook.pack(fill=tk.BOTH, expand=True, padx=5, pady=5)
 

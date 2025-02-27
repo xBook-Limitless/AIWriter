@@ -41,6 +41,11 @@ class GetApiKeyPanel(ttk.Frame):
         self._create_provider_ui(qwen_frame, "Qwen")
         tab_control.add(qwen_frame, text="通义千问")
         
+        # 腾讯混元选项卡
+        hunyuan_frame = ttk.Frame(tab_control)
+        self._create_provider_ui(hunyuan_frame, "HunYuan")
+        tab_control.add(hunyuan_frame, text="腾讯混元")
+        
         tab_control.pack(expand=1, fill="both")
 
     def _create_provider_ui(self, parent, provider):
@@ -81,7 +86,8 @@ class GetApiKeyPanel(ttk.Frame):
             # 根据提供商选择测试接口
             test_url = {
                 "DeepSeek": f"{global_config.model_config.base_url}/models",
-                "Qwen": "https://dashscope.aliyuncs.com/api/v1/models"
+                "Qwen": "https://dashscope.aliyuncs.com/api/v1/models",
+                "HunYuan": "https://api.hunyuan.cloud.tencent.com/v1/models"
             }[provider]
             
             response = httpx.get(
@@ -127,3 +133,9 @@ class GetApiKeyPanel(ttk.Frame):
         if qwen_key:
             self.qwen_entry.delete(0, tk.END)
             self.qwen_entry.insert(0, qwen_key)
+            
+        # 加载HunYuan密钥
+        hunyuan_key = config["providers"].get("HunYuan", "")
+        if hunyuan_key:
+            self.hunyuan_entry.delete(0, tk.END)
+            self.hunyuan_entry.insert(0, hunyuan_key)
