@@ -290,6 +290,20 @@ class WorldViewPanel:
         canvas.bind("<Configure>", _configure_scrollable_frame)
         canvas.configure(yscrollcommand=scrollbar.set)
         
+        # 添加鼠标滚轮滚动支持 - 仅限于悬停在滚动条上时
+        def _on_mousewheel(event):
+            canvas.yview_scroll(int(-1*(event.delta/120)), "units")
+        
+        def _bind_mousewheel(event=None):
+            self.master.bind_all("<MouseWheel>", _on_mousewheel)
+        
+        def _unbind_mousewheel(event=None):
+            self.master.unbind_all("<MouseWheel>")
+            
+        # 仅当鼠标悬停在滚动条上时才绑定滚轮事件
+        scrollbar.bind("<Enter>", _bind_mousewheel)
+        scrollbar.bind("<Leave>", _unbind_mousewheel)
+        
         # 放置滚动组件
         canvas.grid(row=0, column=0, sticky="nsew")
         scrollbar.grid(row=0, column=1, sticky="ns")

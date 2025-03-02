@@ -136,10 +136,6 @@ class RoleConfiguration(ttk.Frame):
 
         # 初始化角色类型
         self._update_role_types()
-
-        # --- 右侧预览与编辑 ---
-        # 预览标题
-        ttk.Label(preview_frame, text="角色档案预览", font=('微软雅黑', 10, 'bold')).pack(pady=3)
         
         # 预览框容器设置
         scroll_container = ttk.Frame(preview_frame)  # 固定容器高度
@@ -148,8 +144,8 @@ class RoleConfiguration(ttk.Frame):
         # 预览文本框
         self.preview_text = tk.Text(
             scroll_container,
-            width=30,
-            height=11,  # 固定显示12行
+            width=50,
+            height=13,  # 固定显示12行
             wrap=tk.WORD,
             font=('Consolas', 10),
             padx=5,

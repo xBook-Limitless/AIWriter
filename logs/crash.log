@@ -268,3 +268,18 @@ AttributeError: 'WorldViewPanel' object has no attribute 'winfo_toplevel'
                                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 AttributeError: 'WorldViewPanel' object has no attribute '_show_template_preview'. Did you mean: 'template_preview'?
 
+2025-03-03 04:00:08,311 - ERROR - crash - 严重错误: 'Labelframe' object has no attribute 'minsize'
+2025-03-03 04:00:08,311 - ERROR - crash - Traceback (most recent call last):
+  File "C:\Users\iem98\OneDrive\Desktop\AiWriter\main.py", line 45, in main
+    window = create_main_window()
+             ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\iem98\OneDrive\Desktop\AiWriter\ui\iHome.py", line 188, in create_main_window
+    base_config_panel = BaseConfiguration(scrollable_frame)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\iem98\OneDrive\Desktop\AiWriter\ui\panels\BaseConfiguration.py", line 85, in __init__
+    self._create_widgets()
+  File "C:\Users\iem98\OneDrive\Desktop\AiWriter\ui\panels\BaseConfiguration.py", line 101, in _create_widgets
+    base_frame.minsize(width=500, height=300)
+    ^^^^^^^^^^^^^^^^^^
+AttributeError: 'Labelframe' object has no attribute 'minsize'
+

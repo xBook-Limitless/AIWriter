@@ -173,10 +173,9 @@ def create_main_window():
         def _unbind_mousewheel(event=None):
             canvas.unbind_all("<MouseWheel>")
 
-        # 当鼠标进入画布区域时绑定滚轮事件
-        canvas.bind("<Enter>", _bind_mousewheel)
-        # 当鼠标离开画布区域时解绑滚轮事件
-        canvas.bind("<Leave>", _unbind_mousewheel)
+        # 修改：仅当鼠标悬停在滚动条上时才绑定滚轮事件
+        scrollbar.bind("<Enter>", _bind_mousewheel)
+        scrollbar.bind("<Leave>", _unbind_mousewheel)
         
         # === 第一部分：基础配置 ===
         section_title_style = {"font": ("微软雅黑", 12, "bold"), "bg": "#e6e6e6", "pady": 5, "padx": 10}

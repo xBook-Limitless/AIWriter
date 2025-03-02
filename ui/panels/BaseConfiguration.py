@@ -1,6 +1,8 @@
 import tkinter as tk
 from tkinter import ttk
+from tkinter import scrolledtext
 import yaml
+import json
 from pathlib import Path
 from tkinter import messagebox
 from ui.panels.RoleConfiguration import RoleConfiguration
@@ -70,54 +72,88 @@ class BaseConfiguration(ttk.Frame):
     def __init__(self, master):
         super().__init__(master)
         self.config_file = Path("data/configs/novel_structure.yaml")
+        self.subtypes_file = Path("data/StudyData/AllSubtypes.json")
+        self.subtypes_content = {}
+        
+        # 加载子类型内容说明
+        if self.subtypes_file.exists():
+            try:
+                with open(self.subtypes_file, "r", encoding='utf-8') as f:
+                    self.subtypes_content = json.load(f)
+            except Exception as e:
+                print(f"加载子类型内容失败: {str(e)}")
+                
         self._create_widgets()
         self._load_config()
 
     def _create_widgets(self):
         """创建界面组件"""
         main_frame = ttk.Frame(self)
-        main_frame.pack(fill=tk.NONE, expand=False, anchor=tk.NW)  # 完全禁止扩展
+        main_frame.pack(fill=tk.BOTH, expand=True, anchor=tk.NW)  # 允许扩展以支持右对齐
 
-        # 基础属性框（宽度调整为原0.8倍）
-        base_width = int(320 * 0.8)  # 原320→256
-        base_frame = ttk.LabelFrame(main_frame, text="基础属性", width=base_width, height=300)
-        base_frame.pack_propagate(False)
-        base_frame.pack(side=tk.LEFT, padx=5, pady=5, anchor=tk.NW, fill=tk.NONE, expand=False)
-
-        # 角色设定框（保持固定尺寸）
-        role_frame = ttk.LabelFrame(main_frame, text="角色设定", width=720, height=295)
+        # 使用外部Frame强制最小宽度，但允许拉伸
+        base_container = ttk.Frame(main_frame, width=450, height=300)
+        base_container.pack_propagate(False)  # 禁止自动调整大小
+        base_container.pack(side=tk.LEFT, padx=5, pady=5, anchor=tk.NW, fill=tk.BOTH, expand=True)
+        
+        # 基础属性框放在容器内部
+        base_frame = ttk.LabelFrame(base_container, text="基础属性")
+        base_frame.pack(fill=tk.BOTH, expand=True, padx=0, pady=0)
+        
+        # 设置列权重，使得列可以拉伸
+        base_frame.columnconfigure(1, weight=1)  # 第二列可以拉伸
+        
+        # 角色设定框（保持固定尺寸）- 改为右对齐
+        role_frame = ttk.LabelFrame(main_frame, text="角色设定", width=680, height=295)
         role_frame.pack_propagate(False)
-        role_frame.pack(side=tk.LEFT, padx=5, pady=5, anchor=tk.NW, fill=tk.NONE, expand=False)
+        role_frame.pack(side=tk.RIGHT, padx=5, pady=5, anchor=tk.NE, fill=tk.NONE, expand=False)
 
         # 调整基础属性框内部组件宽度
         ttk.Label(base_frame, text="作品名称:").grid(row=0, column=0, padx=5, pady=5, sticky="e")  # 缩小间距
-        self.title_entry = ttk.Entry(base_frame, width=22)  # 原22→18
+        self.title_entry = ttk.Entry(base_frame, width=55)  # 增加宽度以适应新容器
         self.title_entry.grid(row=0, column=1, padx=5, pady=3, sticky="w")
+        
+        # 使用普通的tk.Button替代ttk.Button，并直接设置height参数来控制高度
+        save_btn = tk.Button(base_frame, text="保存", width=5, height=1, 
+                          relief=tk.GROOVE, borderwidth=1, command=self._save_config)
+        save_btn.configure(font=("SimSun", 9))  # 使用小一点的字体
+        save_btn.grid(row=0, column=2, padx=5, pady=1, sticky="e")
 
+        # 创建类型选择框架 - 所有类型放在同一行
+        type_frame = ttk.Frame(base_frame)
+        type_frame.grid(row=1, column=0, columnspan=6, sticky="w", padx=5, pady=5)
+        
         # 创作类型
-        ttk.Label(base_frame, text="创作类型:").grid(row=1, column=0, padx=5, pady=5, sticky="e")
-        self.creation_type = ttk.Combobox(base_frame, values=list(self.CREATION_TYPES.keys()), 
-                                        state="readonly", width=20)
-        self.creation_type.grid(row=1, column=1, padx=5, pady=5, sticky="w")
+        ttk.Label(type_frame, text="创作类型:").pack(side=tk.LEFT, padx=2)
+        self.creation_type = ttk.Combobox(type_frame, values=list(self.CREATION_TYPES.keys()), 
+                                        state="readonly", width=8)  # 适合5个汉字
+        self.creation_type.pack(side=tk.LEFT, padx=2)
         self.creation_type.bind("<<ComboboxSelected>>", self._update_main_types)
 
         # 主类型
-        ttk.Label(base_frame, text="主类型:").grid(row=2, column=0, padx=5, pady=5, sticky="e")
-        self.main_type = ttk.Combobox(base_frame, state="readonly", width=20)
-        self.main_type.grid(row=2, column=1, padx=5, pady=5, sticky="w")
+        ttk.Label(type_frame, text="主类型:").pack(side=tk.LEFT, padx=2)
+        self.main_type = ttk.Combobox(type_frame, state="readonly", width=12)  # 适合5个汉字
+        self.main_type.pack(side=tk.LEFT, padx=2)
         self.main_type.bind("<<ComboboxSelected>>", self._update_sub_types)
 
         # 子类型
-        ttk.Label(base_frame, text="子类型:").grid(row=3, column=0, padx=5, pady=5, sticky="e")
-        self.sub_type = ttk.Combobox(base_frame, state="readonly", width=20)
-        self.sub_type.grid(row=3, column=1, padx=5, pady=5, sticky="w")
-
-        # 按钮容器
-        btn_frame = ttk.Frame(base_frame)
-        btn_frame.grid(row=4, column=0, columnspan=2, pady=10)
+        ttk.Label(type_frame, text="子类型:").pack(side=tk.LEFT, padx=2)
+        self.sub_type = ttk.Combobox(type_frame, state="readonly", width=10)  # 适合5个汉字
+        self.sub_type.pack(side=tk.LEFT, padx=2)
+        self.sub_type.bind("<<ComboboxSelected>>", self._update_subtype_preview)
         
-        # 保存按钮
-        ttk.Button(btn_frame, text="保存属性", command=self._save_config).pack(side=tk.LEFT, padx=5)
+        # 子类型内容预览框 - 设置拉伸
+        self.subtype_preview = scrolledtext.ScrolledText(base_frame, width=35, height=8, wrap="word", 
+                                      font=("SimSun", 9))
+        self.subtype_preview.grid(row=2, column=0, columnspan=6, padx=5, pady=5, sticky="nsew")
+        self.subtype_preview.config(state="normal")
+        
+        # 设置标签配置以增加行距
+        self.subtype_preview.tag_configure("line_spacing", spacing1=3, spacing2=3, spacing3=3)
+        self.subtype_preview.config(state="disabled")  # 设置为只读
+        
+        # 设置行权重，使子类型预览框能够垂直拉伸
+        base_frame.rowconfigure(2, weight=1)
 
         # 角色配置组件
         self.role_config = RoleConfiguration(role_frame)
@@ -146,6 +182,18 @@ class BaseConfiguration(ttk.Frame):
             # 自动选择第一个选项
             if sub_types:
                 self.sub_type.set(sub_types[0])
+                # 更新子类型内容预览
+                self._update_subtype_preview()
+
+    def _update_subtype_preview(self, event=None):
+        """更新子类型内容预览"""
+        selected = self.sub_type.get()
+        if selected:
+            preview_text = self.subtypes_content.get(selected, "未找到子类型内容")
+            self.subtype_preview.config(state="normal")
+            self.subtype_preview.delete(1.0, tk.END)
+            self.subtype_preview.insert(tk.END, preview_text, "line_spacing")  # 应用行距标签
+            self.subtype_preview.config(state="disabled")
 
     def _load_config(self):
         """加载已有配置"""
@@ -161,6 +209,9 @@ class BaseConfiguration(ttk.Frame):
                 self.main_type.set(config.get("main_type", ""))
                 self._update_sub_types()
                 self.sub_type.set(config.get("sub_type", ""))
+                
+                # 更新子类型内容预览
+                self._update_subtype_preview()
             except Exception as e:
                 messagebox.showerror("错误", f"加载配置失败：{str(e)}")
 
