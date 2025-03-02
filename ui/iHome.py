@@ -9,6 +9,7 @@ from ui.panels.GetApiKey import GetApiKeyPanel
 from tkinter import Menu
 from ui.panels.BaseConfiguration import BaseConfiguration
 from ui.panels.WorldView import WorldViewPanel
+from ui.panels.RoleConfiguration import RoleConfiguration
 import json
 from pathlib import Path
 from tkinter import filedialog
@@ -77,17 +78,21 @@ def create_main_window():
         screen_width = root.winfo_screenwidth()
         screen_height = root.winfo_screenheight()
         
-        # 计算80%的屏幕尺寸
-        window_width = int(screen_width * 0.7)
-        window_height = int(screen_height * 0.7)
+        # 设置固定窗口尺寸为1920x1080
+        window_width = 1920
+        window_height = 1080
         
         # 设置窗口尺寸并居中
         root.geometry(f"{window_width}x{window_height}")
-        root.resizable(True, True)  # 允许调整窗口大小
+        root.resizable(False, False)  # 不允许调整窗口大小
         
-        # 计算居中位置（带视觉修正）
+        # 计算居中位置
         x = (screen_width - window_width) // 2
-        y = (screen_height - window_height) // 2 - 50  # 增加垂直偏移量
+        y = (screen_height - window_height) // 2
+        
+        # 如果计算出的位置为负值，则设为0
+        x = max(0, x)
+        y = max(0, y)
         
         root.geometry(f"+{x}+{y}")
 
@@ -133,25 +138,100 @@ def create_main_window():
         # 添加分页容器（在控制按钮下方）
         notebook = ttk.Notebook(root)
         
-        # 创建小说框架分页
+        # 创建小说框架分页 - 现在使用滚动容器而不是嵌套分页
         novel_frame = ttk.Frame(notebook)
         notebook.add(novel_frame, text="小说框架")
         
-        # 创建小说框架内部的分页
-        novel_notebook = ttk.Notebook(novel_frame)
-        novel_notebook.pack(padx=5, pady=5, fill=tk.BOTH, expand=True)
+        # 创建带滚动条的主内容框架
+        canvas = tk.Canvas(novel_frame)
+        scrollbar = ttk.Scrollbar(novel_frame, orient="vertical", command=canvas.yview)
+        scrollable_frame = ttk.Frame(canvas)
         
-        # 基础配置页面
-        base_config_frame = ttk.Frame(novel_notebook)
-        novel_notebook.add(base_config_frame, text="基础配置")
-        BaseConfiguration(base_config_frame).pack(padx=5, pady=5, fill=tk.BOTH, expand=True)
+        # 设置滚动区域绑定
+        scrollable_frame.bind(
+            "<Configure>",
+            lambda e: canvas.configure(
+                scrollregion=canvas.bbox("all")
+            )
+        )
         
-        # 世界观页面
-        world_view_frame = ttk.Frame(novel_notebook)
-        novel_notebook.add(world_view_frame, text="世界观构建")
-        WorldViewPanel(world_view_frame).pack(padx=5, pady=5, fill=tk.BOTH, expand=True)
+        # 将框架添加到画布
+        canvas.create_window((0, 0), window=scrollable_frame, anchor="nw")
+        canvas.configure(yscrollcommand=scrollbar.set)
         
+        # 将画布和滚动条放置到主框架
+        canvas.pack(side="left", fill="both", expand=True)
+        scrollbar.pack(side="right", fill="y")
+        
+        # 添加鼠标滚轮滚动支持
+        def _on_mousewheel(event):
+            canvas.yview_scroll(int(-1*(event.delta/120)), "units")
+        
+        def _bind_mousewheel(event=None):
+            canvas.bind_all("<MouseWheel>", _on_mousewheel)
+        
+        def _unbind_mousewheel(event=None):
+            canvas.unbind_all("<MouseWheel>")
+
+        # 当鼠标进入画布区域时绑定滚轮事件
+        canvas.bind("<Enter>", _bind_mousewheel)
+        # 当鼠标离开画布区域时解绑滚轮事件
+        canvas.bind("<Leave>", _unbind_mousewheel)
+        
+        # === 第一部分：基础配置 ===
+        section_title_style = {"font": ("微软雅黑", 12, "bold"), "bg": "#e6e6e6", "pady": 5, "padx": 10}
+        
+        # 基础配置标题
+        base_config_title = tk.Label(scrollable_frame, text="基础配置", **section_title_style)
+        base_config_title.pack(fill=tk.X, pady=(10, 0))
+        
+        # 添加基础配置面板
+        base_config_panel = BaseConfiguration(scrollable_frame)
+        base_config_panel.pack(fill=tk.X, padx=15, pady=10)
+        
+        # 添加分隔线
+        ttk.Separator(scrollable_frame, orient='horizontal').pack(fill='x', padx=10, pady=10)
+        
+        # === 第二部分：世界观构建 ===
+        worldview_title = tk.Label(scrollable_frame, text="世界观构建", **section_title_style)
+        worldview_title.pack(fill=tk.X, pady=(5, 0))
+        
+        # 添加世界观构建面板
+        worldview_panel = WorldViewPanel(scrollable_frame)
+        worldview_panel.pack(fill=tk.X, padx=15, pady=10)
+        
+        # 添加分隔线
+        ttk.Separator(scrollable_frame, orient='horizontal').pack(fill='x', padx=10, pady=10)
+        
+        # === 第三部分：角色配置 ===
+        # role_title = tk.Label(scrollable_frame, text="角色配置", **section_title_style)
+        # role_title.pack(fill=tk.X, pady=(5, 0))
+        # 
+        # # 添加角色配置面板
+        # role_panel = RoleConfiguration(scrollable_frame)
+        # role_panel.pack(fill=tk.X, padx=15, pady=10)
+        # === 到此为止 ===
+        
+        # 添加分页到主Notebook
         notebook.pack(fill=tk.BOTH, expand=True, padx=5, pady=5)
+        
+        # 创建各面板之间的联动
+        def on_creation_type_changed(event=None):
+            """当创作类型改变时更新世界观配置"""
+            creation_type = base_config_panel.get_creation_type()
+            if creation_type:
+                worldview_panel.update_by_creation_type(creation_type)
+        
+        try:
+            # 注册基础配置的创作类型变更回调
+            base_config_panel.register_type_callback(on_creation_type_changed)
+            
+            # 初始调用一次，确保初始状态同步
+            on_creation_type_changed()
+        except AttributeError as e:
+            # 如果方法还不存在，提供友好的错误提示
+            print(f"联动功能暂不可用: {str(e)}")
+            print("请确保已更新 BaseConfiguration 类")
 
         # 启动连接监控
         global_api_config.connection_monitor.start_monitoring()
@@ -172,9 +252,6 @@ def create_main_window():
 
         status_label.bind("<Button-3>", show_status_menu)
 
-    # root.geometry("900x600")  # 确保窗口足够大
-    # root.minsize(900, 600)   # 设置最小尺寸
-
     style = ttk.Style()
     style.theme_use("clam")  # 改为经典主题测试
 
@@ -193,10 +270,6 @@ def validate_max_tokens(new_value):
         return False
     value = int(new_value)
     return 1 <= value <= 6400
-
-# app = Flask(__name__)
-# login_manager = LoginManager()
-# login_manager.init_app(app)
 
 # 新增独立参数窗口管理
 _parameter_window = None
@@ -259,8 +332,25 @@ def export_novel_structure(parent):
             txt_content += f"主类型：{base_config.get('main_type', '')}\n"
             txt_content += f"子类型：{base_config.get('sub_type', '')}\n\n"
             
+            # 添加世界观内容
+            world_view = data.get("world_view", {})
+            if world_view and "content" in world_view:
+                txt_content += "=== 世界观 ===\n"
+                txt_content += world_view["content"]
+                txt_content += "\n\n"
+            
+            # 角色配置
+            role_config = data.get("role_config", {})
+            if role_config and "roles" in role_config:
+                txt_content += "=== 角色配置 ===\n"
+                roles = role_config["roles"]
+                for role_id, role_data in roles.items():
+                    txt_content += f"\n角色ID: {role_id}\n"
+                    for key, value in role_data.items():
+                        txt_content += f"  {key}: {value}\n"
+            
             # 其他模块占位
-            txt_content += "=== 其他模块配置 ===\n"
+            txt_content += "\n=== 其他模块配置 ===\n"
             txt_content += "（完整配置请查看JSON文件）"
             
             f.write(txt_content)
@@ -269,9 +359,8 @@ def export_novel_structure(parent):
             f"已导出到：\n{save_dir}\n"
             f"JSON文件：{json_path.name}\n"
             f"TXT文件：{txt_path.name}")
-            
     except Exception as e:
-        messagebox.showerror("导出失败", f"错误信息：{str(e)}")
+        messagebox.showerror("导出失败", f"导出时出错：{str(e)}")
 
 def import_novel_structure(parent):
     """导入小说框架数据"""

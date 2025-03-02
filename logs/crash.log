@@ -68,3 +68,203 @@ AttributeError: 'WorldViewPanel' object has no attribute '_load_config'. Did you
             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 AttributeError: 'WorldViewPanel' object has no attribute '_generate_complete_worldview'
 
+2025-02-28 00:43:23,087 - ERROR - crash - 严重错误: 'BaseConfiguration' object has no attribute 'register_type_callback'
+2025-02-28 00:43:23,089 - ERROR - crash - Traceback (most recent call last):
+  File "C:\Users\iem98\OneDrive\Desktop\AiWriter\main.py", line 45, in main
+    window = create_main_window()
+             ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\iem98\OneDrive\Desktop\AiWriter\ui\iHome.py", line 213, in create_main_window
+    base_config_panel.register_type_callback(on_creation_type_changed)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'BaseConfiguration' object has no attribute 'register_type_callback'
+
+2025-02-28 01:32:16,977 - ERROR - crash - 严重错误: 'WorldViewPanel' object has no attribute '_create_step_2'
+2025-02-28 01:32:16,977 - ERROR - crash - Traceback (most recent call last):
+  File "C:\Users\iem98\OneDrive\Desktop\AiWriter\main.py", line 45, in main
+    window = create_main_window()
+             ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\iem98\OneDrive\Desktop\AiWriter\ui\iHome.py", line 196, in create_main_window
+    worldview_panel = WorldViewPanel(scrollable_frame)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\iem98\OneDrive\Desktop\AiWriter\ui\panels\WorldView.py", line 28, in __init__
+    self._create_widgets()
+  File "C:\Users\iem98\OneDrive\Desktop\AiWriter\ui\panels\WorldView.py", line 89, in _create_widgets
+    self._create_step_content()
+  File "C:\Users\iem98\OneDrive\Desktop\AiWriter\ui\panels\WorldView.py", line 111, in _create_step_content
+    self._create_step_2()  # 选择主类型
+    ^^^^^^^^^^^^^^^^^^^
+AttributeError: 'WorldViewPanel' object has no attribute '_create_step_2'. Did you mean: '_create_step_1'?
+
+2025-02-28 01:37:06,494 - ERROR - crash - 严重错误: 'WorldViewPanel' object has no attribute '_create_tooltip_class'
+2025-02-28 01:37:06,509 - ERROR - crash - Traceback (most recent call last):
+  File "C:\Users\iem98\OneDrive\Desktop\AiWriter\main.py", line 45, in main
+    window = create_main_window()
+             ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\iem98\OneDrive\Desktop\AiWriter\ui\iHome.py", line 196, in create_main_window
+    worldview_panel = WorldViewPanel(scrollable_frame)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\iem98\OneDrive\Desktop\AiWriter\ui\panels\WorldView.py", line 22, in __init__
+    self._create_widgets()
+  File "C:\Users\iem98\OneDrive\Desktop\AiWriter\ui\panels\WorldView.py", line 34, in _create_widgets
+    self._create_tooltip_class()
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'WorldViewPanel' object has no attribute '_create_tooltip_class'
+
+2025-02-28 01:40:21,527 - ERROR - crash - 严重错误: 'WorldViewPanel' object has no attribute '_load_config'
+2025-02-28 01:40:21,532 - ERROR - crash - Traceback (most recent call last):
+  File "C:\Users\iem98\OneDrive\Desktop\AiWriter\main.py", line 45, in main
+    window = create_main_window()
+             ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\iem98\OneDrive\Desktop\AiWriter\ui\iHome.py", line 196, in create_main_window
+    worldview_panel = WorldViewPanel(scrollable_frame)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\iem98\OneDrive\Desktop\AiWriter\ui\panels\WorldView.py", line 34, in __init__
+    self._load_config()
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'WorldViewPanel' object has no attribute '_load_config'
+
+2025-02-28 01:41:39,908 - ERROR - crash - 严重错误: 'WorldViewPanel' object has no attribute '_load_config'
+2025-02-28 01:41:39,911 - ERROR - crash - Traceback (most recent call last):
+  File "C:\Users\iem98\OneDrive\Desktop\AiWriter\main.py", line 45, in main
+    window = create_main_window()
+             ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\iem98\OneDrive\Desktop\AiWriter\ui\iHome.py", line 196, in create_main_window
+    worldview_panel = WorldViewPanel(scrollable_frame)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\iem98\OneDrive\Desktop\AiWriter\ui\panels\WorldView.py", line 34, in __init__
+    self._load_config()
+    ^^^^^^^^^^^^^^^^^
+AttributeError: 'WorldViewPanel' object has no attribute '_load_config'
+
+2025-02-28 02:08:47,864 - ERROR - crash - 严重错误: 'LinearOutlineGenerator' object has no attribute 'prev_step'
+2025-02-28 02:08:47,864 - ERROR - crash - Traceback (most recent call last):
+  File "C:\Users\iem98\OneDrive\Desktop\AiWriter\main.py", line 45, in main
+    window = create_main_window()
+             ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\iem98\OneDrive\Desktop\AiWriter\ui\iHome.py", line 196, in create_main_window
+    worldview_panel = WorldViewPanel(scrollable_frame)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\iem98\OneDrive\Desktop\AiWriter\ui\panels\WorldView.py", line 29, in __init__
+    self.linear_outline_generator = LinearOutlineGenerator(self, self)
+                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\iem98\OneDrive\Desktop\AiWriter\ui\panels\WorldView.py", line 168, in __init__
+    self.create_widgets()
+  File "C:\Users\iem98\OneDrive\Desktop\AiWriter\ui\panels\WorldView.py", line 211, in create_widgets
+    self.prev_button = ttk.Button(button_container, text="上一步", command=self.prev_step)
+                                                                           ^^^^^^^^^^^^^^
+AttributeError: 'LinearOutlineGenerator' object has no attribute 'prev_step'
+
+2025-02-28 02:10:10,171 - ERROR - crash - 严重错误: couldn't open "assets/icons/help.png": no such file or directory
+2025-02-28 02:10:10,171 - ERROR - crash - Traceback (most recent call last):
+  File "C:\Users\iem98\OneDrive\Desktop\AiWriter\main.py", line 45, in main
+    window = create_main_window()
+             ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\iem98\OneDrive\Desktop\AiWriter\ui\iHome.py", line 196, in create_main_window
+    worldview_panel = WorldViewPanel(scrollable_frame)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\iem98\OneDrive\Desktop\AiWriter\ui\panels\WorldView.py", line 16, in __init__
+    self._create_widgets()
+  File "C:\Users\iem98\OneDrive\Desktop\AiWriter\ui\panels\WorldView.py", line 37, in _create_widgets
+    help_img = PhotoImage(file="assets/icons/help.png")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\iem98\AppData\Local\Programs\Python\Python312\Lib\tkinter\__init__.py", line 4164, in __init__
+    Image.__init__(self, 'photo', name, cnf, master, **kw)
+  File "C:\Users\iem98\AppData\Local\Programs\Python\Python312\Lib\tkinter\__init__.py", line 4111, in __init__
+    self.tk.call(('image', 'create', imgtype, name,) + options)
+_tkinter.TclError: couldn't open "assets/icons/help.png": no such file or directory
+
+2025-02-28 02:11:08,915 - ERROR - crash - 严重错误: 'WorldViewPanel' object has no attribute '_on_mousewheel'
+2025-02-28 02:11:08,918 - ERROR - crash - Traceback (most recent call last):
+  File "C:\Users\iem98\OneDrive\Desktop\AiWriter\main.py", line 45, in main
+    window = create_main_window()
+             ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\iem98\OneDrive\Desktop\AiWriter\ui\iHome.py", line 196, in create_main_window
+    worldview_panel = WorldViewPanel(scrollable_frame)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\iem98\OneDrive\Desktop\AiWriter\ui\panels\WorldView.py", line 16, in __init__
+    self._create_widgets()
+  File "C:\Users\iem98\OneDrive\Desktop\AiWriter\ui\panels\WorldView.py", line 69, in _create_widgets
+    self.canvas.bind_all("<MouseWheel>", self._on_mousewheel)
+                                         ^^^^^^^^^^^^^^^^^^^
+AttributeError: 'WorldViewPanel' object has no attribute '_on_mousewheel'
+
+2025-02-28 02:24:12,181 - ERROR - crash - 严重错误: WorldViewPanel() takes no arguments
+2025-02-28 02:24:12,181 - ERROR - crash - Traceback (most recent call last):
+  File "C:\Users\iem98\OneDrive\Desktop\AiWriter\main.py", line 45, in main
+    window = create_main_window()
+             ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\iem98\OneDrive\Desktop\AiWriter\ui\iHome.py", line 196, in create_main_window
+    worldview_panel = WorldViewPanel(scrollable_frame)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: WorldViewPanel() takes no arguments
+
+2025-02-28 02:26:22,097 - ERROR - crash - 严重错误: 'WorldViewPanel' object has no attribute 'pack'
+2025-02-28 02:26:22,097 - ERROR - crash - Traceback (most recent call last):
+  File "C:\Users\iem98\OneDrive\Desktop\AiWriter\main.py", line 45, in main
+    window = create_main_window()
+             ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\iem98\OneDrive\Desktop\AiWriter\ui\iHome.py", line 197, in create_main_window
+    worldview_panel.pack(fill=tk.X, padx=15, pady=10)
+    ^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'WorldViewPanel' object has no attribute 'pack'
+
+2025-02-28 04:18:09,737 - ERROR - crash - 严重错误: cannot use geometry manager grid inside .!notebook.!frame.!canvas.!frame.!frame.!frame which already has slaves managed by pack
+2025-02-28 04:18:09,737 - ERROR - crash - Traceback (most recent call last):
+  File "C:\Users\iem98\OneDrive\Desktop\AiWriter\main.py", line 45, in main
+    window = create_main_window()
+             ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\iem98\OneDrive\Desktop\AiWriter\ui\iHome.py", line 196, in create_main_window
+    worldview_panel = WorldViewPanel(scrollable_frame)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\iem98\OneDrive\Desktop\AiWriter\ui\panels\WorldView.py", line 29, in __init__
+    self.create_widgets()
+  File "C:\Users\iem98\OneDrive\Desktop\AiWriter\ui\panels\WorldView.py", line 56, in create_widgets
+    self._create_linear_outline_system()
+  File "C:\Users\iem98\OneDrive\Desktop\AiWriter\ui\panels\WorldView.py", line 74, in _create_linear_outline_system
+    center_container.grid(row=0, column=0)
+  File "C:\Users\iem98\AppData\Local\Programs\Python\Python312\Lib\tkinter\__init__.py", line 2580, in grid_configure
+    self.tk.call(
+_tkinter.TclError: cannot use geometry manager grid inside .!notebook.!frame.!canvas.!frame.!frame.!frame which already has slaves managed by pack
+
+2025-02-28 05:29:42,119 - ERROR - crash - 严重错误: 'WorldViewPanel' object has no attribute 'winfo_toplevel'
+2025-02-28 05:29:42,120 - ERROR - crash - Traceback (most recent call last):
+  File "C:\Users\iem98\OneDrive\Desktop\AiWriter\main.py", line 45, in main
+    window = create_main_window()
+             ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\iem98\OneDrive\Desktop\AiWriter\ui\iHome.py", line 200, in create_main_window
+    worldview_panel = WorldViewPanel(scrollable_frame)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\iem98\OneDrive\Desktop\AiWriter\ui\panels\WorldView.py", line 27, in __init__
+    self.create_widgets()
+  File "C:\Users\iem98\OneDrive\Desktop\AiWriter\ui\panels\WorldView.py", line 54, in create_widgets
+    self._create_linear_outline_system()
+  File "C:\Users\iem98\OneDrive\Desktop\AiWriter\ui\panels\WorldView.py", line 149, in _create_linear_outline_system
+    self.update_step_view()
+  File "C:\Users\iem98\OneDrive\Desktop\AiWriter\ui\panels\WorldView.py", line 176, in update_step_view
+    self._create_template_loading()
+  File "C:\Users\iem98\OneDrive\Desktop\AiWriter\ui\panels\WorldView.py", line 388, in _create_template_loading
+    if self.winfo_toplevel().tk.call('tk', 'windowingsystem') == 'win32':
+       ^^^^^^^^^^^^^^^^^^^
+AttributeError: 'WorldViewPanel' object has no attribute 'winfo_toplevel'
+
+2025-03-03 01:03:26,244 - ERROR - crash - 严重错误: 'WorldViewPanel' object has no attribute '_show_template_preview'
+2025-03-03 01:03:26,246 - ERROR - crash - Traceback (most recent call last):
+  File "C:\Users\iem98\OneDrive\Desktop\AiWriter\main.py", line 45, in main
+    window = create_main_window()
+             ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\iem98\OneDrive\Desktop\AiWriter\ui\iHome.py", line 200, in create_main_window
+    worldview_panel = WorldViewPanel(scrollable_frame)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\iem98\OneDrive\Desktop\AiWriter\ui\panels\WorldView.py", line 33, in __init__
+    self.create_widgets()
+  File "C:\Users\iem98\OneDrive\Desktop\AiWriter\ui\panels\WorldView.py", line 60, in create_widgets
+    self._create_linear_outline_system()
+  File "C:\Users\iem98\OneDrive\Desktop\AiWriter\ui\panels\WorldView.py", line 155, in _create_linear_outline_system
+    self.update_step_view()
+  File "C:\Users\iem98\OneDrive\Desktop\AiWriter\ui\panels\WorldView.py", line 187, in update_step_view
+    self._create_template_loading()
+  File "C:\Users\iem98\OneDrive\Desktop\AiWriter\ui\panels\WorldView.py", line 785, in _create_template_loading
+    self.template_tree.bind('<<TreeviewSelect>>', self._show_template_preview)
+                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'WorldViewPanel' object has no attribute '_show_template_preview'. Did you mean: 'template_preview'?
+
