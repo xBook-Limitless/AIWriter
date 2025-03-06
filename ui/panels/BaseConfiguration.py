@@ -92,9 +92,9 @@ class BaseConfiguration(ttk.Frame):
         main_frame.pack(fill=tk.BOTH, expand=True, anchor=tk.NW)  # 允许扩展以支持右对齐
 
         # 使用外部Frame强制最小宽度，但允许拉伸
-        base_container = ttk.Frame(main_frame, width=450, height=300)
+        base_container = ttk.Frame(main_frame, width=450, height=292)
         base_container.pack_propagate(False)  # 禁止自动调整大小
-        base_container.pack(side=tk.LEFT, padx=5, pady=5, anchor=tk.NW, fill=tk.BOTH, expand=True)
+        base_container.pack(side=tk.LEFT, padx=5, pady=0, anchor=tk.NW, fill=tk.BOTH, expand=True)
         
         # 基础属性框放在容器内部
         base_frame = ttk.LabelFrame(base_container, text="基础属性")
@@ -104,9 +104,9 @@ class BaseConfiguration(ttk.Frame):
         base_frame.columnconfigure(1, weight=1)  # 第二列可以拉伸
         
         # 角色设定框（保持固定尺寸）- 改为右对齐
-        role_frame = ttk.LabelFrame(main_frame, text="角色设定", width=680, height=295)
+        role_frame = ttk.LabelFrame(main_frame, text="角色设定", width=680, height=292)
         role_frame.pack_propagate(False)
-        role_frame.pack(side=tk.RIGHT, padx=5, pady=5, anchor=tk.NE, fill=tk.NONE, expand=False)
+        role_frame.pack(side=tk.RIGHT, padx=5, pady=0, anchor=tk.NE, fill=tk.NONE, expand=False)
 
         # 调整基础属性框内部组件宽度
         ttk.Label(base_frame, text="作品名称:").grid(row=0, column=0, padx=5, pady=5, sticky="e")  # 缩小间距

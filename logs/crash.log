@@ -283,3 +283,94 @@ AttributeError: 'WorldViewPanel' object has no attribute '_show_template_preview
     ^^^^^^^^^^^^^^^^^^
 AttributeError: 'Labelframe' object has no attribute 'minsize'
 
+2025-03-05 14:06:24,185 - ERROR - crash - 严重错误: 'NoneType' object has no attribute 'configure'
+2025-03-05 14:06:24,185 - ERROR - crash - Traceback (most recent call last):
+  File "C:\Users\iem98\OneDrive\Desktop\AiWriter\main.py", line 64, in main
+    window = create_main_window()
+             ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\iem98\OneDrive\Desktop\AiWriter\ui\iHome.py", line 199, in create_main_window
+    worldview_panel = WorldViewPanel(scrollable_frame)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\iem98\OneDrive\Desktop\AiWriter\ui\panels\WorldView.py", line 57, in __init__
+    self.create_widgets()
+  File "C:\Users\iem98\OneDrive\Desktop\AiWriter\ui\panels\WorldView.py", line 99, in create_widgets
+    self.main_frame.configure(padding=(10, 10, 10, 10))
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'configure'
+
+2025-03-05 14:16:51,271 - ERROR - crash - 严重错误: 'WorldViewPanel' object has no attribute 'current_step_font'
+2025-03-05 14:16:51,275 - ERROR - crash - Traceback (most recent call last):
+  File "C:\Users\iem98\OneDrive\Desktop\AiWriter\main.py", line 64, in main
+    window = create_main_window()
+             ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\iem98\OneDrive\Desktop\AiWriter\ui\iHome.py", line 199, in create_main_window
+    worldview_panel = WorldViewPanel(scrollable_frame)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\iem98\OneDrive\Desktop\AiWriter\ui\panels\WorldView.py", line 62, in __init__
+    self.create_widgets()
+  File "C:\Users\iem98\OneDrive\Desktop\AiWriter\ui\panels\WorldView.py", line 108, in create_widgets
+    self._create_linear_outline_system()
+  File "C:\Users\iem98\OneDrive\Desktop\AiWriter\ui\panels\WorldView.py", line 205, in _create_linear_outline_system
+    self.update_step_view()
+  File "C:\Users\iem98\OneDrive\Desktop\AiWriter\ui\panels\WorldView.py", line 247, in update_step_view
+    font=self.current_step_font
+         ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'WorldViewPanel' object has no attribute 'current_step_font'. Did you mean: 'current_step'?
+
+2025-03-05 14:18:52,300 - ERROR - crash - 严重错误: 'WorldViewPanel' object has no attribute 'current_prompt'
+2025-03-05 14:18:52,301 - ERROR - crash - Traceback (most recent call last):
+  File "C:\Users\iem98\OneDrive\Desktop\AiWriter\main.py", line 64, in main
+    window = create_main_window()
+             ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\iem98\OneDrive\Desktop\AiWriter\ui\iHome.py", line 199, in create_main_window
+    worldview_panel = WorldViewPanel(scrollable_frame)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\iem98\OneDrive\Desktop\AiWriter\ui\panels\WorldView.py", line 67, in __init__
+    self.create_widgets()
+  File "C:\Users\iem98\OneDrive\Desktop\AiWriter\ui\panels\WorldView.py", line 113, in create_widgets
+    self._create_linear_outline_system()
+  File "C:\Users\iem98\OneDrive\Desktop\AiWriter\ui\panels\WorldView.py", line 210, in _create_linear_outline_system
+    self.update_step_view()
+  File "C:\Users\iem98\OneDrive\Desktop\AiWriter\ui\panels\WorldView.py", line 267, in update_step_view
+    self._create_template_loading()
+  File "C:\Users\iem98\OneDrive\Desktop\AiWriter\ui\panels\WorldView.py", line 446, in _create_template_loading
+    self._load_default_prompt()
+  File "C:\Users\iem98\OneDrive\Desktop\AiWriter\ui\panels\WorldView.py", line 461, in _load_default_prompt
+    self.current_prompt.set(prompt)
+    ^^^^^^^^^^^^^^^^^^^
+AttributeError: 'WorldViewPanel' object has no attribute 'current_prompt'
+
+2025-03-05 14:52:52,120 - ERROR - crash - 严重错误: 'WorldViewPanel' object has no attribute 'main_frame'
+2025-03-05 14:52:52,121 - ERROR - crash - Traceback (most recent call last):
+  File "C:\Users\iem98\OneDrive\Desktop\AiWriter\main.py", line 64, in main
+    window = create_main_window()
+             ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\iem98\OneDrive\Desktop\AiWriter\ui\iHome.py", line 199, in create_main_window
+    worldview_panel = WorldViewPanel(scrollable_frame)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\iem98\OneDrive\Desktop\AiWriter\ui\panels\WorldView.py", line 50, in __init__
+    self.create_widgets()
+  File "C:\Users\iem98\OneDrive\Desktop\AiWriter\ui\panels\WorldView.py", line 82, in create_widgets
+    self.main_frame.configure(padding=(10, 10, 10, 10))
+    ^^^^^^^^^^^^^^^
+AttributeError: 'WorldViewPanel' object has no attribute 'main_frame'
+
+2025-03-05 19:51:42,321 - ERROR - crash - 严重错误: 'WorldViewPanel' object has no attribute '_create_base_template'
+2025-03-05 19:51:42,326 - ERROR - crash - Traceback (most recent call last):
+  File "C:\Users\iem98\OneDrive\Desktop\AiWriter\main.py", line 64, in main
+    window = create_main_window()
+             ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\iem98\OneDrive\Desktop\AiWriter\ui\iHome.py", line 199, in create_main_window
+    worldview_panel = WorldViewPanel(scrollable_frame)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\iem98\OneDrive\Desktop\AiWriter\ui\panels\WorldView.py", line 66, in __init__
+    self.create_widgets()
+  File "C:\Users\iem98\OneDrive\Desktop\AiWriter\ui\panels\WorldView.py", line 105, in create_widgets
+    self._create_linear_outline_system()
+  File "C:\Users\iem98\OneDrive\Desktop\AiWriter\ui\panels\WorldView.py", line 166, in _create_linear_outline_system
+    self.update_step_view()
+  File "C:\Users\iem98\OneDrive\Desktop\AiWriter\ui\panels\WorldView.py", line 225, in update_step_view
+    self._create_base_template()
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'WorldViewPanel' object has no attribute '_create_base_template'. Did you mean: '_update_base_template_view'?
+

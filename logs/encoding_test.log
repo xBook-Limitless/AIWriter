@@ -1,0 +1,1679 @@
+2025-03-04 07:00:41,860 - INFO - === 编码测试开始 ===
+2025-03-04 07:00:41,860 - INFO - sys.stdout.encoding: utf-8
+2025-03-04 07:00:41,860 - INFO - sys.stderr.encoding: utf-8
+2025-03-04 07:00:41,860 - INFO - sys.stdin.encoding: utf-8
+2025-03-04 07:00:41,860 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-04 07:00:41,860 - INFO - locale.getpreferredencoding(): cp936
+2025-03-04 07:00:41,860 - INFO - file system encoding: utf-8
+2025-03-04 07:00:41,860 - INFO - windows_codepage: Active code page: 65001
+2025-03-04 07:00:41,860 - INFO - 中文测试: 你好，世界！
+2025-03-04 07:00:41,860 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-04 07:00:41,860 - INFO - === 编码测试结束 ===
+2025-03-04 07:01:23,443 - INFO - === 编码测试开始 ===
+2025-03-04 07:01:23,443 - INFO - sys.stdout.encoding: utf-8
+2025-03-04 07:01:23,443 - INFO - sys.stderr.encoding: utf-8
+2025-03-04 07:01:23,443 - INFO - sys.stdin.encoding: utf-8
+2025-03-04 07:01:23,443 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-04 07:01:23,443 - INFO - locale.getpreferredencoding(): cp936
+2025-03-04 07:01:23,443 - INFO - file system encoding: utf-8
+2025-03-04 07:01:23,443 - INFO - windows_codepage: Active code page: 65001
+2025-03-04 07:01:23,443 - INFO - 中文测试: 你好，世界！
+2025-03-04 07:01:23,443 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-04 07:01:23,443 - INFO - === 编码测试结束 ===
+2025-03-04 07:01:23,443 - INFO - 应用程序启动时进行了编码检查
+2025-03-04 07:03:43,995 - INFO - === 编码测试开始 ===
+2025-03-04 07:03:43,995 - INFO - sys.stdout.encoding: utf-8
+2025-03-04 07:03:43,995 - INFO - sys.stderr.encoding: utf-8
+2025-03-04 07:03:43,995 - INFO - sys.stdin.encoding: utf-8
+2025-03-04 07:03:43,995 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-04 07:03:43,995 - INFO - locale.getpreferredencoding(): cp936
+2025-03-04 07:03:43,995 - INFO - file system encoding: utf-8
+2025-03-04 07:03:43,995 - INFO - windows_codepage: Active code page: 65001
+2025-03-04 07:03:43,995 - INFO - 中文测试: 你好，世界！
+2025-03-04 07:03:43,995 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-04 07:03:43,995 - INFO - === 编码测试结束 ===
+2025-03-04 07:03:43,995 - INFO - 应用程序启动时进行了编码检查
+2025-03-04 07:13:24,477 - INFO - === 编码测试开始 ===
+2025-03-04 07:13:24,477 - INFO - sys.stdout.encoding: utf-8
+2025-03-04 07:13:24,477 - INFO - sys.stderr.encoding: utf-8
+2025-03-04 07:13:24,478 - INFO - sys.stdin.encoding: utf-8
+2025-03-04 07:13:24,478 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-04 07:13:24,478 - INFO - locale.getpreferredencoding(): cp936
+2025-03-04 07:13:24,478 - INFO - file system encoding: utf-8
+2025-03-04 07:13:24,478 - INFO - windows_codepage: Active code page: 65001
+2025-03-04 07:13:24,478 - INFO - 中文测试: 你好，世界！
+2025-03-04 07:13:24,478 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-04 07:13:24,478 - INFO - === 编码测试结束 ===
+2025-03-04 07:13:24,478 - INFO - 应用程序启动时进行了编码检查
+2025-03-04 14:36:33,091 - INFO - === 编码测试开始 ===
+2025-03-04 14:36:33,091 - INFO - sys.stdout.encoding: utf-8
+2025-03-04 14:36:33,091 - INFO - sys.stderr.encoding: utf-8
+2025-03-04 14:36:33,091 - INFO - sys.stdin.encoding: utf-8
+2025-03-04 14:36:33,091 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-04 14:36:33,091 - INFO - locale.getpreferredencoding(): cp936
+2025-03-04 14:36:33,091 - INFO - file system encoding: utf-8
+2025-03-04 14:36:33,091 - INFO - windows_codepage: Active code page: 65001
+2025-03-04 14:36:33,091 - INFO - 中文测试: 你好，世界！
+2025-03-04 14:36:33,091 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-04 14:36:33,091 - INFO - === 编码测试结束 ===
+2025-03-04 14:36:33,091 - INFO - 应用程序启动时进行了编码检查
+2025-03-04 15:27:35,196 - INFO - === 编码测试开始 ===
+2025-03-04 15:27:35,196 - INFO - sys.stdout.encoding: utf-8
+2025-03-04 15:27:35,197 - INFO - sys.stderr.encoding: utf-8
+2025-03-04 15:27:35,197 - INFO - sys.stdin.encoding: utf-8
+2025-03-04 15:27:35,197 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-04 15:27:35,197 - INFO - locale.getpreferredencoding(): cp936
+2025-03-04 15:27:35,197 - INFO - file system encoding: utf-8
+2025-03-04 15:27:35,197 - INFO - windows_codepage: Active code page: 65001
+2025-03-04 15:27:35,197 - INFO - 中文测试: 你好，世界！
+2025-03-04 15:27:35,197 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-04 15:27:35,197 - INFO - === 编码测试结束 ===
+2025-03-04 15:27:35,197 - INFO - 应用程序启动时进行了编码检查
+2025-03-04 16:10:10,096 - INFO - === 编码测试开始 ===
+2025-03-04 16:10:10,096 - INFO - sys.stdout.encoding: utf-8
+2025-03-04 16:10:10,097 - INFO - sys.stderr.encoding: utf-8
+2025-03-04 16:10:10,097 - INFO - sys.stdin.encoding: utf-8
+2025-03-04 16:10:10,097 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-04 16:10:10,097 - INFO - locale.getpreferredencoding(): cp936
+2025-03-04 16:10:10,097 - INFO - file system encoding: utf-8
+2025-03-04 16:10:10,097 - INFO - windows_codepage: Active code page: 65001
+2025-03-04 16:10:10,097 - INFO - 中文测试: 你好，世界！
+2025-03-04 16:10:10,097 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-04 16:10:10,097 - INFO - === 编码测试结束 ===
+2025-03-04 16:10:10,097 - INFO - 应用程序启动时进行了编码检查
+2025-03-04 16:15:06,644 - INFO - === 编码测试开始 ===
+2025-03-04 16:15:06,644 - INFO - sys.stdout.encoding: utf-8
+2025-03-04 16:15:06,644 - INFO - sys.stderr.encoding: utf-8
+2025-03-04 16:15:06,644 - INFO - sys.stdin.encoding: utf-8
+2025-03-04 16:15:06,644 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-04 16:15:06,644 - INFO - locale.getpreferredencoding(): cp936
+2025-03-04 16:15:06,644 - INFO - file system encoding: utf-8
+2025-03-04 16:15:06,644 - INFO - windows_codepage: Active code page: 65001
+2025-03-04 16:15:06,644 - INFO - 中文测试: 你好，世界！
+2025-03-04 16:15:06,644 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-04 16:15:06,644 - INFO - === 编码测试结束 ===
+2025-03-04 16:15:06,644 - INFO - 应用程序启动时进行了编码检查
+2025-03-04 16:20:05,973 - INFO - === 编码测试开始 ===
+2025-03-04 16:20:05,973 - INFO - sys.stdout.encoding: utf-8
+2025-03-04 16:20:05,973 - INFO - sys.stderr.encoding: utf-8
+2025-03-04 16:20:05,973 - INFO - sys.stdin.encoding: utf-8
+2025-03-04 16:20:05,973 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-04 16:20:05,973 - INFO - locale.getpreferredencoding(): cp936
+2025-03-04 16:20:05,973 - INFO - file system encoding: utf-8
+2025-03-04 16:20:05,973 - INFO - windows_codepage: Active code page: 65001
+2025-03-04 16:20:05,973 - INFO - 中文测试: 你好，世界！
+2025-03-04 16:20:05,973 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-04 16:20:05,973 - INFO - === 编码测试结束 ===
+2025-03-04 16:20:05,973 - INFO - 应用程序启动时进行了编码检查
+2025-03-04 16:20:54,951 - INFO - === 编码测试开始 ===
+2025-03-04 16:20:54,951 - INFO - sys.stdout.encoding: utf-8
+2025-03-04 16:20:54,951 - INFO - sys.stderr.encoding: utf-8
+2025-03-04 16:20:54,951 - INFO - sys.stdin.encoding: utf-8
+2025-03-04 16:20:54,951 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-04 16:20:54,951 - INFO - locale.getpreferredencoding(): cp936
+2025-03-04 16:20:54,951 - INFO - file system encoding: utf-8
+2025-03-04 16:20:54,951 - INFO - windows_codepage: Active code page: 65001
+2025-03-04 16:20:54,951 - INFO - 中文测试: 你好，世界！
+2025-03-04 16:20:54,951 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-04 16:20:54,951 - INFO - === 编码测试结束 ===
+2025-03-04 16:20:54,951 - INFO - 应用程序启动时进行了编码检查
+2025-03-04 16:22:44,359 - INFO - === 编码测试开始 ===
+2025-03-04 16:22:44,359 - INFO - sys.stdout.encoding: utf-8
+2025-03-04 16:22:44,359 - INFO - sys.stderr.encoding: utf-8
+2025-03-04 16:22:44,359 - INFO - sys.stdin.encoding: utf-8
+2025-03-04 16:22:44,359 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-04 16:22:44,359 - INFO - locale.getpreferredencoding(): cp936
+2025-03-04 16:22:44,359 - INFO - file system encoding: utf-8
+2025-03-04 16:22:44,359 - INFO - windows_codepage: Active code page: 65001
+2025-03-04 16:22:44,359 - INFO - 中文测试: 你好，世界！
+2025-03-04 16:22:44,359 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-04 16:22:44,359 - INFO - === 编码测试结束 ===
+2025-03-04 16:22:44,359 - INFO - 应用程序启动时进行了编码检查
+2025-03-04 16:30:25,203 - INFO - === 编码测试开始 ===
+2025-03-04 16:30:25,203 - INFO - sys.stdout.encoding: utf-8
+2025-03-04 16:30:25,203 - INFO - sys.stderr.encoding: utf-8
+2025-03-04 16:30:25,203 - INFO - sys.stdin.encoding: utf-8
+2025-03-04 16:30:25,203 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-04 16:30:25,203 - INFO - locale.getpreferredencoding(): cp936
+2025-03-04 16:30:25,203 - INFO - file system encoding: utf-8
+2025-03-04 16:30:25,203 - INFO - windows_codepage: Active code page: 65001
+2025-03-04 16:30:25,203 - INFO - 中文测试: 你好，世界！
+2025-03-04 16:30:25,203 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-04 16:30:25,203 - INFO - === 编码测试结束 ===
+2025-03-04 16:30:25,203 - INFO - 应用程序启动时进行了编码检查
+2025-03-04 16:32:50,652 - INFO - === 编码测试开始 ===
+2025-03-04 16:32:50,652 - INFO - sys.stdout.encoding: utf-8
+2025-03-04 16:32:50,652 - INFO - sys.stderr.encoding: utf-8
+2025-03-04 16:32:50,652 - INFO - sys.stdin.encoding: utf-8
+2025-03-04 16:32:50,652 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-04 16:32:50,652 - INFO - locale.getpreferredencoding(): cp936
+2025-03-04 16:32:50,652 - INFO - file system encoding: utf-8
+2025-03-04 16:32:50,652 - INFO - windows_codepage: Active code page: 65001
+2025-03-04 16:32:50,652 - INFO - 中文测试: 你好，世界！
+2025-03-04 16:32:50,652 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-04 16:32:50,652 - INFO - === 编码测试结束 ===
+2025-03-04 16:32:50,652 - INFO - 应用程序启动时进行了编码检查
+2025-03-04 16:35:07,028 - INFO - === 编码测试开始 ===
+2025-03-04 16:35:07,028 - INFO - sys.stdout.encoding: utf-8
+2025-03-04 16:35:07,028 - INFO - sys.stderr.encoding: utf-8
+2025-03-04 16:35:07,028 - INFO - sys.stdin.encoding: utf-8
+2025-03-04 16:35:07,028 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-04 16:35:07,028 - INFO - locale.getpreferredencoding(): cp936
+2025-03-04 16:35:07,028 - INFO - file system encoding: utf-8
+2025-03-04 16:35:07,028 - INFO - windows_codepage: Active code page: 65001
+2025-03-04 16:35:07,028 - INFO - 中文测试: 你好，世界！
+2025-03-04 16:35:07,028 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-04 16:35:07,028 - INFO - === 编码测试结束 ===
+2025-03-04 16:35:07,028 - INFO - 应用程序启动时进行了编码检查
+2025-03-04 16:54:21,163 - INFO - === 编码测试开始 ===
+2025-03-04 16:54:21,163 - INFO - sys.stdout.encoding: utf-8
+2025-03-04 16:54:21,163 - INFO - sys.stderr.encoding: utf-8
+2025-03-04 16:54:21,163 - INFO - sys.stdin.encoding: utf-8
+2025-03-04 16:54:21,163 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-04 16:54:21,163 - INFO - locale.getpreferredencoding(): cp936
+2025-03-04 16:54:21,163 - INFO - file system encoding: utf-8
+2025-03-04 16:54:21,163 - INFO - windows_codepage: Active code page: 65001
+2025-03-04 16:54:21,163 - INFO - 中文测试: 你好，世界！
+2025-03-04 16:54:21,163 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-04 16:54:21,163 - INFO - === 编码测试结束 ===
+2025-03-04 16:54:21,163 - INFO - 应用程序启动时进行了编码检查
+2025-03-04 17:05:23,281 - INFO - === 编码测试开始 ===
+2025-03-04 17:05:23,281 - INFO - sys.stdout.encoding: utf-8
+2025-03-04 17:05:23,281 - INFO - sys.stderr.encoding: utf-8
+2025-03-04 17:05:23,281 - INFO - sys.stdin.encoding: utf-8
+2025-03-04 17:05:23,281 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-04 17:05:23,281 - INFO - locale.getpreferredencoding(): cp936
+2025-03-04 17:05:23,281 - INFO - file system encoding: utf-8
+2025-03-04 17:05:23,281 - INFO - windows_codepage: Active code page: 65001
+2025-03-04 17:05:23,281 - INFO - 中文测试: 你好，世界！
+2025-03-04 17:05:23,283 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-04 17:05:23,283 - INFO - === 编码测试结束 ===
+2025-03-04 17:05:23,283 - INFO - 应用程序启动时进行了编码检查
+2025-03-04 17:18:42,666 - INFO - === 编码测试开始 ===
+2025-03-04 17:18:42,666 - INFO - sys.stdout.encoding: utf-8
+2025-03-04 17:18:42,666 - INFO - sys.stderr.encoding: utf-8
+2025-03-04 17:18:42,666 - INFO - sys.stdin.encoding: utf-8
+2025-03-04 17:18:42,666 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-04 17:18:42,666 - INFO - locale.getpreferredencoding(): cp936
+2025-03-04 17:18:42,666 - INFO - file system encoding: utf-8
+2025-03-04 17:18:42,666 - INFO - windows_codepage: Active code page: 65001
+2025-03-04 17:18:42,666 - INFO - 中文测试: 你好，世界！
+2025-03-04 17:18:42,666 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-04 17:18:42,666 - INFO - === 编码测试结束 ===
+2025-03-04 17:18:42,666 - INFO - 应用程序启动时进行了编码检查
+2025-03-04 21:16:26,497 - INFO - === 编码测试开始 ===
+2025-03-04 21:16:26,513 - INFO - sys.stdout.encoding: utf-8
+2025-03-04 21:16:26,513 - INFO - sys.stderr.encoding: utf-8
+2025-03-04 21:16:26,513 - INFO - sys.stdin.encoding: utf-8
+2025-03-04 21:16:26,513 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-04 21:16:26,513 - INFO - locale.getpreferredencoding(): cp936
+2025-03-04 21:16:26,513 - INFO - file system encoding: utf-8
+2025-03-04 21:16:26,513 - INFO - windows_codepage: Active code page: 65001
+2025-03-04 21:16:26,513 - INFO - 中文测试: 你好，世界！
+2025-03-04 21:16:26,513 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-04 21:16:26,513 - INFO - === 编码测试结束 ===
+2025-03-04 21:16:26,513 - INFO - 应用程序启动时进行了编码检查
+2025-03-04 21:22:23,061 - INFO - === 编码测试开始 ===
+2025-03-04 21:22:23,061 - INFO - sys.stdout.encoding: utf-8
+2025-03-04 21:22:23,061 - INFO - sys.stderr.encoding: utf-8
+2025-03-04 21:22:23,062 - INFO - sys.stdin.encoding: utf-8
+2025-03-04 21:22:23,062 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-04 21:22:23,062 - INFO - locale.getpreferredencoding(): cp936
+2025-03-04 21:22:23,062 - INFO - file system encoding: utf-8
+2025-03-04 21:22:23,062 - INFO - windows_codepage: Active code page: 65001
+2025-03-04 21:22:23,062 - INFO - 中文测试: 你好，世界！
+2025-03-04 21:22:23,062 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-04 21:22:23,062 - INFO - === 编码测试结束 ===
+2025-03-04 21:22:23,062 - INFO - 应用程序启动时进行了编码检查
+2025-03-04 21:23:11,998 - INFO - === 编码测试开始 ===
+2025-03-04 21:23:11,998 - INFO - sys.stdout.encoding: utf-8
+2025-03-04 21:23:11,998 - INFO - sys.stderr.encoding: utf-8
+2025-03-04 21:23:11,998 - INFO - sys.stdin.encoding: utf-8
+2025-03-04 21:23:11,998 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-04 21:23:11,998 - INFO - locale.getpreferredencoding(): cp936
+2025-03-04 21:23:11,998 - INFO - file system encoding: utf-8
+2025-03-04 21:23:11,998 - INFO - windows_codepage: Active code page: 65001
+2025-03-04 21:23:11,998 - INFO - 中文测试: 你好，世界！
+2025-03-04 21:23:11,998 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-04 21:23:11,998 - INFO - === 编码测试结束 ===
+2025-03-04 21:23:11,998 - INFO - 应用程序启动时进行了编码检查
+2025-03-04 21:24:58,766 - INFO - === 编码测试开始 ===
+2025-03-04 21:24:58,767 - INFO - sys.stdout.encoding: utf-8
+2025-03-04 21:24:58,767 - INFO - sys.stderr.encoding: utf-8
+2025-03-04 21:24:58,767 - INFO - sys.stdin.encoding: utf-8
+2025-03-04 21:24:58,767 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-04 21:24:58,767 - INFO - locale.getpreferredencoding(): cp936
+2025-03-04 21:24:58,767 - INFO - file system encoding: utf-8
+2025-03-04 21:24:58,767 - INFO - windows_codepage: Active code page: 65001
+2025-03-04 21:24:58,767 - INFO - 中文测试: 你好，世界！
+2025-03-04 21:24:58,767 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-04 21:24:58,767 - INFO - === 编码测试结束 ===
+2025-03-04 21:24:58,767 - INFO - 应用程序启动时进行了编码检查
+2025-03-05 00:35:46,050 - INFO - === 编码测试开始 ===
+2025-03-05 00:35:46,050 - INFO - sys.stdout.encoding: utf-8
+2025-03-05 00:35:46,051 - INFO - sys.stderr.encoding: utf-8
+2025-03-05 00:35:46,051 - INFO - sys.stdin.encoding: utf-8
+2025-03-05 00:35:46,051 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-05 00:35:46,051 - INFO - locale.getpreferredencoding(): cp936
+2025-03-05 00:35:46,051 - INFO - file system encoding: utf-8
+2025-03-05 00:35:46,051 - INFO - windows_codepage: Active code page: 65001
+2025-03-05 00:35:46,051 - INFO - 中文测试: 你好，世界！
+2025-03-05 00:35:46,051 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-05 00:35:46,051 - INFO - === 编码测试结束 ===
+2025-03-05 00:35:46,051 - INFO - 应用程序启动时进行了编码检查
+2025-03-05 00:36:11,340 - INFO - === 编码测试开始 ===
+2025-03-05 00:36:11,341 - INFO - sys.stdout.encoding: utf-8
+2025-03-05 00:36:11,341 - INFO - sys.stderr.encoding: utf-8
+2025-03-05 00:36:11,341 - INFO - sys.stdin.encoding: utf-8
+2025-03-05 00:36:11,341 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-05 00:36:11,341 - INFO - locale.getpreferredencoding(): cp936
+2025-03-05 00:36:11,341 - INFO - file system encoding: utf-8
+2025-03-05 00:36:11,341 - INFO - windows_codepage: Active code page: 65001
+2025-03-05 00:36:11,341 - INFO - 中文测试: 你好，世界！
+2025-03-05 00:36:11,341 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-05 00:36:11,341 - INFO - === 编码测试结束 ===
+2025-03-05 00:36:11,341 - INFO - 应用程序启动时进行了编码检查
+2025-03-05 00:50:26,640 - INFO - === 编码测试开始 ===
+2025-03-05 00:50:26,640 - INFO - sys.stdout.encoding: utf-8
+2025-03-05 00:50:26,640 - INFO - sys.stderr.encoding: utf-8
+2025-03-05 00:50:26,640 - INFO - sys.stdin.encoding: utf-8
+2025-03-05 00:50:26,640 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-05 00:50:26,640 - INFO - locale.getpreferredencoding(): cp936
+2025-03-05 00:50:26,640 - INFO - file system encoding: utf-8
+2025-03-05 00:50:26,640 - INFO - windows_codepage: Active code page: 65001
+2025-03-05 00:50:26,640 - INFO - 中文测试: 你好，世界！
+2025-03-05 00:50:26,640 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-05 00:50:26,640 - INFO - === 编码测试结束 ===
+2025-03-05 00:50:26,640 - INFO - 应用程序启动时进行了编码检查
+2025-03-05 01:00:28,387 - INFO - === 编码测试开始 ===
+2025-03-05 01:00:28,387 - INFO - sys.stdout.encoding: utf-8
+2025-03-05 01:00:28,387 - INFO - sys.stderr.encoding: utf-8
+2025-03-05 01:00:28,387 - INFO - sys.stdin.encoding: utf-8
+2025-03-05 01:00:28,387 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-05 01:00:28,387 - INFO - locale.getpreferredencoding(): cp936
+2025-03-05 01:00:28,387 - INFO - file system encoding: utf-8
+2025-03-05 01:00:28,387 - INFO - windows_codepage: Active code page: 65001
+2025-03-05 01:00:28,387 - INFO - 中文测试: 你好，世界！
+2025-03-05 01:00:28,387 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-05 01:00:28,387 - INFO - === 编码测试结束 ===
+2025-03-05 01:00:28,387 - INFO - 应用程序启动时进行了编码检查
+2025-03-05 01:09:20,338 - INFO - === 编码测试开始 ===
+2025-03-05 01:09:20,338 - INFO - sys.stdout.encoding: utf-8
+2025-03-05 01:09:20,338 - INFO - sys.stderr.encoding: utf-8
+2025-03-05 01:09:20,338 - INFO - sys.stdin.encoding: utf-8
+2025-03-05 01:09:20,338 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-05 01:09:20,338 - INFO - locale.getpreferredencoding(): cp936
+2025-03-05 01:09:20,338 - INFO - file system encoding: utf-8
+2025-03-05 01:09:20,338 - INFO - windows_codepage: Active code page: 65001
+2025-03-05 01:09:20,338 - INFO - 中文测试: 你好，世界！
+2025-03-05 01:09:20,338 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-05 01:09:20,338 - INFO - === 编码测试结束 ===
+2025-03-05 01:09:20,338 - INFO - 应用程序启动时进行了编码检查
+2025-03-05 01:16:56,734 - INFO - === 编码测试开始 ===
+2025-03-05 01:16:56,735 - INFO - sys.stdout.encoding: utf-8
+2025-03-05 01:16:56,735 - INFO - sys.stderr.encoding: utf-8
+2025-03-05 01:16:56,735 - INFO - sys.stdin.encoding: utf-8
+2025-03-05 01:16:56,735 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-05 01:16:56,735 - INFO - locale.getpreferredencoding(): cp936
+2025-03-05 01:16:56,735 - INFO - file system encoding: utf-8
+2025-03-05 01:16:56,735 - INFO - windows_codepage: Active code page: 65001
+2025-03-05 01:16:56,735 - INFO - 中文测试: 你好，世界！
+2025-03-05 01:16:56,735 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-05 01:16:56,735 - INFO - === 编码测试结束 ===
+2025-03-05 01:16:56,735 - INFO - 应用程序启动时进行了编码检查
+2025-03-05 14:06:23,668 - INFO - === 编码测试开始 ===
+2025-03-05 14:06:23,668 - INFO - sys.stdout.encoding: utf-8
+2025-03-05 14:06:23,668 - INFO - sys.stderr.encoding: utf-8
+2025-03-05 14:06:23,668 - INFO - sys.stdin.encoding: utf-8
+2025-03-05 14:06:23,668 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-05 14:06:23,668 - INFO - locale.getpreferredencoding(): cp936
+2025-03-05 14:06:23,668 - INFO - file system encoding: utf-8
+2025-03-05 14:06:23,673 - INFO - windows_codepage: Active code page: 65001
+2025-03-05 14:06:23,673 - INFO - 中文测试: 你好，世界！
+2025-03-05 14:06:23,673 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-05 14:06:23,673 - INFO - === 编码测试结束 ===
+2025-03-05 14:06:23,673 - INFO - 应用程序启动时进行了编码检查
+2025-03-05 14:16:51,026 - INFO - === 编码测试开始 ===
+2025-03-05 14:16:51,026 - INFO - sys.stdout.encoding: utf-8
+2025-03-05 14:16:51,026 - INFO - sys.stderr.encoding: utf-8
+2025-03-05 14:16:51,026 - INFO - sys.stdin.encoding: utf-8
+2025-03-05 14:16:51,026 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-05 14:16:51,026 - INFO - locale.getpreferredencoding(): cp936
+2025-03-05 14:16:51,026 - INFO - file system encoding: utf-8
+2025-03-05 14:16:51,026 - INFO - windows_codepage: Active code page: 65001
+2025-03-05 14:16:51,026 - INFO - 中文测试: 你好，世界！
+2025-03-05 14:16:51,026 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-05 14:16:51,026 - INFO - === 编码测试结束 ===
+2025-03-05 14:16:51,026 - INFO - 应用程序启动时进行了编码检查
+2025-03-05 14:18:52,087 - INFO - === 编码测试开始 ===
+2025-03-05 14:18:52,087 - INFO - sys.stdout.encoding: utf-8
+2025-03-05 14:18:52,087 - INFO - sys.stderr.encoding: utf-8
+2025-03-05 14:18:52,087 - INFO - sys.stdin.encoding: utf-8
+2025-03-05 14:18:52,087 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-05 14:18:52,087 - INFO - locale.getpreferredencoding(): cp936
+2025-03-05 14:18:52,087 - INFO - file system encoding: utf-8
+2025-03-05 14:18:52,087 - INFO - windows_codepage: Active code page: 65001
+2025-03-05 14:18:52,087 - INFO - 中文测试: 你好，世界！
+2025-03-05 14:18:52,087 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-05 14:18:52,087 - INFO - === 编码测试结束 ===
+2025-03-05 14:18:52,087 - INFO - 应用程序启动时进行了编码检查
+2025-03-05 14:52:51,908 - INFO - === 编码测试开始 ===
+2025-03-05 14:52:51,909 - INFO - sys.stdout.encoding: utf-8
+2025-03-05 14:52:51,909 - INFO - sys.stderr.encoding: utf-8
+2025-03-05 14:52:51,909 - INFO - sys.stdin.encoding: utf-8
+2025-03-05 14:52:51,909 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-05 14:52:51,909 - INFO - locale.getpreferredencoding(): cp936
+2025-03-05 14:52:51,909 - INFO - file system encoding: utf-8
+2025-03-05 14:52:51,909 - INFO - windows_codepage: Active code page: 65001
+2025-03-05 14:52:51,909 - INFO - 中文测试: 你好，世界！
+2025-03-05 14:52:51,909 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-05 14:52:51,909 - INFO - === 编码测试结束 ===
+2025-03-05 14:52:51,909 - INFO - 应用程序启动时进行了编码检查
+2025-03-05 15:01:24,237 - INFO - === 编码测试开始 ===
+2025-03-05 15:01:24,237 - INFO - sys.stdout.encoding: utf-8
+2025-03-05 15:01:24,237 - INFO - sys.stderr.encoding: utf-8
+2025-03-05 15:01:24,237 - INFO - sys.stdin.encoding: utf-8
+2025-03-05 15:01:24,237 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-05 15:01:24,237 - INFO - locale.getpreferredencoding(): cp936
+2025-03-05 15:01:24,237 - INFO - file system encoding: utf-8
+2025-03-05 15:01:24,237 - INFO - windows_codepage: Active code page: 65001
+2025-03-05 15:01:24,237 - INFO - 中文测试: 你好，世界！
+2025-03-05 15:01:24,237 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-05 15:01:24,237 - INFO - === 编码测试结束 ===
+2025-03-05 15:01:24,237 - INFO - 应用程序启动时进行了编码检查
+2025-03-05 15:02:14,256 - INFO - === 编码测试开始 ===
+2025-03-05 15:02:14,256 - INFO - sys.stdout.encoding: utf-8
+2025-03-05 15:02:14,256 - INFO - sys.stderr.encoding: utf-8
+2025-03-05 15:02:14,256 - INFO - sys.stdin.encoding: utf-8
+2025-03-05 15:02:14,256 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-05 15:02:14,256 - INFO - locale.getpreferredencoding(): cp936
+2025-03-05 15:02:14,256 - INFO - file system encoding: utf-8
+2025-03-05 15:02:14,256 - INFO - windows_codepage: Active code page: 65001
+2025-03-05 15:02:14,256 - INFO - 中文测试: 你好，世界！
+2025-03-05 15:02:14,257 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-05 15:02:14,257 - INFO - === 编码测试结束 ===
+2025-03-05 15:02:14,257 - INFO - 应用程序启动时进行了编码检查
+2025-03-05 15:04:37,340 - INFO - === 编码测试开始 ===
+2025-03-05 15:04:37,340 - INFO - sys.stdout.encoding: utf-8
+2025-03-05 15:04:37,340 - INFO - sys.stderr.encoding: utf-8
+2025-03-05 15:04:37,341 - INFO - sys.stdin.encoding: utf-8
+2025-03-05 15:04:37,341 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-05 15:04:37,341 - INFO - locale.getpreferredencoding(): cp936
+2025-03-05 15:04:37,341 - INFO - file system encoding: utf-8
+2025-03-05 15:04:37,341 - INFO - windows_codepage: Active code page: 65001
+2025-03-05 15:04:37,341 - INFO - 中文测试: 你好，世界！
+2025-03-05 15:04:37,341 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-05 15:04:37,341 - INFO - === 编码测试结束 ===
+2025-03-05 15:04:37,341 - INFO - 应用程序启动时进行了编码检查
+2025-03-05 15:10:09,426 - INFO - === 编码测试开始 ===
+2025-03-05 15:10:09,426 - INFO - sys.stdout.encoding: utf-8
+2025-03-05 15:10:09,426 - INFO - sys.stderr.encoding: utf-8
+2025-03-05 15:10:09,426 - INFO - sys.stdin.encoding: utf-8
+2025-03-05 15:10:09,426 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-05 15:10:09,426 - INFO - locale.getpreferredencoding(): cp936
+2025-03-05 15:10:09,426 - INFO - file system encoding: utf-8
+2025-03-05 15:10:09,426 - INFO - windows_codepage: Active code page: 65001
+2025-03-05 15:10:09,426 - INFO - 中文测试: 你好，世界！
+2025-03-05 15:10:09,426 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-05 15:10:09,426 - INFO - === 编码测试结束 ===
+2025-03-05 15:10:09,426 - INFO - 应用程序启动时进行了编码检查
+2025-03-05 15:14:35,398 - INFO - === 编码测试开始 ===
+2025-03-05 15:14:35,399 - INFO - sys.stdout.encoding: utf-8
+2025-03-05 15:14:35,399 - INFO - sys.stderr.encoding: utf-8
+2025-03-05 15:14:35,399 - INFO - sys.stdin.encoding: utf-8
+2025-03-05 15:14:35,399 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-05 15:14:35,399 - INFO - locale.getpreferredencoding(): cp936
+2025-03-05 15:14:35,399 - INFO - file system encoding: utf-8
+2025-03-05 15:14:35,399 - INFO - windows_codepage: Active code page: 65001
+2025-03-05 15:14:35,399 - INFO - 中文测试: 你好，世界！
+2025-03-05 15:14:35,399 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-05 15:14:35,399 - INFO - === 编码测试结束 ===
+2025-03-05 15:14:35,399 - INFO - 应用程序启动时进行了编码检查
+2025-03-05 18:19:40,945 - INFO - === 编码测试开始 ===
+2025-03-05 18:19:40,945 - INFO - sys.stdout.encoding: utf-8
+2025-03-05 18:19:40,945 - INFO - sys.stderr.encoding: utf-8
+2025-03-05 18:19:40,945 - INFO - sys.stdin.encoding: utf-8
+2025-03-05 18:19:40,945 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-05 18:19:40,945 - INFO - locale.getpreferredencoding(): cp936
+2025-03-05 18:19:40,946 - INFO - file system encoding: utf-8
+2025-03-05 18:19:40,946 - INFO - windows_codepage: Active code page: 65001
+2025-03-05 18:19:40,946 - INFO - 中文测试: 你好，世界！
+2025-03-05 18:19:40,946 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-05 18:19:40,946 - INFO - === 编码测试结束 ===
+2025-03-05 18:19:40,946 - INFO - 应用程序启动时进行了编码检查
+2025-03-05 19:51:41,508 - INFO - === 编码测试开始 ===
+2025-03-05 19:51:41,509 - INFO - sys.stdout.encoding: utf-8
+2025-03-05 19:51:41,509 - INFO - sys.stderr.encoding: utf-8
+2025-03-05 19:51:41,509 - INFO - sys.stdin.encoding: utf-8
+2025-03-05 19:51:41,509 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-05 19:51:41,509 - INFO - locale.getpreferredencoding(): cp936
+2025-03-05 19:51:41,509 - INFO - file system encoding: utf-8
+2025-03-05 19:51:41,509 - INFO - windows_codepage: Active code page: 65001
+2025-03-05 19:51:41,509 - INFO - 中文测试: 你好，世界！
+2025-03-05 19:51:41,509 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-05 19:51:41,509 - INFO - === 编码测试结束 ===
+2025-03-05 19:51:41,509 - INFO - 应用程序启动时进行了编码检查
+2025-03-05 19:55:57,519 - INFO - === 编码测试开始 ===
+2025-03-05 19:55:57,519 - INFO - sys.stdout.encoding: utf-8
+2025-03-05 19:55:57,519 - INFO - sys.stderr.encoding: utf-8
+2025-03-05 19:55:57,519 - INFO - sys.stdin.encoding: utf-8
+2025-03-05 19:55:57,519 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-05 19:55:57,519 - INFO - locale.getpreferredencoding(): cp936
+2025-03-05 19:55:57,519 - INFO - file system encoding: utf-8
+2025-03-05 19:55:57,519 - INFO - windows_codepage: Active code page: 65001
+2025-03-05 19:55:57,519 - INFO - 中文测试: 你好，世界！
+2025-03-05 19:55:57,519 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-05 19:55:57,519 - INFO - === 编码测试结束 ===
+2025-03-05 19:55:57,519 - INFO - 应用程序启动时进行了编码检查
+2025-03-05 19:57:09,650 - INFO - === 编码测试开始 ===
+2025-03-05 19:57:09,650 - INFO - sys.stdout.encoding: utf-8
+2025-03-05 19:57:09,650 - INFO - sys.stderr.encoding: utf-8
+2025-03-05 19:57:09,650 - INFO - sys.stdin.encoding: utf-8
+2025-03-05 19:57:09,650 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-05 19:57:09,651 - INFO - locale.getpreferredencoding(): cp936
+2025-03-05 19:57:09,651 - INFO - file system encoding: utf-8
+2025-03-05 19:57:09,651 - INFO - windows_codepage: Active code page: 65001
+2025-03-05 19:57:09,651 - INFO - 中文测试: 你好，世界！
+2025-03-05 19:57:09,651 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-05 19:57:09,651 - INFO - === 编码测试结束 ===
+2025-03-05 19:57:09,651 - INFO - 应用程序启动时进行了编码检查
+2025-03-05 20:07:35,486 - INFO - === 编码测试开始 ===
+2025-03-05 20:07:35,487 - INFO - sys.stdout.encoding: utf-8
+2025-03-05 20:07:35,487 - INFO - sys.stderr.encoding: utf-8
+2025-03-05 20:07:35,487 - INFO - sys.stdin.encoding: utf-8
+2025-03-05 20:07:35,487 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-05 20:07:35,487 - INFO - locale.getpreferredencoding(): cp936
+2025-03-05 20:07:35,487 - INFO - file system encoding: utf-8
+2025-03-05 20:07:35,487 - INFO - windows_codepage: Active code page: 65001
+2025-03-05 20:07:35,487 - INFO - 中文测试: 你好，世界！
+2025-03-05 20:07:35,487 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-05 20:07:35,487 - INFO - === 编码测试结束 ===
+2025-03-05 20:07:35,487 - INFO - 应用程序启动时进行了编码检查
+2025-03-05 20:12:53,959 - INFO - === 编码测试开始 ===
+2025-03-05 20:12:53,959 - INFO - sys.stdout.encoding: utf-8
+2025-03-05 20:12:53,959 - INFO - sys.stderr.encoding: utf-8
+2025-03-05 20:12:53,959 - INFO - sys.stdin.encoding: utf-8
+2025-03-05 20:12:53,959 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-05 20:12:53,959 - INFO - locale.getpreferredencoding(): cp936
+2025-03-05 20:12:53,959 - INFO - file system encoding: utf-8
+2025-03-05 20:12:53,959 - INFO - windows_codepage: Active code page: 65001
+2025-03-05 20:12:53,959 - INFO - 中文测试: 你好，世界！
+2025-03-05 20:12:53,959 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-05 20:12:53,959 - INFO - === 编码测试结束 ===
+2025-03-05 20:12:53,959 - INFO - 应用程序启动时进行了编码检查
+2025-03-05 23:50:55,185 - INFO - === 编码测试开始 ===
+2025-03-05 23:50:55,185 - INFO - sys.stdout.encoding: utf-8
+2025-03-05 23:50:55,185 - INFO - sys.stderr.encoding: utf-8
+2025-03-05 23:50:55,185 - INFO - sys.stdin.encoding: utf-8
+2025-03-05 23:50:55,185 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-05 23:50:55,185 - INFO - locale.getpreferredencoding(): cp936
+2025-03-05 23:50:55,185 - INFO - file system encoding: utf-8
+2025-03-05 23:50:55,185 - INFO - windows_codepage: Active code page: 65001
+2025-03-05 23:50:55,185 - INFO - 中文测试: 你好，世界！
+2025-03-05 23:50:55,185 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-05 23:50:55,185 - INFO - === 编码测试结束 ===
+2025-03-05 23:50:55,185 - INFO - 应用程序启动时进行了编码检查
+2025-03-06 00:41:07,677 - INFO - === 编码测试开始 ===
+2025-03-06 00:41:07,677 - INFO - sys.stdout.encoding: utf-8
+2025-03-06 00:41:07,677 - INFO - sys.stderr.encoding: utf-8
+2025-03-06 00:41:07,677 - INFO - sys.stdin.encoding: utf-8
+2025-03-06 00:41:07,677 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-06 00:41:07,677 - INFO - locale.getpreferredencoding(): cp936
+2025-03-06 00:41:07,677 - INFO - file system encoding: utf-8
+2025-03-06 00:41:07,677 - INFO - windows_codepage: Active code page: 65001
+2025-03-06 00:41:07,677 - INFO - 中文测试: 你好，世界！
+2025-03-06 00:41:07,677 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-06 00:41:07,677 - INFO - === 编码测试结束 ===
+2025-03-06 00:41:07,677 - INFO - 应用程序启动时进行了编码检查
+2025-03-06 00:42:26,806 - INFO - === 编码测试开始 ===
+2025-03-06 00:42:26,806 - INFO - sys.stdout.encoding: utf-8
+2025-03-06 00:42:26,806 - INFO - sys.stderr.encoding: utf-8
+2025-03-06 00:42:26,806 - INFO - sys.stdin.encoding: utf-8
+2025-03-06 00:42:26,806 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-06 00:42:26,806 - INFO - locale.getpreferredencoding(): cp936
+2025-03-06 00:42:26,806 - INFO - file system encoding: utf-8
+2025-03-06 00:42:26,806 - INFO - windows_codepage: Active code page: 65001
+2025-03-06 00:42:26,806 - INFO - 中文测试: 你好，世界！
+2025-03-06 00:42:26,806 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-06 00:42:26,806 - INFO - === 编码测试结束 ===
+2025-03-06 00:42:26,806 - INFO - 应用程序启动时进行了编码检查
+2025-03-06 08:10:40,510 - INFO - === 编码测试开始 ===
+2025-03-06 08:10:40,510 - INFO - sys.stdout.encoding: utf-8
+2025-03-06 08:10:40,510 - INFO - sys.stderr.encoding: utf-8
+2025-03-06 08:10:40,510 - INFO - sys.stdin.encoding: utf-8
+2025-03-06 08:10:40,510 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-06 08:10:40,510 - INFO - locale.getpreferredencoding(): cp936
+2025-03-06 08:10:40,510 - INFO - file system encoding: utf-8
+2025-03-06 08:10:40,510 - INFO - windows_codepage: Active code page: 65001
+2025-03-06 08:10:40,510 - INFO - 中文测试: 你好，世界！
+2025-03-06 08:10:40,510 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-06 08:10:40,510 - INFO - === 编码测试结束 ===
+2025-03-06 08:10:40,510 - INFO - 应用程序启动时进行了编码检查
+2025-03-06 09:07:51,121 - INFO - === 编码测试开始 ===
+2025-03-06 09:07:51,122 - INFO - sys.stdout.encoding: utf-8
+2025-03-06 09:07:51,122 - INFO - sys.stderr.encoding: utf-8
+2025-03-06 09:07:51,122 - INFO - sys.stdin.encoding: utf-8
+2025-03-06 09:07:51,122 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-06 09:07:51,122 - INFO - locale.getpreferredencoding(): cp936
+2025-03-06 09:07:51,122 - INFO - file system encoding: utf-8
+2025-03-06 09:07:51,122 - INFO - windows_codepage: Active code page: 65001
+2025-03-06 09:07:51,122 - INFO - 中文测试: 你好，世界！
+2025-03-06 09:07:51,122 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-06 09:07:51,122 - INFO - === 编码测试结束 ===
+2025-03-06 09:07:51,122 - INFO - 应用程序启动时进行了编码检查
+2025-03-06 09:10:20,405 - INFO - === 编码测试开始 ===
+2025-03-06 09:10:20,406 - INFO - sys.stdout.encoding: utf-8
+2025-03-06 09:10:20,406 - INFO - sys.stderr.encoding: utf-8
+2025-03-06 09:10:20,406 - INFO - sys.stdin.encoding: utf-8
+2025-03-06 09:10:20,406 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-06 09:10:20,406 - INFO - locale.getpreferredencoding(): cp936
+2025-03-06 09:10:20,406 - INFO - file system encoding: utf-8
+2025-03-06 09:10:20,406 - INFO - windows_codepage: Active code page: 65001
+2025-03-06 09:10:20,406 - INFO - 中文测试: 你好，世界！
+2025-03-06 09:10:20,406 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-06 09:10:20,406 - INFO - === 编码测试结束 ===
+2025-03-06 09:10:20,406 - INFO - 应用程序启动时进行了编码检查
+2025-03-06 09:21:57,914 - INFO - === 编码测试开始 ===
+2025-03-06 09:21:57,914 - INFO - sys.stdout.encoding: utf-8
+2025-03-06 09:21:57,914 - INFO - sys.stderr.encoding: utf-8
+2025-03-06 09:21:57,914 - INFO - sys.stdin.encoding: utf-8
+2025-03-06 09:21:57,914 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-06 09:21:57,914 - INFO - locale.getpreferredencoding(): cp936
+2025-03-06 09:21:57,914 - INFO - file system encoding: utf-8
+2025-03-06 09:21:57,914 - INFO - windows_codepage: Active code page: 65001
+2025-03-06 09:21:57,914 - INFO - 中文测试: 你好，世界！
+2025-03-06 09:21:57,915 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-06 09:21:57,915 - INFO - === 编码测试结束 ===
+2025-03-06 09:21:57,915 - INFO - 应用程序启动时进行了编码检查
+2025-03-06 09:37:22,773 - INFO - === 编码测试开始 ===
+2025-03-06 09:37:22,773 - INFO - sys.stdout.encoding: utf-8
+2025-03-06 09:37:22,773 - INFO - sys.stderr.encoding: utf-8
+2025-03-06 09:37:22,773 - INFO - sys.stdin.encoding: utf-8
+2025-03-06 09:37:22,773 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-06 09:37:22,773 - INFO - locale.getpreferredencoding(): cp936
+2025-03-06 09:37:22,773 - INFO - file system encoding: utf-8
+2025-03-06 09:37:22,773 - INFO - windows_codepage: Active code page: 65001
+2025-03-06 09:37:22,773 - INFO - 中文测试: 你好，世界！
+2025-03-06 09:37:22,773 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-06 09:37:22,773 - INFO - === 编码测试结束 ===
+2025-03-06 09:37:22,773 - INFO - 应用程序启动时进行了编码检查
+2025-03-06 09:58:00,003 - INFO - === 编码测试开始 ===
+2025-03-06 09:58:00,003 - INFO - sys.stdout.encoding: utf-8
+2025-03-06 09:58:00,003 - INFO - sys.stderr.encoding: utf-8
+2025-03-06 09:58:00,003 - INFO - sys.stdin.encoding: utf-8
+2025-03-06 09:58:00,003 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-06 09:58:00,003 - INFO - locale.getpreferredencoding(): cp936
+2025-03-06 09:58:00,003 - INFO - file system encoding: utf-8
+2025-03-06 09:58:00,003 - INFO - windows_codepage: Active code page: 65001
+2025-03-06 09:58:00,003 - INFO - 中文测试: 你好，世界！
+2025-03-06 09:58:00,003 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-06 09:58:00,003 - INFO - === 编码测试结束 ===
+2025-03-06 09:58:00,003 - INFO - 应用程序启动时进行了编码检查
+2025-03-06 10:05:27,884 - INFO - === 编码测试开始 ===
+2025-03-06 10:05:27,884 - INFO - sys.stdout.encoding: utf-8
+2025-03-06 10:05:27,884 - INFO - sys.stderr.encoding: utf-8
+2025-03-06 10:05:27,884 - INFO - sys.stdin.encoding: utf-8
+2025-03-06 10:05:27,884 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-06 10:05:27,884 - INFO - locale.getpreferredencoding(): cp936
+2025-03-06 10:05:27,884 - INFO - file system encoding: utf-8
+2025-03-06 10:05:27,884 - INFO - windows_codepage: Active code page: 65001
+2025-03-06 10:05:27,884 - INFO - 中文测试: 你好，世界！
+2025-03-06 10:05:27,884 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-06 10:05:27,884 - INFO - === 编码测试结束 ===
+2025-03-06 10:05:27,884 - INFO - 应用程序启动时进行了编码检查
+2025-03-06 10:11:35,787 - INFO - === 编码测试开始 ===
+2025-03-06 10:11:35,787 - INFO - sys.stdout.encoding: utf-8
+2025-03-06 10:11:35,787 - INFO - sys.stderr.encoding: utf-8
+2025-03-06 10:11:35,787 - INFO - sys.stdin.encoding: utf-8
+2025-03-06 10:11:35,787 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-06 10:11:35,787 - INFO - locale.getpreferredencoding(): cp936
+2025-03-06 10:11:35,787 - INFO - file system encoding: utf-8
+2025-03-06 10:11:35,787 - INFO - windows_codepage: Active code page: 65001
+2025-03-06 10:11:35,787 - INFO - 中文测试: 你好，世界！
+2025-03-06 10:11:35,787 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-06 10:11:35,787 - INFO - === 编码测试结束 ===
+2025-03-06 10:11:35,787 - INFO - 应用程序启动时进行了编码检查
+2025-03-06 10:11:47,237 - INFO - === 编码测试开始 ===
+2025-03-06 10:11:47,237 - INFO - sys.stdout.encoding: utf-8
+2025-03-06 10:11:47,237 - INFO - sys.stderr.encoding: utf-8
+2025-03-06 10:11:47,237 - INFO - sys.stdin.encoding: utf-8
+2025-03-06 10:11:47,237 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-06 10:11:47,237 - INFO - locale.getpreferredencoding(): cp936
+2025-03-06 10:11:47,237 - INFO - file system encoding: utf-8
+2025-03-06 10:11:47,237 - INFO - windows_codepage: Active code page: 65001
+2025-03-06 10:11:47,237 - INFO - 中文测试: 你好，世界！
+2025-03-06 10:11:47,237 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-06 10:11:47,237 - INFO - === 编码测试结束 ===
+2025-03-06 10:11:47,237 - INFO - 应用程序启动时进行了编码检查
+2025-03-06 10:12:32,815 - INFO - === 编码测试开始 ===
+2025-03-06 10:12:32,815 - INFO - sys.stdout.encoding: utf-8
+2025-03-06 10:12:32,815 - INFO - sys.stderr.encoding: utf-8
+2025-03-06 10:12:32,815 - INFO - sys.stdin.encoding: utf-8
+2025-03-06 10:12:32,815 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-06 10:12:32,815 - INFO - locale.getpreferredencoding(): cp936
+2025-03-06 10:12:32,815 - INFO - file system encoding: utf-8
+2025-03-06 10:12:32,815 - INFO - windows_codepage: Active code page: 65001
+2025-03-06 10:12:32,815 - INFO - 中文测试: 你好，世界！
+2025-03-06 10:12:32,815 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-06 10:12:32,815 - INFO - === 编码测试结束 ===
+2025-03-06 10:12:32,815 - INFO - 应用程序启动时进行了编码检查
+2025-03-06 10:20:18,278 - INFO - === 编码测试开始 ===
+2025-03-06 10:20:18,278 - INFO - sys.stdout.encoding: utf-8
+2025-03-06 10:20:18,278 - INFO - sys.stderr.encoding: utf-8
+2025-03-06 10:20:18,278 - INFO - sys.stdin.encoding: utf-8
+2025-03-06 10:20:18,278 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-06 10:20:18,278 - INFO - locale.getpreferredencoding(): cp936
+2025-03-06 10:20:18,278 - INFO - file system encoding: utf-8
+2025-03-06 10:20:18,278 - INFO - windows_codepage: Active code page: 65001
+2025-03-06 10:20:18,278 - INFO - 中文测试: 你好，世界！
+2025-03-06 10:20:18,278 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-06 10:20:18,278 - INFO - === 编码测试结束 ===
+2025-03-06 10:20:18,278 - INFO - 应用程序启动时进行了编码检查
+2025-03-06 10:20:52,027 - INFO - === 编码测试开始 ===
+2025-03-06 10:20:52,028 - INFO - sys.stdout.encoding: utf-8
+2025-03-06 10:20:52,028 - INFO - sys.stderr.encoding: utf-8
+2025-03-06 10:20:52,028 - INFO - sys.stdin.encoding: utf-8
+2025-03-06 10:20:52,028 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-06 10:20:52,028 - INFO - locale.getpreferredencoding(): cp936
+2025-03-06 10:20:52,028 - INFO - file system encoding: utf-8
+2025-03-06 10:20:52,028 - INFO - windows_codepage: Active code page: 65001
+2025-03-06 10:20:52,028 - INFO - 中文测试: 你好，世界！
+2025-03-06 10:20:52,028 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-06 10:20:52,028 - INFO - === 编码测试结束 ===
+2025-03-06 10:20:52,028 - INFO - 应用程序启动时进行了编码检查
+2025-03-06 10:21:21,651 - INFO - === 编码测试开始 ===
+2025-03-06 10:21:21,651 - INFO - sys.stdout.encoding: utf-8
+2025-03-06 10:21:21,651 - INFO - sys.stderr.encoding: utf-8
+2025-03-06 10:21:21,651 - INFO - sys.stdin.encoding: utf-8
+2025-03-06 10:21:21,651 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-06 10:21:21,651 - INFO - locale.getpreferredencoding(): cp936
+2025-03-06 10:21:21,651 - INFO - file system encoding: utf-8
+2025-03-06 10:21:21,651 - INFO - windows_codepage: Active code page: 65001
+2025-03-06 10:21:21,651 - INFO - 中文测试: 你好，世界！
+2025-03-06 10:21:21,651 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-06 10:21:21,651 - INFO - === 编码测试结束 ===
+2025-03-06 10:21:21,652 - INFO - 应用程序启动时进行了编码检查
+2025-03-06 10:22:12,596 - INFO - === 编码测试开始 ===
+2025-03-06 10:22:12,596 - INFO - sys.stdout.encoding: utf-8
+2025-03-06 10:22:12,596 - INFO - sys.stderr.encoding: utf-8
+2025-03-06 10:22:12,596 - INFO - sys.stdin.encoding: utf-8
+2025-03-06 10:22:12,596 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-06 10:22:12,596 - INFO - locale.getpreferredencoding(): cp936
+2025-03-06 10:22:12,596 - INFO - file system encoding: utf-8
+2025-03-06 10:22:12,596 - INFO - windows_codepage: Active code page: 65001
+2025-03-06 10:22:12,596 - INFO - 中文测试: 你好，世界！
+2025-03-06 10:22:12,596 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-06 10:22:12,596 - INFO - === 编码测试结束 ===
+2025-03-06 10:22:12,596 - INFO - 应用程序启动时进行了编码检查
+2025-03-06 10:22:46,484 - INFO - === 编码测试开始 ===
+2025-03-06 10:22:46,485 - INFO - sys.stdout.encoding: utf-8
+2025-03-06 10:22:46,485 - INFO - sys.stderr.encoding: utf-8
+2025-03-06 10:22:46,485 - INFO - sys.stdin.encoding: utf-8
+2025-03-06 10:22:46,485 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-06 10:22:46,485 - INFO - locale.getpreferredencoding(): cp936
+2025-03-06 10:22:46,485 - INFO - file system encoding: utf-8
+2025-03-06 10:22:46,485 - INFO - windows_codepage: Active code page: 65001
+2025-03-06 10:22:46,485 - INFO - 中文测试: 你好，世界！
+2025-03-06 10:22:46,485 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-06 10:22:46,485 - INFO - === 编码测试结束 ===
+2025-03-06 10:22:46,485 - INFO - 应用程序启动时进行了编码检查
+2025-03-06 10:23:10,642 - INFO - === 编码测试开始 ===
+2025-03-06 10:23:10,642 - INFO - sys.stdout.encoding: utf-8
+2025-03-06 10:23:10,642 - INFO - sys.stderr.encoding: utf-8
+2025-03-06 10:23:10,642 - INFO - sys.stdin.encoding: utf-8
+2025-03-06 10:23:10,642 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-06 10:23:10,642 - INFO - locale.getpreferredencoding(): cp936
+2025-03-06 10:23:10,643 - INFO - file system encoding: utf-8
+2025-03-06 10:23:10,643 - INFO - windows_codepage: Active code page: 65001
+2025-03-06 10:23:10,643 - INFO - 中文测试: 你好，世界！
+2025-03-06 10:23:10,643 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-06 10:23:10,643 - INFO - === 编码测试结束 ===
+2025-03-06 10:23:10,643 - INFO - 应用程序启动时进行了编码检查
+2025-03-06 10:23:43,455 - INFO - === 编码测试开始 ===
+2025-03-06 10:23:43,455 - INFO - sys.stdout.encoding: utf-8
+2025-03-06 10:23:43,455 - INFO - sys.stderr.encoding: utf-8
+2025-03-06 10:23:43,455 - INFO - sys.stdin.encoding: utf-8
+2025-03-06 10:23:43,455 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-06 10:23:43,455 - INFO - locale.getpreferredencoding(): cp936
+2025-03-06 10:23:43,455 - INFO - file system encoding: utf-8
+2025-03-06 10:23:43,455 - INFO - windows_codepage: Active code page: 65001
+2025-03-06 10:23:43,455 - INFO - 中文测试: 你好，世界！
+2025-03-06 10:23:43,455 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-06 10:23:43,455 - INFO - === 编码测试结束 ===
+2025-03-06 10:23:43,455 - INFO - 应用程序启动时进行了编码检查
+2025-03-06 10:24:50,084 - INFO - === 编码测试开始 ===
+2025-03-06 10:24:50,085 - INFO - sys.stdout.encoding: utf-8
+2025-03-06 10:24:50,085 - INFO - sys.stderr.encoding: utf-8
+2025-03-06 10:24:50,085 - INFO - sys.stdin.encoding: utf-8
+2025-03-06 10:24:50,085 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-06 10:24:50,085 - INFO - locale.getpreferredencoding(): cp936
+2025-03-06 10:24:50,085 - INFO - file system encoding: utf-8
+2025-03-06 10:24:50,085 - INFO - windows_codepage: Active code page: 65001
+2025-03-06 10:24:50,085 - INFO - 中文测试: 你好，世界！
+2025-03-06 10:24:50,085 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-06 10:24:50,085 - INFO - === 编码测试结束 ===
+2025-03-06 10:24:50,085 - INFO - 应用程序启动时进行了编码检查
+2025-03-06 10:25:40,377 - INFO - === 编码测试开始 ===
+2025-03-06 10:25:40,377 - INFO - sys.stdout.encoding: utf-8
+2025-03-06 10:25:40,377 - INFO - sys.stderr.encoding: utf-8
+2025-03-06 10:25:40,377 - INFO - sys.stdin.encoding: utf-8
+2025-03-06 10:25:40,377 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-06 10:25:40,377 - INFO - locale.getpreferredencoding(): cp936
+2025-03-06 10:25:40,377 - INFO - file system encoding: utf-8
+2025-03-06 10:25:40,377 - INFO - windows_codepage: Active code page: 65001
+2025-03-06 10:25:40,377 - INFO - 中文测试: 你好，世界！
+2025-03-06 10:25:40,377 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-06 10:25:40,377 - INFO - === 编码测试结束 ===
+2025-03-06 10:25:40,377 - INFO - 应用程序启动时进行了编码检查
+2025-03-06 10:26:08,623 - INFO - === 编码测试开始 ===
+2025-03-06 10:26:08,623 - INFO - sys.stdout.encoding: utf-8
+2025-03-06 10:26:08,623 - INFO - sys.stderr.encoding: utf-8
+2025-03-06 10:26:08,623 - INFO - sys.stdin.encoding: utf-8
+2025-03-06 10:26:08,623 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-06 10:26:08,623 - INFO - locale.getpreferredencoding(): cp936
+2025-03-06 10:26:08,623 - INFO - file system encoding: utf-8
+2025-03-06 10:26:08,623 - INFO - windows_codepage: Active code page: 65001
+2025-03-06 10:26:08,623 - INFO - 中文测试: 你好，世界！
+2025-03-06 10:26:08,623 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-06 10:26:08,623 - INFO - === 编码测试结束 ===
+2025-03-06 10:26:08,623 - INFO - 应用程序启动时进行了编码检查
+2025-03-06 10:26:28,738 - INFO - === 编码测试开始 ===
+2025-03-06 10:26:28,738 - INFO - sys.stdout.encoding: utf-8
+2025-03-06 10:26:28,738 - INFO - sys.stderr.encoding: utf-8
+2025-03-06 10:26:28,738 - INFO - sys.stdin.encoding: utf-8
+2025-03-06 10:26:28,738 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-06 10:26:28,738 - INFO - locale.getpreferredencoding(): cp936
+2025-03-06 10:26:28,738 - INFO - file system encoding: utf-8
+2025-03-06 10:26:28,738 - INFO - windows_codepage: Active code page: 65001
+2025-03-06 10:26:28,738 - INFO - 中文测试: 你好，世界！
+2025-03-06 10:26:28,738 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-06 10:26:28,738 - INFO - === 编码测试结束 ===
+2025-03-06 10:26:28,738 - INFO - 应用程序启动时进行了编码检查
+2025-03-06 10:26:41,916 - INFO - === 编码测试开始 ===
+2025-03-06 10:26:41,916 - INFO - sys.stdout.encoding: utf-8
+2025-03-06 10:26:41,916 - INFO - sys.stderr.encoding: utf-8
+2025-03-06 10:26:41,916 - INFO - sys.stdin.encoding: utf-8
+2025-03-06 10:26:41,916 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-06 10:26:41,916 - INFO - locale.getpreferredencoding(): cp936
+2025-03-06 10:26:41,916 - INFO - file system encoding: utf-8
+2025-03-06 10:26:41,916 - INFO - windows_codepage: Active code page: 65001
+2025-03-06 10:26:41,916 - INFO - 中文测试: 你好，世界！
+2025-03-06 10:26:41,916 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-06 10:26:41,916 - INFO - === 编码测试结束 ===
+2025-03-06 10:26:41,916 - INFO - 应用程序启动时进行了编码检查
+2025-03-06 10:27:09,056 - INFO - === 编码测试开始 ===
+2025-03-06 10:27:09,056 - INFO - sys.stdout.encoding: utf-8
+2025-03-06 10:27:09,056 - INFO - sys.stderr.encoding: utf-8
+2025-03-06 10:27:09,056 - INFO - sys.stdin.encoding: utf-8
+2025-03-06 10:27:09,056 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-06 10:27:09,056 - INFO - locale.getpreferredencoding(): cp936
+2025-03-06 10:27:09,056 - INFO - file system encoding: utf-8
+2025-03-06 10:27:09,056 - INFO - windows_codepage: Active code page: 65001
+2025-03-06 10:27:09,056 - INFO - 中文测试: 你好，世界！
+2025-03-06 10:27:09,056 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-06 10:27:09,056 - INFO - === 编码测试结束 ===
+2025-03-06 10:27:09,056 - INFO - 应用程序启动时进行了编码检查
+2025-03-06 10:30:08,912 - INFO - === 编码测试开始 ===
+2025-03-06 10:30:08,914 - INFO - sys.stdout.encoding: utf-8
+2025-03-06 10:30:08,914 - INFO - sys.stderr.encoding: utf-8
+2025-03-06 10:30:08,914 - INFO - sys.stdin.encoding: utf-8
+2025-03-06 10:30:08,914 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-06 10:30:08,914 - INFO - locale.getpreferredencoding(): cp936
+2025-03-06 10:30:08,914 - INFO - file system encoding: utf-8
+2025-03-06 10:30:08,914 - INFO - windows_codepage: Active code page: 65001
+2025-03-06 10:30:08,914 - INFO - 中文测试: 你好，世界！
+2025-03-06 10:30:08,914 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-06 10:30:08,914 - INFO - === 编码测试结束 ===
+2025-03-06 10:30:08,914 - INFO - 应用程序启动时进行了编码检查
+2025-03-06 10:31:02,842 - INFO - === 编码测试开始 ===
+2025-03-06 10:31:02,842 - INFO - sys.stdout.encoding: utf-8
+2025-03-06 10:31:02,842 - INFO - sys.stderr.encoding: utf-8
+2025-03-06 10:31:02,842 - INFO - sys.stdin.encoding: utf-8
+2025-03-06 10:31:02,842 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-06 10:31:02,842 - INFO - locale.getpreferredencoding(): cp936
+2025-03-06 10:31:02,842 - INFO - file system encoding: utf-8
+2025-03-06 10:31:02,842 - INFO - windows_codepage: Active code page: 65001
+2025-03-06 10:31:02,842 - INFO - 中文测试: 你好，世界！
+2025-03-06 10:31:02,842 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-06 10:31:02,842 - INFO - === 编码测试结束 ===
+2025-03-06 10:31:02,842 - INFO - 应用程序启动时进行了编码检查
+2025-03-06 10:36:18,825 - INFO - === 编码测试开始 ===
+2025-03-06 10:36:18,826 - INFO - sys.stdout.encoding: utf-8
+2025-03-06 10:36:18,826 - INFO - sys.stderr.encoding: utf-8
+2025-03-06 10:36:18,826 - INFO - sys.stdin.encoding: utf-8
+2025-03-06 10:36:18,826 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-06 10:36:18,826 - INFO - locale.getpreferredencoding(): cp936
+2025-03-06 10:36:18,826 - INFO - file system encoding: utf-8
+2025-03-06 10:36:18,826 - INFO - windows_codepage: Active code page: 65001
+2025-03-06 10:36:18,826 - INFO - 中文测试: 你好，世界！
+2025-03-06 10:36:18,826 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-06 10:36:18,826 - INFO - === 编码测试结束 ===
+2025-03-06 10:36:18,826 - INFO - 应用程序启动时进行了编码检查
+2025-03-06 10:41:44,974 - INFO - === 编码测试开始 ===
+2025-03-06 10:41:44,974 - INFO - sys.stdout.encoding: utf-8
+2025-03-06 10:41:44,974 - INFO - sys.stderr.encoding: utf-8
+2025-03-06 10:41:44,974 - INFO - sys.stdin.encoding: utf-8
+2025-03-06 10:41:44,974 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-06 10:41:44,974 - INFO - locale.getpreferredencoding(): cp936
+2025-03-06 10:41:44,974 - INFO - file system encoding: utf-8
+2025-03-06 10:41:44,974 - INFO - windows_codepage: Active code page: 65001
+2025-03-06 10:41:44,974 - INFO - 中文测试: 你好，世界！
+2025-03-06 10:41:44,974 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-06 10:41:44,974 - INFO - === 编码测试结束 ===
+2025-03-06 10:41:44,974 - INFO - 应用程序启动时进行了编码检查
+2025-03-06 10:46:35,148 - INFO - === 编码测试开始 ===
+2025-03-06 10:46:35,148 - INFO - sys.stdout.encoding: utf-8
+2025-03-06 10:46:35,148 - INFO - sys.stderr.encoding: utf-8
+2025-03-06 10:46:35,148 - INFO - sys.stdin.encoding: utf-8
+2025-03-06 10:46:35,148 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-06 10:46:35,148 - INFO - locale.getpreferredencoding(): cp936
+2025-03-06 10:46:35,148 - INFO - file system encoding: utf-8
+2025-03-06 10:46:35,148 - INFO - windows_codepage: Active code page: 65001
+2025-03-06 10:46:35,148 - INFO - 中文测试: 你好，世界！
+2025-03-06 10:46:35,148 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-06 10:46:35,148 - INFO - === 编码测试结束 ===
+2025-03-06 10:46:35,148 - INFO - 应用程序启动时进行了编码检查
+2025-03-06 10:50:35,760 - INFO - === 编码测试开始 ===
+2025-03-06 10:50:35,761 - INFO - sys.stdout.encoding: utf-8
+2025-03-06 10:50:35,761 - INFO - sys.stderr.encoding: utf-8
+2025-03-06 10:50:35,761 - INFO - sys.stdin.encoding: utf-8
+2025-03-06 10:50:35,761 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-06 10:50:35,761 - INFO - locale.getpreferredencoding(): cp936
+2025-03-06 10:50:35,761 - INFO - file system encoding: utf-8
+2025-03-06 10:50:35,761 - INFO - windows_codepage: Active code page: 65001
+2025-03-06 10:50:35,761 - INFO - 中文测试: 你好，世界！
+2025-03-06 10:50:35,761 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-06 10:50:35,761 - INFO - === 编码测试结束 ===
+2025-03-06 10:50:35,761 - INFO - 应用程序启动时进行了编码检查
+2025-03-06 15:50:06,334 - INFO - === 编码测试开始 ===
+2025-03-06 15:50:06,334 - INFO - sys.stdout.encoding: utf-8
+2025-03-06 15:50:06,334 - INFO - sys.stderr.encoding: utf-8
+2025-03-06 15:50:06,334 - INFO - sys.stdin.encoding: utf-8
+2025-03-06 15:50:06,334 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-06 15:50:06,334 - INFO - locale.getpreferredencoding(): cp936
+2025-03-06 15:50:06,334 - INFO - file system encoding: utf-8
+2025-03-06 15:50:06,334 - INFO - windows_codepage: Active code page: 65001
+2025-03-06 15:50:06,334 - INFO - 中文测试: 你好，世界！
+2025-03-06 15:50:06,334 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-06 15:50:06,334 - INFO - === 编码测试结束 ===
+2025-03-06 15:50:06,334 - INFO - 应用程序启动时进行了编码检查
+2025-03-06 15:50:59,980 - INFO - === 编码测试开始 ===
+2025-03-06 15:50:59,980 - INFO - sys.stdout.encoding: utf-8
+2025-03-06 15:50:59,980 - INFO - sys.stderr.encoding: utf-8
+2025-03-06 15:50:59,980 - INFO - sys.stdin.encoding: utf-8
+2025-03-06 15:50:59,980 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-06 15:50:59,980 - INFO - locale.getpreferredencoding(): cp936
+2025-03-06 15:50:59,980 - INFO - file system encoding: utf-8
+2025-03-06 15:50:59,980 - INFO - windows_codepage: Active code page: 65001
+2025-03-06 15:50:59,980 - INFO - 中文测试: 你好，世界！
+2025-03-06 15:50:59,980 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-06 15:50:59,980 - INFO - === 编码测试结束 ===
+2025-03-06 15:50:59,980 - INFO - 应用程序启动时进行了编码检查
+2025-03-06 15:53:58,267 - INFO - === 编码测试开始 ===
+2025-03-06 15:53:58,267 - INFO - sys.stdout.encoding: utf-8
+2025-03-06 15:53:58,267 - INFO - sys.stderr.encoding: utf-8
+2025-03-06 15:53:58,267 - INFO - sys.stdin.encoding: utf-8
+2025-03-06 15:53:58,267 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-06 15:53:58,267 - INFO - locale.getpreferredencoding(): cp936
+2025-03-06 15:53:58,267 - INFO - file system encoding: utf-8
+2025-03-06 15:53:58,267 - INFO - windows_codepage: Active code page: 65001
+2025-03-06 15:53:58,267 - INFO - 中文测试: 你好，世界！
+2025-03-06 15:53:58,267 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-06 15:53:58,267 - INFO - === 编码测试结束 ===
+2025-03-06 15:53:58,267 - INFO - 应用程序启动时进行了编码检查
+2025-03-06 16:03:03,239 - INFO - === 编码测试开始 ===
+2025-03-06 16:03:03,239 - INFO - sys.stdout.encoding: utf-8
+2025-03-06 16:03:03,239 - INFO - sys.stderr.encoding: utf-8
+2025-03-06 16:03:03,239 - INFO - sys.stdin.encoding: utf-8
+2025-03-06 16:03:03,240 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-06 16:03:03,240 - INFO - locale.getpreferredencoding(): cp936
+2025-03-06 16:03:03,240 - INFO - file system encoding: utf-8
+2025-03-06 16:03:03,240 - INFO - windows_codepage: Active code page: 65001
+2025-03-06 16:03:03,240 - INFO - 中文测试: 你好，世界！
+2025-03-06 16:03:03,240 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-06 16:03:03,240 - INFO - === 编码测试结束 ===
+2025-03-06 16:03:03,240 - INFO - 应用程序启动时进行了编码检查
+2025-03-06 16:16:53,899 - INFO - === 编码测试开始 ===
+2025-03-06 16:16:53,900 - INFO - sys.stdout.encoding: utf-8
+2025-03-06 16:16:53,900 - INFO - sys.stderr.encoding: utf-8
+2025-03-06 16:16:53,900 - INFO - sys.stdin.encoding: utf-8
+2025-03-06 16:16:53,900 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-06 16:16:53,900 - INFO - locale.getpreferredencoding(): cp936
+2025-03-06 16:16:53,900 - INFO - file system encoding: utf-8
+2025-03-06 16:16:53,900 - INFO - windows_codepage: Active code page: 65001
+2025-03-06 16:16:53,900 - INFO - 中文测试: 你好，世界！
+2025-03-06 16:16:53,900 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-06 16:16:53,900 - INFO - === 编码测试结束 ===
+2025-03-06 16:16:53,900 - INFO - 应用程序启动时进行了编码检查
+2025-03-06 16:21:00,054 - INFO - === 编码测试开始 ===
+2025-03-06 16:21:00,054 - INFO - sys.stdout.encoding: utf-8
+2025-03-06 16:21:00,054 - INFO - sys.stderr.encoding: utf-8
+2025-03-06 16:21:00,054 - INFO - sys.stdin.encoding: utf-8
+2025-03-06 16:21:00,054 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-06 16:21:00,054 - INFO - locale.getpreferredencoding(): cp936
+2025-03-06 16:21:00,054 - INFO - file system encoding: utf-8
+2025-03-06 16:21:00,054 - INFO - windows_codepage: Active code page: 65001
+2025-03-06 16:21:00,054 - INFO - 中文测试: 你好，世界！
+2025-03-06 16:21:00,054 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-06 16:21:00,054 - INFO - === 编码测试结束 ===
+2025-03-06 16:21:00,054 - INFO - 应用程序启动时进行了编码检查
+2025-03-06 16:27:23,047 - INFO - === 编码测试开始 ===
+2025-03-06 16:27:23,047 - INFO - sys.stdout.encoding: utf-8
+2025-03-06 16:27:23,047 - INFO - sys.stderr.encoding: utf-8
+2025-03-06 16:27:23,047 - INFO - sys.stdin.encoding: utf-8
+2025-03-06 16:27:23,047 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-06 16:27:23,047 - INFO - locale.getpreferredencoding(): cp936
+2025-03-06 16:27:23,047 - INFO - file system encoding: utf-8
+2025-03-06 16:27:23,047 - INFO - windows_codepage: Active code page: 65001
+2025-03-06 16:27:23,047 - INFO - 中文测试: 你好，世界！
+2025-03-06 16:27:23,047 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-06 16:27:23,047 - INFO - === 编码测试结束 ===
+2025-03-06 16:27:23,047 - INFO - 应用程序启动时进行了编码检查
+2025-03-06 19:48:51,016 - INFO - === 编码测试开始 ===
+2025-03-06 19:48:51,017 - INFO - sys.stdout.encoding: utf-8
+2025-03-06 19:48:51,017 - INFO - sys.stderr.encoding: utf-8
+2025-03-06 19:48:51,017 - INFO - sys.stdin.encoding: utf-8
+2025-03-06 19:48:51,017 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-06 19:48:51,017 - INFO - locale.getpreferredencoding(): cp936
+2025-03-06 19:48:51,017 - INFO - file system encoding: utf-8
+2025-03-06 19:48:51,017 - INFO - windows_codepage: Active code page: 65001
+2025-03-06 19:48:51,017 - INFO - 中文测试: 你好，世界！
+2025-03-06 19:48:51,017 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-06 19:48:51,017 - INFO - === 编码测试结束 ===
+2025-03-06 19:48:51,017 - INFO - 应用程序启动时进行了编码检查
+2025-03-06 19:50:00,385 - INFO - === 编码测试开始 ===
+2025-03-06 19:50:00,385 - INFO - sys.stdout.encoding: utf-8
+2025-03-06 19:50:00,385 - INFO - sys.stderr.encoding: utf-8
+2025-03-06 19:50:00,385 - INFO - sys.stdin.encoding: utf-8
+2025-03-06 19:50:00,385 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-06 19:50:00,385 - INFO - locale.getpreferredencoding(): cp936
+2025-03-06 19:50:00,385 - INFO - file system encoding: utf-8
+2025-03-06 19:50:00,385 - INFO - windows_codepage: Active code page: 65001
+2025-03-06 19:50:00,385 - INFO - 中文测试: 你好，世界！
+2025-03-06 19:50:00,385 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-06 19:50:00,385 - INFO - === 编码测试结束 ===
+2025-03-06 19:50:00,385 - INFO - 应用程序启动时进行了编码检查
+2025-03-06 19:50:14,025 - INFO - === 编码测试开始 ===
+2025-03-06 19:50:14,025 - INFO - sys.stdout.encoding: utf-8
+2025-03-06 19:50:14,025 - INFO - sys.stderr.encoding: utf-8
+2025-03-06 19:50:14,025 - INFO - sys.stdin.encoding: utf-8
+2025-03-06 19:50:14,025 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-06 19:50:14,025 - INFO - locale.getpreferredencoding(): cp936
+2025-03-06 19:50:14,025 - INFO - file system encoding: utf-8
+2025-03-06 19:50:14,025 - INFO - windows_codepage: Active code page: 65001
+2025-03-06 19:50:14,025 - INFO - 中文测试: 你好，世界！
+2025-03-06 19:50:14,025 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-06 19:50:14,025 - INFO - === 编码测试结束 ===
+2025-03-06 19:50:14,025 - INFO - 应用程序启动时进行了编码检查
+2025-03-06 19:56:48,104 - INFO - === 编码测试开始 ===
+2025-03-06 19:56:48,105 - INFO - sys.stdout.encoding: utf-8
+2025-03-06 19:56:48,105 - INFO - sys.stderr.encoding: utf-8
+2025-03-06 19:56:48,105 - INFO - sys.stdin.encoding: utf-8
+2025-03-06 19:56:48,105 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-06 19:56:48,105 - INFO - locale.getpreferredencoding(): cp936
+2025-03-06 19:56:48,105 - INFO - file system encoding: utf-8
+2025-03-06 19:56:48,105 - INFO - windows_codepage: Active code page: 65001
+2025-03-06 19:56:48,105 - INFO - 中文测试: 你好，世界！
+2025-03-06 19:56:48,105 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-06 19:56:48,105 - INFO - === 编码测试结束 ===
+2025-03-06 19:56:48,105 - INFO - 应用程序启动时进行了编码检查
+2025-03-06 20:04:32,683 - INFO - === 编码测试开始 ===
+2025-03-06 20:04:32,683 - INFO - sys.stdout.encoding: utf-8
+2025-03-06 20:04:32,683 - INFO - sys.stderr.encoding: utf-8
+2025-03-06 20:04:32,683 - INFO - sys.stdin.encoding: utf-8
+2025-03-06 20:04:32,683 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-06 20:04:32,683 - INFO - locale.getpreferredencoding(): cp936
+2025-03-06 20:04:32,683 - INFO - file system encoding: utf-8
+2025-03-06 20:04:32,683 - INFO - windows_codepage: Active code page: 65001
+2025-03-06 20:04:32,683 - INFO - 中文测试: 你好，世界！
+2025-03-06 20:04:32,683 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-06 20:04:32,684 - INFO - === 编码测试结束 ===
+2025-03-06 20:04:32,684 - INFO - 应用程序启动时进行了编码检查
+2025-03-06 20:04:53,963 - INFO - === 编码测试开始 ===
+2025-03-06 20:04:53,963 - INFO - sys.stdout.encoding: utf-8
+2025-03-06 20:04:53,963 - INFO - sys.stderr.encoding: utf-8
+2025-03-06 20:04:53,963 - INFO - sys.stdin.encoding: utf-8
+2025-03-06 20:04:53,963 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-06 20:04:53,963 - INFO - locale.getpreferredencoding(): cp936
+2025-03-06 20:04:53,963 - INFO - file system encoding: utf-8
+2025-03-06 20:04:53,963 - INFO - windows_codepage: Active code page: 65001
+2025-03-06 20:04:53,963 - INFO - 中文测试: 你好，世界！
+2025-03-06 20:04:53,963 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-06 20:04:53,963 - INFO - === 编码测试结束 ===
+2025-03-06 20:04:53,963 - INFO - 应用程序启动时进行了编码检查
+2025-03-06 20:05:22,448 - INFO - === 编码测试开始 ===
+2025-03-06 20:05:22,448 - INFO - sys.stdout.encoding: utf-8
+2025-03-06 20:05:22,448 - INFO - sys.stderr.encoding: utf-8
+2025-03-06 20:05:22,448 - INFO - sys.stdin.encoding: utf-8
+2025-03-06 20:05:22,448 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-06 20:05:22,448 - INFO - locale.getpreferredencoding(): cp936
+2025-03-06 20:05:22,448 - INFO - file system encoding: utf-8
+2025-03-06 20:05:22,448 - INFO - windows_codepage: Active code page: 65001
+2025-03-06 20:05:22,448 - INFO - 中文测试: 你好，世界！
+2025-03-06 20:05:22,448 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-06 20:05:22,448 - INFO - === 编码测试结束 ===
+2025-03-06 20:05:22,448 - INFO - 应用程序启动时进行了编码检查
+2025-03-06 20:09:39,309 - INFO - === 编码测试开始 ===
+2025-03-06 20:09:39,309 - INFO - sys.stdout.encoding: utf-8
+2025-03-06 20:09:39,309 - INFO - sys.stderr.encoding: utf-8
+2025-03-06 20:09:39,309 - INFO - sys.stdin.encoding: utf-8
+2025-03-06 20:09:39,309 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-06 20:09:39,309 - INFO - locale.getpreferredencoding(): cp936
+2025-03-06 20:09:39,309 - INFO - file system encoding: utf-8
+2025-03-06 20:09:39,309 - INFO - windows_codepage: Active code page: 65001
+2025-03-06 20:09:39,309 - INFO - 中文测试: 你好，世界！
+2025-03-06 20:09:39,309 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-06 20:09:39,309 - INFO - === 编码测试结束 ===
+2025-03-06 20:09:39,309 - INFO - 应用程序启动时进行了编码检查
+2025-03-06 20:12:05,765 - INFO - === 编码测试开始 ===
+2025-03-06 20:12:05,765 - INFO - sys.stdout.encoding: utf-8
+2025-03-06 20:12:05,765 - INFO - sys.stderr.encoding: utf-8
+2025-03-06 20:12:05,765 - INFO - sys.stdin.encoding: utf-8
+2025-03-06 20:12:05,765 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-06 20:12:05,765 - INFO - locale.getpreferredencoding(): cp936
+2025-03-06 20:12:05,765 - INFO - file system encoding: utf-8
+2025-03-06 20:12:05,765 - INFO - windows_codepage: Active code page: 65001
+2025-03-06 20:12:05,765 - INFO - 中文测试: 你好，世界！
+2025-03-06 20:12:05,765 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-06 20:12:05,765 - INFO - === 编码测试结束 ===
+2025-03-06 20:12:05,765 - INFO - 应用程序启动时进行了编码检查
+2025-03-06 20:12:26,516 - INFO - === 编码测试开始 ===
+2025-03-06 20:12:26,516 - INFO - sys.stdout.encoding: utf-8
+2025-03-06 20:12:26,516 - INFO - sys.stderr.encoding: utf-8
+2025-03-06 20:12:26,516 - INFO - sys.stdin.encoding: utf-8
+2025-03-06 20:12:26,516 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-06 20:12:26,516 - INFO - locale.getpreferredencoding(): cp936
+2025-03-06 20:12:26,516 - INFO - file system encoding: utf-8
+2025-03-06 20:12:26,516 - INFO - windows_codepage: Active code page: 65001
+2025-03-06 20:12:26,516 - INFO - 中文测试: 你好，世界！
+2025-03-06 20:12:26,516 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-06 20:12:26,516 - INFO - === 编码测试结束 ===
+2025-03-06 20:12:26,516 - INFO - 应用程序启动时进行了编码检查
+2025-03-06 20:13:23,112 - INFO - === 编码测试开始 ===
+2025-03-06 20:13:23,112 - INFO - sys.stdout.encoding: utf-8
+2025-03-06 20:13:23,112 - INFO - sys.stderr.encoding: utf-8
+2025-03-06 20:13:23,112 - INFO - sys.stdin.encoding: utf-8
+2025-03-06 20:13:23,112 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-06 20:13:23,112 - INFO - locale.getpreferredencoding(): cp936
+2025-03-06 20:13:23,112 - INFO - file system encoding: utf-8
+2025-03-06 20:13:23,112 - INFO - windows_codepage: Active code page: 65001
+2025-03-06 20:13:23,112 - INFO - 中文测试: 你好，世界！
+2025-03-06 20:13:23,112 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-06 20:13:23,112 - INFO - === 编码测试结束 ===
+2025-03-06 20:13:23,112 - INFO - 应用程序启动时进行了编码检查
+2025-03-06 20:14:44,494 - INFO - === 编码测试开始 ===
+2025-03-06 20:14:44,494 - INFO - sys.stdout.encoding: utf-8
+2025-03-06 20:14:44,494 - INFO - sys.stderr.encoding: utf-8
+2025-03-06 20:14:44,494 - INFO - sys.stdin.encoding: utf-8
+2025-03-06 20:14:44,494 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-06 20:14:44,494 - INFO - locale.getpreferredencoding(): cp936
+2025-03-06 20:14:44,494 - INFO - file system encoding: utf-8
+2025-03-06 20:14:44,494 - INFO - windows_codepage: Active code page: 65001
+2025-03-06 20:14:44,494 - INFO - 中文测试: 你好，世界！
+2025-03-06 20:14:44,494 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-06 20:14:44,494 - INFO - === 编码测试结束 ===
+2025-03-06 20:14:44,494 - INFO - 应用程序启动时进行了编码检查
+2025-03-06 20:15:22,190 - INFO - === 编码测试开始 ===
+2025-03-06 20:15:22,190 - INFO - sys.stdout.encoding: utf-8
+2025-03-06 20:15:22,190 - INFO - sys.stderr.encoding: utf-8
+2025-03-06 20:15:22,190 - INFO - sys.stdin.encoding: utf-8
+2025-03-06 20:15:22,190 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-06 20:15:22,190 - INFO - locale.getpreferredencoding(): cp936
+2025-03-06 20:15:22,190 - INFO - file system encoding: utf-8
+2025-03-06 20:15:22,190 - INFO - windows_codepage: Active code page: 65001
+2025-03-06 20:15:22,190 - INFO - 中文测试: 你好，世界！
+2025-03-06 20:15:22,190 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-06 20:15:22,190 - INFO - === 编码测试结束 ===
+2025-03-06 20:15:22,190 - INFO - 应用程序启动时进行了编码检查
+2025-03-06 20:15:50,893 - INFO - === 编码测试开始 ===
+2025-03-06 20:15:50,893 - INFO - sys.stdout.encoding: utf-8
+2025-03-06 20:15:50,893 - INFO - sys.stderr.encoding: utf-8
+2025-03-06 20:15:50,893 - INFO - sys.stdin.encoding: utf-8
+2025-03-06 20:15:50,893 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-06 20:15:50,893 - INFO - locale.getpreferredencoding(): cp936
+2025-03-06 20:15:50,894 - INFO - file system encoding: utf-8
+2025-03-06 20:15:50,894 - INFO - windows_codepage: Active code page: 65001
+2025-03-06 20:15:50,894 - INFO - 中文测试: 你好，世界！
+2025-03-06 20:15:50,894 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-06 20:15:50,894 - INFO - === 编码测试结束 ===
+2025-03-06 20:15:50,894 - INFO - 应用程序启动时进行了编码检查
+2025-03-06 20:16:35,351 - INFO - === 编码测试开始 ===
+2025-03-06 20:16:35,351 - INFO - sys.stdout.encoding: utf-8
+2025-03-06 20:16:35,351 - INFO - sys.stderr.encoding: utf-8
+2025-03-06 20:16:35,351 - INFO - sys.stdin.encoding: utf-8
+2025-03-06 20:16:35,351 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-06 20:16:35,351 - INFO - locale.getpreferredencoding(): cp936
+2025-03-06 20:16:35,351 - INFO - file system encoding: utf-8
+2025-03-06 20:16:35,351 - INFO - windows_codepage: Active code page: 65001
+2025-03-06 20:16:35,351 - INFO - 中文测试: 你好，世界！
+2025-03-06 20:16:35,351 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-06 20:16:35,351 - INFO - === 编码测试结束 ===
+2025-03-06 20:16:35,351 - INFO - 应用程序启动时进行了编码检查
+2025-03-06 20:29:08,106 - INFO - === 编码测试开始 ===
+2025-03-06 20:29:08,106 - INFO - sys.stdout.encoding: utf-8
+2025-03-06 20:29:08,106 - INFO - sys.stderr.encoding: utf-8
+2025-03-06 20:29:08,106 - INFO - sys.stdin.encoding: utf-8
+2025-03-06 20:29:08,106 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-06 20:29:08,106 - INFO - locale.getpreferredencoding(): cp936
+2025-03-06 20:29:08,107 - INFO - file system encoding: utf-8
+2025-03-06 20:29:08,107 - INFO - windows_codepage: Active code page: 65001
+2025-03-06 20:29:08,107 - INFO - 中文测试: 你好，世界！
+2025-03-06 20:29:08,107 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-06 20:29:08,107 - INFO - === 编码测试结束 ===
+2025-03-06 20:29:08,107 - INFO - 应用程序启动时进行了编码检查
+2025-03-06 20:30:07,812 - INFO - === 编码测试开始 ===
+2025-03-06 20:30:07,812 - INFO - sys.stdout.encoding: utf-8
+2025-03-06 20:30:07,812 - INFO - sys.stderr.encoding: utf-8
+2025-03-06 20:30:07,812 - INFO - sys.stdin.encoding: utf-8
+2025-03-06 20:30:07,812 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-06 20:30:07,812 - INFO - locale.getpreferredencoding(): cp936
+2025-03-06 20:30:07,812 - INFO - file system encoding: utf-8
+2025-03-06 20:30:07,812 - INFO - windows_codepage: Active code page: 65001
+2025-03-06 20:30:07,812 - INFO - 中文测试: 你好，世界！
+2025-03-06 20:30:07,812 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-06 20:30:07,812 - INFO - === 编码测试结束 ===
+2025-03-06 20:30:07,812 - INFO - 应用程序启动时进行了编码检查
+2025-03-06 20:31:35,311 - INFO - === 编码测试开始 ===
+2025-03-06 20:31:35,311 - INFO - sys.stdout.encoding: utf-8
+2025-03-06 20:31:35,311 - INFO - sys.stderr.encoding: utf-8
+2025-03-06 20:31:35,312 - INFO - sys.stdin.encoding: utf-8
+2025-03-06 20:31:35,312 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-06 20:31:35,312 - INFO - locale.getpreferredencoding(): cp936
+2025-03-06 20:31:35,312 - INFO - file system encoding: utf-8
+2025-03-06 20:31:35,312 - INFO - windows_codepage: Active code page: 65001
+2025-03-06 20:31:35,312 - INFO - 中文测试: 你好，世界！
+2025-03-06 20:31:35,312 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-06 20:31:35,312 - INFO - === 编码测试结束 ===
+2025-03-06 20:31:35,312 - INFO - 应用程序启动时进行了编码检查
+2025-03-06 20:32:45,483 - INFO - === 编码测试开始 ===
+2025-03-06 20:32:45,483 - INFO - sys.stdout.encoding: utf-8
+2025-03-06 20:32:45,483 - INFO - sys.stderr.encoding: utf-8
+2025-03-06 20:32:45,483 - INFO - sys.stdin.encoding: utf-8
+2025-03-06 20:32:45,484 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-06 20:32:45,484 - INFO - locale.getpreferredencoding(): cp936
+2025-03-06 20:32:45,484 - INFO - file system encoding: utf-8
+2025-03-06 20:32:45,484 - INFO - windows_codepage: Active code page: 65001
+2025-03-06 20:32:45,484 - INFO - 中文测试: 你好，世界！
+2025-03-06 20:32:45,484 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-06 20:32:45,484 - INFO - === 编码测试结束 ===
+2025-03-06 20:32:45,484 - INFO - 应用程序启动时进行了编码检查
+2025-03-06 20:33:07,038 - INFO - === 编码测试开始 ===
+2025-03-06 20:33:07,038 - INFO - sys.stdout.encoding: utf-8
+2025-03-06 20:33:07,038 - INFO - sys.stderr.encoding: utf-8
+2025-03-06 20:33:07,038 - INFO - sys.stdin.encoding: utf-8
+2025-03-06 20:33:07,038 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-06 20:33:07,038 - INFO - locale.getpreferredencoding(): cp936
+2025-03-06 20:33:07,038 - INFO - file system encoding: utf-8
+2025-03-06 20:33:07,038 - INFO - windows_codepage: Active code page: 65001
+2025-03-06 20:33:07,038 - INFO - 中文测试: 你好，世界！
+2025-03-06 20:33:07,038 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-06 20:33:07,038 - INFO - === 编码测试结束 ===
+2025-03-06 20:33:07,038 - INFO - 应用程序启动时进行了编码检查
+2025-03-06 20:33:41,287 - INFO - === 编码测试开始 ===
+2025-03-06 20:33:41,287 - INFO - sys.stdout.encoding: utf-8
+2025-03-06 20:33:41,287 - INFO - sys.stderr.encoding: utf-8
+2025-03-06 20:33:41,287 - INFO - sys.stdin.encoding: utf-8
+2025-03-06 20:33:41,287 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-06 20:33:41,287 - INFO - locale.getpreferredencoding(): cp936
+2025-03-06 20:33:41,287 - INFO - file system encoding: utf-8
+2025-03-06 20:33:41,287 - INFO - windows_codepage: Active code page: 65001
+2025-03-06 20:33:41,287 - INFO - 中文测试: 你好，世界！
+2025-03-06 20:33:41,287 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-06 20:33:41,287 - INFO - === 编码测试结束 ===
+2025-03-06 20:33:41,287 - INFO - 应用程序启动时进行了编码检查
+2025-03-06 20:34:00,783 - INFO - === 编码测试开始 ===
+2025-03-06 20:34:00,783 - INFO - sys.stdout.encoding: utf-8
+2025-03-06 20:34:00,783 - INFO - sys.stderr.encoding: utf-8
+2025-03-06 20:34:00,783 - INFO - sys.stdin.encoding: utf-8
+2025-03-06 20:34:00,783 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-06 20:34:00,783 - INFO - locale.getpreferredencoding(): cp936
+2025-03-06 20:34:00,783 - INFO - file system encoding: utf-8
+2025-03-06 20:34:00,783 - INFO - windows_codepage: Active code page: 65001
+2025-03-06 20:34:00,783 - INFO - 中文测试: 你好，世界！
+2025-03-06 20:34:00,783 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-06 20:34:00,783 - INFO - === 编码测试结束 ===
+2025-03-06 20:34:00,783 - INFO - 应用程序启动时进行了编码检查
+2025-03-06 20:48:19,620 - INFO - === 编码测试开始 ===
+2025-03-06 20:48:19,620 - INFO - sys.stdout.encoding: utf-8
+2025-03-06 20:48:19,620 - INFO - sys.stderr.encoding: utf-8
+2025-03-06 20:48:19,620 - INFO - sys.stdin.encoding: utf-8
+2025-03-06 20:48:19,620 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-06 20:48:19,620 - INFO - locale.getpreferredencoding(): cp936
+2025-03-06 20:48:19,620 - INFO - file system encoding: utf-8
+2025-03-06 20:48:19,620 - INFO - windows_codepage: Active code page: 65001
+2025-03-06 20:48:19,620 - INFO - 中文测试: 你好，世界！
+2025-03-06 20:48:19,620 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-06 20:48:19,620 - INFO - === 编码测试结束 ===
+2025-03-06 20:48:19,620 - INFO - 应用程序启动时进行了编码检查
+2025-03-06 20:58:49,705 - INFO - === 编码测试开始 ===
+2025-03-06 20:58:49,705 - INFO - sys.stdout.encoding: utf-8
+2025-03-06 20:58:49,705 - INFO - sys.stderr.encoding: utf-8
+2025-03-06 20:58:49,705 - INFO - sys.stdin.encoding: utf-8
+2025-03-06 20:58:49,705 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-06 20:58:49,705 - INFO - locale.getpreferredencoding(): cp936
+2025-03-06 20:58:49,705 - INFO - file system encoding: utf-8
+2025-03-06 20:58:49,705 - INFO - windows_codepage: Active code page: 65001
+2025-03-06 20:58:49,705 - INFO - 中文测试: 你好，世界！
+2025-03-06 20:58:49,705 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-06 20:58:49,705 - INFO - === 编码测试结束 ===
+2025-03-06 20:58:49,705 - INFO - 应用程序启动时进行了编码检查
+2025-03-06 21:11:32,677 - INFO - === 编码测试开始 ===
+2025-03-06 21:11:32,677 - INFO - sys.stdout.encoding: utf-8
+2025-03-06 21:11:32,677 - INFO - sys.stderr.encoding: utf-8
+2025-03-06 21:11:32,677 - INFO - sys.stdin.encoding: utf-8
+2025-03-06 21:11:32,677 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-06 21:11:32,677 - INFO - locale.getpreferredencoding(): cp936
+2025-03-06 21:11:32,677 - INFO - file system encoding: utf-8
+2025-03-06 21:11:32,677 - INFO - windows_codepage: Active code page: 65001
+2025-03-06 21:11:32,677 - INFO - 中文测试: 你好，世界！
+2025-03-06 21:11:32,677 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-06 21:11:32,678 - INFO - === 编码测试结束 ===
+2025-03-06 21:11:32,678 - INFO - 应用程序启动时进行了编码检查
+2025-03-06 21:13:38,925 - INFO - === 编码测试开始 ===
+2025-03-06 21:13:38,925 - INFO - sys.stdout.encoding: utf-8
+2025-03-06 21:13:38,925 - INFO - sys.stderr.encoding: utf-8
+2025-03-06 21:13:38,925 - INFO - sys.stdin.encoding: utf-8
+2025-03-06 21:13:38,925 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-06 21:13:38,925 - INFO - locale.getpreferredencoding(): cp936
+2025-03-06 21:13:38,925 - INFO - file system encoding: utf-8
+2025-03-06 21:13:38,925 - INFO - windows_codepage: Active code page: 65001
+2025-03-06 21:13:38,925 - INFO - 中文测试: 你好，世界！
+2025-03-06 21:13:38,925 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-06 21:13:38,925 - INFO - === 编码测试结束 ===
+2025-03-06 21:13:38,925 - INFO - 应用程序启动时进行了编码检查
+2025-03-06 21:19:09,341 - INFO - === 编码测试开始 ===
+2025-03-06 21:19:09,341 - INFO - sys.stdout.encoding: utf-8
+2025-03-06 21:19:09,341 - INFO - sys.stderr.encoding: utf-8
+2025-03-06 21:19:09,341 - INFO - sys.stdin.encoding: utf-8
+2025-03-06 21:19:09,341 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-06 21:19:09,341 - INFO - locale.getpreferredencoding(): cp936
+2025-03-06 21:19:09,341 - INFO - file system encoding: utf-8
+2025-03-06 21:19:09,341 - INFO - windows_codepage: Active code page: 65001
+2025-03-06 21:19:09,341 - INFO - 中文测试: 你好，世界！
+2025-03-06 21:19:09,341 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-06 21:19:09,341 - INFO - === 编码测试结束 ===
+2025-03-06 21:19:09,341 - INFO - 应用程序启动时进行了编码检查
+2025-03-06 21:21:55,496 - INFO - === 编码测试开始 ===
+2025-03-06 21:21:55,496 - INFO - sys.stdout.encoding: utf-8
+2025-03-06 21:21:55,496 - INFO - sys.stderr.encoding: utf-8
+2025-03-06 21:21:55,496 - INFO - sys.stdin.encoding: utf-8
+2025-03-06 21:21:55,496 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-06 21:21:55,496 - INFO - locale.getpreferredencoding(): cp936
+2025-03-06 21:21:55,496 - INFO - file system encoding: utf-8
+2025-03-06 21:21:55,496 - INFO - windows_codepage: Active code page: 65001
+2025-03-06 21:21:55,496 - INFO - 中文测试: 你好，世界！
+2025-03-06 21:21:55,496 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-06 21:21:55,496 - INFO - === 编码测试结束 ===
+2025-03-06 21:21:55,496 - INFO - 应用程序启动时进行了编码检查
+2025-03-06 21:23:42,393 - INFO - === 编码测试开始 ===
+2025-03-06 21:23:42,394 - INFO - sys.stdout.encoding: utf-8
+2025-03-06 21:23:42,394 - INFO - sys.stderr.encoding: utf-8
+2025-03-06 21:23:42,394 - INFO - sys.stdin.encoding: utf-8
+2025-03-06 21:23:42,394 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-06 21:23:42,394 - INFO - locale.getpreferredencoding(): cp936
+2025-03-06 21:23:42,394 - INFO - file system encoding: utf-8
+2025-03-06 21:23:42,394 - INFO - windows_codepage: Active code page: 65001
+2025-03-06 21:23:42,394 - INFO - 中文测试: 你好，世界！
+2025-03-06 21:23:42,394 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-06 21:23:42,394 - INFO - === 编码测试结束 ===
+2025-03-06 21:23:42,394 - INFO - 应用程序启动时进行了编码检查
+2025-03-06 21:25:58,980 - INFO - === 编码测试开始 ===
+2025-03-06 21:25:58,980 - INFO - sys.stdout.encoding: utf-8
+2025-03-06 21:25:58,980 - INFO - sys.stderr.encoding: utf-8
+2025-03-06 21:25:58,980 - INFO - sys.stdin.encoding: utf-8
+2025-03-06 21:25:58,980 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-06 21:25:58,980 - INFO - locale.getpreferredencoding(): cp936
+2025-03-06 21:25:58,980 - INFO - file system encoding: utf-8
+2025-03-06 21:25:58,980 - INFO - windows_codepage: Active code page: 65001
+2025-03-06 21:25:58,980 - INFO - 中文测试: 你好，世界！
+2025-03-06 21:25:58,980 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-06 21:25:58,980 - INFO - === 编码测试结束 ===
+2025-03-06 21:25:58,980 - INFO - 应用程序启动时进行了编码检查
+2025-03-07 00:05:14,510 - INFO - === 编码测试开始 ===
+2025-03-07 00:05:14,510 - INFO - sys.stdout.encoding: utf-8
+2025-03-07 00:05:14,510 - INFO - sys.stderr.encoding: utf-8
+2025-03-07 00:05:14,510 - INFO - sys.stdin.encoding: utf-8
+2025-03-07 00:05:14,510 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-07 00:05:14,510 - INFO - locale.getpreferredencoding(): cp936
+2025-03-07 00:05:14,510 - INFO - file system encoding: utf-8
+2025-03-07 00:05:14,510 - INFO - windows_codepage: Active code page: 65001
+2025-03-07 00:05:14,510 - INFO - 中文测试: 你好，世界！
+2025-03-07 00:05:14,510 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-07 00:05:14,510 - INFO - === 编码测试结束 ===
+2025-03-07 00:05:14,510 - INFO - 应用程序启动时进行了编码检查
+2025-03-07 00:37:47,728 - INFO - === 编码测试开始 ===
+2025-03-07 00:37:47,728 - INFO - sys.stdout.encoding: utf-8
+2025-03-07 00:37:47,728 - INFO - sys.stderr.encoding: utf-8
+2025-03-07 00:37:47,728 - INFO - sys.stdin.encoding: utf-8
+2025-03-07 00:37:47,728 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-07 00:37:47,728 - INFO - locale.getpreferredencoding(): cp936
+2025-03-07 00:37:47,728 - INFO - file system encoding: utf-8
+2025-03-07 00:37:47,728 - INFO - windows_codepage: Active code page: 65001
+2025-03-07 00:37:47,728 - INFO - 中文测试: 你好，世界！
+2025-03-07 00:37:47,728 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-07 00:37:47,728 - INFO - === 编码测试结束 ===
+2025-03-07 00:37:47,728 - INFO - 应用程序启动时进行了编码检查
+2025-03-07 00:49:29,759 - INFO - === 编码测试开始 ===
+2025-03-07 00:49:29,759 - INFO - sys.stdout.encoding: utf-8
+2025-03-07 00:49:29,759 - INFO - sys.stderr.encoding: utf-8
+2025-03-07 00:49:29,759 - INFO - sys.stdin.encoding: utf-8
+2025-03-07 00:49:29,759 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-07 00:49:29,759 - INFO - locale.getpreferredencoding(): cp936
+2025-03-07 00:49:29,759 - INFO - file system encoding: utf-8
+2025-03-07 00:49:29,759 - INFO - windows_codepage: Active code page: 65001
+2025-03-07 00:49:29,759 - INFO - 中文测试: 你好，世界！
+2025-03-07 00:49:29,759 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-07 00:49:29,759 - INFO - === 编码测试结束 ===
+2025-03-07 00:49:29,759 - INFO - 应用程序启动时进行了编码检查
+2025-03-07 00:56:43,057 - INFO - === 编码测试开始 ===
+2025-03-07 00:56:43,057 - INFO - sys.stdout.encoding: utf-8
+2025-03-07 00:56:43,057 - INFO - sys.stderr.encoding: utf-8
+2025-03-07 00:56:43,057 - INFO - sys.stdin.encoding: utf-8
+2025-03-07 00:56:43,057 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-07 00:56:43,057 - INFO - locale.getpreferredencoding(): cp936
+2025-03-07 00:56:43,057 - INFO - file system encoding: utf-8
+2025-03-07 00:56:43,057 - INFO - windows_codepage: Active code page: 65001
+2025-03-07 00:56:43,057 - INFO - 中文测试: 你好，世界！
+2025-03-07 00:56:43,057 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-07 00:56:43,057 - INFO - === 编码测试结束 ===
+2025-03-07 00:56:43,057 - INFO - 应用程序启动时进行了编码检查
+2025-03-07 01:12:07,499 - INFO - === 编码测试开始 ===
+2025-03-07 01:12:07,499 - INFO - sys.stdout.encoding: utf-8
+2025-03-07 01:12:07,499 - INFO - sys.stderr.encoding: utf-8
+2025-03-07 01:12:07,499 - INFO - sys.stdin.encoding: utf-8
+2025-03-07 01:12:07,500 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-07 01:12:07,500 - INFO - locale.getpreferredencoding(): cp936
+2025-03-07 01:12:07,500 - INFO - file system encoding: utf-8
+2025-03-07 01:12:07,500 - INFO - windows_codepage: Active code page: 65001
+2025-03-07 01:12:07,500 - INFO - 中文测试: 你好，世界！
+2025-03-07 01:12:07,500 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-07 01:12:07,500 - INFO - === 编码测试结束 ===
+2025-03-07 01:12:07,500 - INFO - 应用程序启动时进行了编码检查
+2025-03-07 01:18:30,362 - INFO - === 编码测试开始 ===
+2025-03-07 01:18:30,362 - INFO - sys.stdout.encoding: utf-8
+2025-03-07 01:18:30,362 - INFO - sys.stderr.encoding: utf-8
+2025-03-07 01:18:30,362 - INFO - sys.stdin.encoding: utf-8
+2025-03-07 01:18:30,362 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-07 01:18:30,362 - INFO - locale.getpreferredencoding(): cp936
+2025-03-07 01:18:30,362 - INFO - file system encoding: utf-8
+2025-03-07 01:18:30,362 - INFO - windows_codepage: Active code page: 65001
+2025-03-07 01:18:30,362 - INFO - 中文测试: 你好，世界！
+2025-03-07 01:18:30,362 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-07 01:18:30,362 - INFO - === 编码测试结束 ===
+2025-03-07 01:18:30,362 - INFO - 应用程序启动时进行了编码检查
+2025-03-07 01:19:01,186 - INFO - === 编码测试开始 ===
+2025-03-07 01:19:01,186 - INFO - sys.stdout.encoding: utf-8
+2025-03-07 01:19:01,186 - INFO - sys.stderr.encoding: utf-8
+2025-03-07 01:19:01,186 - INFO - sys.stdin.encoding: utf-8
+2025-03-07 01:19:01,186 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-07 01:19:01,186 - INFO - locale.getpreferredencoding(): cp936
+2025-03-07 01:19:01,186 - INFO - file system encoding: utf-8
+2025-03-07 01:19:01,186 - INFO - windows_codepage: Active code page: 65001
+2025-03-07 01:19:01,186 - INFO - 中文测试: 你好，世界！
+2025-03-07 01:19:01,186 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-07 01:19:01,186 - INFO - === 编码测试结束 ===
+2025-03-07 01:19:01,186 - INFO - 应用程序启动时进行了编码检查
+2025-03-07 01:19:54,775 - INFO - === 编码测试开始 ===
+2025-03-07 01:19:54,776 - INFO - sys.stdout.encoding: utf-8
+2025-03-07 01:19:54,776 - INFO - sys.stderr.encoding: utf-8
+2025-03-07 01:19:54,776 - INFO - sys.stdin.encoding: utf-8
+2025-03-07 01:19:54,776 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-07 01:19:54,776 - INFO - locale.getpreferredencoding(): cp936
+2025-03-07 01:19:54,776 - INFO - file system encoding: utf-8
+2025-03-07 01:19:54,776 - INFO - windows_codepage: Active code page: 65001
+2025-03-07 01:19:54,776 - INFO - 中文测试: 你好，世界！
+2025-03-07 01:19:54,776 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-07 01:19:54,776 - INFO - === 编码测试结束 ===
+2025-03-07 01:19:54,776 - INFO - 应用程序启动时进行了编码检查
+2025-03-07 01:23:57,042 - INFO - === 编码测试开始 ===
+2025-03-07 01:23:57,042 - INFO - sys.stdout.encoding: utf-8
+2025-03-07 01:23:57,042 - INFO - sys.stderr.encoding: utf-8
+2025-03-07 01:23:57,042 - INFO - sys.stdin.encoding: utf-8
+2025-03-07 01:23:57,042 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-07 01:23:57,042 - INFO - locale.getpreferredencoding(): cp936
+2025-03-07 01:23:57,042 - INFO - file system encoding: utf-8
+2025-03-07 01:23:57,042 - INFO - windows_codepage: Active code page: 65001
+2025-03-07 01:23:57,042 - INFO - 中文测试: 你好，世界！
+2025-03-07 01:23:57,042 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-07 01:23:57,042 - INFO - === 编码测试结束 ===
+2025-03-07 01:23:57,042 - INFO - 应用程序启动时进行了编码检查
+2025-03-07 01:34:29,518 - INFO - === 编码测试开始 ===
+2025-03-07 01:34:29,519 - INFO - sys.stdout.encoding: utf-8
+2025-03-07 01:34:29,519 - INFO - sys.stderr.encoding: utf-8
+2025-03-07 01:34:29,519 - INFO - sys.stdin.encoding: utf-8
+2025-03-07 01:34:29,519 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-07 01:34:29,519 - INFO - locale.getpreferredencoding(): cp936
+2025-03-07 01:34:29,519 - INFO - file system encoding: utf-8
+2025-03-07 01:34:29,519 - INFO - windows_codepage: Active code page: 65001
+2025-03-07 01:34:29,519 - INFO - 中文测试: 你好，世界！
+2025-03-07 01:34:29,519 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-07 01:34:29,519 - INFO - === 编码测试结束 ===
+2025-03-07 01:34:29,519 - INFO - 应用程序启动时进行了编码检查
+2025-03-07 01:53:20,064 - INFO - === 编码测试开始 ===
+2025-03-07 01:53:20,064 - INFO - sys.stdout.encoding: utf-8
+2025-03-07 01:53:20,064 - INFO - sys.stderr.encoding: utf-8
+2025-03-07 01:53:20,064 - INFO - sys.stdin.encoding: utf-8
+2025-03-07 01:53:20,064 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-07 01:53:20,064 - INFO - locale.getpreferredencoding(): cp936
+2025-03-07 01:53:20,064 - INFO - file system encoding: utf-8
+2025-03-07 01:53:20,064 - INFO - windows_codepage: Active code page: 65001
+2025-03-07 01:53:20,064 - INFO - 中文测试: 你好，世界！
+2025-03-07 01:53:20,064 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-07 01:53:20,064 - INFO - === 编码测试结束 ===
+2025-03-07 01:53:20,064 - INFO - 应用程序启动时进行了编码检查
+2025-03-07 02:04:05,791 - INFO - === 编码测试开始 ===
+2025-03-07 02:04:05,792 - INFO - sys.stdout.encoding: utf-8
+2025-03-07 02:04:05,792 - INFO - sys.stderr.encoding: utf-8
+2025-03-07 02:04:05,792 - INFO - sys.stdin.encoding: utf-8
+2025-03-07 02:04:05,792 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-07 02:04:05,792 - INFO - locale.getpreferredencoding(): cp936
+2025-03-07 02:04:05,792 - INFO - file system encoding: utf-8
+2025-03-07 02:04:05,792 - INFO - windows_codepage: Active code page: 65001
+2025-03-07 02:04:05,792 - INFO - 中文测试: 你好，世界！
+2025-03-07 02:04:05,792 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-07 02:04:05,792 - INFO - === 编码测试结束 ===
+2025-03-07 02:04:05,792 - INFO - 应用程序启动时进行了编码检查
+2025-03-07 02:20:31,290 - INFO - === 编码测试开始 ===
+2025-03-07 02:20:31,290 - INFO - sys.stdout.encoding: utf-8
+2025-03-07 02:20:31,290 - INFO - sys.stderr.encoding: utf-8
+2025-03-07 02:20:31,290 - INFO - sys.stdin.encoding: utf-8
+2025-03-07 02:20:31,290 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-07 02:20:31,290 - INFO - locale.getpreferredencoding(): cp936
+2025-03-07 02:20:31,290 - INFO - file system encoding: utf-8
+2025-03-07 02:20:31,290 - INFO - windows_codepage: Active code page: 65001
+2025-03-07 02:20:31,290 - INFO - 中文测试: 你好，世界！
+2025-03-07 02:20:31,290 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-07 02:20:31,290 - INFO - === 编码测试结束 ===
+2025-03-07 02:20:31,290 - INFO - 应用程序启动时进行了编码检查
+2025-03-07 02:25:16,561 - INFO - === 编码测试开始 ===
+2025-03-07 02:25:16,561 - INFO - sys.stdout.encoding: utf-8
+2025-03-07 02:25:16,561 - INFO - sys.stderr.encoding: utf-8
+2025-03-07 02:25:16,561 - INFO - sys.stdin.encoding: utf-8
+2025-03-07 02:25:16,561 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-07 02:25:16,561 - INFO - locale.getpreferredencoding(): cp936
+2025-03-07 02:25:16,561 - INFO - file system encoding: utf-8
+2025-03-07 02:25:16,561 - INFO - windows_codepage: Active code page: 65001
+2025-03-07 02:25:16,561 - INFO - 中文测试: 你好，世界！
+2025-03-07 02:25:16,561 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-07 02:25:16,561 - INFO - === 编码测试结束 ===
+2025-03-07 02:25:16,561 - INFO - 应用程序启动时进行了编码检查
+2025-03-07 02:31:19,016 - INFO - === 编码测试开始 ===
+2025-03-07 02:31:19,016 - INFO - sys.stdout.encoding: utf-8
+2025-03-07 02:31:19,016 - INFO - sys.stderr.encoding: utf-8
+2025-03-07 02:31:19,016 - INFO - sys.stdin.encoding: utf-8
+2025-03-07 02:31:19,016 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-07 02:31:19,016 - INFO - locale.getpreferredencoding(): cp936
+2025-03-07 02:31:19,016 - INFO - file system encoding: utf-8
+2025-03-07 02:31:19,016 - INFO - windows_codepage: Active code page: 65001
+2025-03-07 02:31:19,016 - INFO - 中文测试: 你好，世界！
+2025-03-07 02:31:19,016 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-07 02:31:19,016 - INFO - === 编码测试结束 ===
+2025-03-07 02:31:19,016 - INFO - 应用程序启动时进行了编码检查
+2025-03-07 02:36:24,897 - INFO - === 编码测试开始 ===
+2025-03-07 02:36:24,897 - INFO - sys.stdout.encoding: utf-8
+2025-03-07 02:36:24,897 - INFO - sys.stderr.encoding: utf-8
+2025-03-07 02:36:24,897 - INFO - sys.stdin.encoding: utf-8
+2025-03-07 02:36:24,897 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-07 02:36:24,897 - INFO - locale.getpreferredencoding(): cp936
+2025-03-07 02:36:24,897 - INFO - file system encoding: utf-8
+2025-03-07 02:36:24,897 - INFO - windows_codepage: Active code page: 65001
+2025-03-07 02:36:24,897 - INFO - 中文测试: 你好，世界！
+2025-03-07 02:36:24,897 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-07 02:36:24,897 - INFO - === 编码测试结束 ===
+2025-03-07 02:36:24,897 - INFO - 应用程序启动时进行了编码检查
+2025-03-07 02:39:29,667 - INFO - === 编码测试开始 ===
+2025-03-07 02:39:29,667 - INFO - sys.stdout.encoding: utf-8
+2025-03-07 02:39:29,667 - INFO - sys.stderr.encoding: utf-8
+2025-03-07 02:39:29,667 - INFO - sys.stdin.encoding: utf-8
+2025-03-07 02:39:29,667 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-07 02:39:29,667 - INFO - locale.getpreferredencoding(): cp936
+2025-03-07 02:39:29,667 - INFO - file system encoding: utf-8
+2025-03-07 02:39:29,667 - INFO - windows_codepage: Active code page: 65001
+2025-03-07 02:39:29,667 - INFO - 中文测试: 你好，世界！
+2025-03-07 02:39:29,667 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-07 02:39:29,667 - INFO - === 编码测试结束 ===
+2025-03-07 02:39:29,667 - INFO - 应用程序启动时进行了编码检查
+2025-03-07 02:44:06,440 - INFO - === 编码测试开始 ===
+2025-03-07 02:44:06,440 - INFO - sys.stdout.encoding: utf-8
+2025-03-07 02:44:06,440 - INFO - sys.stderr.encoding: utf-8
+2025-03-07 02:44:06,440 - INFO - sys.stdin.encoding: utf-8
+2025-03-07 02:44:06,440 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-07 02:44:06,440 - INFO - locale.getpreferredencoding(): cp936
+2025-03-07 02:44:06,440 - INFO - file system encoding: utf-8
+2025-03-07 02:44:06,440 - INFO - windows_codepage: Active code page: 65001
+2025-03-07 02:44:06,440 - INFO - 中文测试: 你好，世界！
+2025-03-07 02:44:06,440 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-07 02:44:06,440 - INFO - === 编码测试结束 ===
+2025-03-07 02:44:06,440 - INFO - 应用程序启动时进行了编码检查
+2025-03-07 02:44:36,465 - INFO - === 编码测试开始 ===
+2025-03-07 02:44:36,465 - INFO - sys.stdout.encoding: utf-8
+2025-03-07 02:44:36,465 - INFO - sys.stderr.encoding: utf-8
+2025-03-07 02:44:36,465 - INFO - sys.stdin.encoding: utf-8
+2025-03-07 02:44:36,465 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-07 02:44:36,465 - INFO - locale.getpreferredencoding(): cp936
+2025-03-07 02:44:36,465 - INFO - file system encoding: utf-8
+2025-03-07 02:44:36,465 - INFO - windows_codepage: Active code page: 65001
+2025-03-07 02:44:36,465 - INFO - 中文测试: 你好，世界！
+2025-03-07 02:44:36,465 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-07 02:44:36,465 - INFO - === 编码测试结束 ===
+2025-03-07 02:44:36,465 - INFO - 应用程序启动时进行了编码检查
+2025-03-07 02:47:24,196 - INFO - === 编码测试开始 ===
+2025-03-07 02:47:24,196 - INFO - sys.stdout.encoding: utf-8
+2025-03-07 02:47:24,197 - INFO - sys.stderr.encoding: utf-8
+2025-03-07 02:47:24,197 - INFO - sys.stdin.encoding: utf-8
+2025-03-07 02:47:24,197 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-07 02:47:24,197 - INFO - locale.getpreferredencoding(): cp936
+2025-03-07 02:47:24,197 - INFO - file system encoding: utf-8
+2025-03-07 02:47:24,197 - INFO - windows_codepage: Active code page: 65001
+2025-03-07 02:47:24,197 - INFO - 中文测试: 你好，世界！
+2025-03-07 02:47:24,197 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-07 02:47:24,197 - INFO - === 编码测试结束 ===
+2025-03-07 02:47:24,197 - INFO - 应用程序启动时进行了编码检查
+2025-03-07 02:48:04,398 - INFO - === 编码测试开始 ===
+2025-03-07 02:48:04,399 - INFO - sys.stdout.encoding: utf-8
+2025-03-07 02:48:04,399 - INFO - sys.stderr.encoding: utf-8
+2025-03-07 02:48:04,399 - INFO - sys.stdin.encoding: utf-8
+2025-03-07 02:48:04,399 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-07 02:48:04,399 - INFO - locale.getpreferredencoding(): cp936
+2025-03-07 02:48:04,399 - INFO - file system encoding: utf-8
+2025-03-07 02:48:04,399 - INFO - windows_codepage: Active code page: 65001
+2025-03-07 02:48:04,399 - INFO - 中文测试: 你好，世界！
+2025-03-07 02:48:04,399 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-07 02:48:04,399 - INFO - === 编码测试结束 ===
+2025-03-07 02:48:04,399 - INFO - 应用程序启动时进行了编码检查
+2025-03-07 02:48:18,830 - INFO - === 编码测试开始 ===
+2025-03-07 02:48:18,830 - INFO - sys.stdout.encoding: utf-8
+2025-03-07 02:48:18,830 - INFO - sys.stderr.encoding: utf-8
+2025-03-07 02:48:18,830 - INFO - sys.stdin.encoding: utf-8
+2025-03-07 02:48:18,830 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-07 02:48:18,830 - INFO - locale.getpreferredencoding(): cp936
+2025-03-07 02:48:18,830 - INFO - file system encoding: utf-8
+2025-03-07 02:48:18,830 - INFO - windows_codepage: Active code page: 65001
+2025-03-07 02:48:18,830 - INFO - 中文测试: 你好，世界！
+2025-03-07 02:48:18,830 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-07 02:48:18,830 - INFO - === 编码测试结束 ===
+2025-03-07 02:48:18,830 - INFO - 应用程序启动时进行了编码检查
+2025-03-07 02:48:32,459 - INFO - === 编码测试开始 ===
+2025-03-07 02:48:32,459 - INFO - sys.stdout.encoding: utf-8
+2025-03-07 02:48:32,459 - INFO - sys.stderr.encoding: utf-8
+2025-03-07 02:48:32,459 - INFO - sys.stdin.encoding: utf-8
+2025-03-07 02:48:32,459 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-07 02:48:32,459 - INFO - locale.getpreferredencoding(): cp936
+2025-03-07 02:48:32,459 - INFO - file system encoding: utf-8
+2025-03-07 02:48:32,459 - INFO - windows_codepage: Active code page: 65001
+2025-03-07 02:48:32,459 - INFO - 中文测试: 你好，世界！
+2025-03-07 02:48:32,459 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-07 02:48:32,459 - INFO - === 编码测试结束 ===
+2025-03-07 02:48:32,459 - INFO - 应用程序启动时进行了编码检查
+2025-03-07 02:48:49,836 - INFO - === 编码测试开始 ===
+2025-03-07 02:48:49,837 - INFO - sys.stdout.encoding: utf-8
+2025-03-07 02:48:49,837 - INFO - sys.stderr.encoding: utf-8
+2025-03-07 02:48:49,837 - INFO - sys.stdin.encoding: utf-8
+2025-03-07 02:48:49,837 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-07 02:48:49,837 - INFO - locale.getpreferredencoding(): cp936
+2025-03-07 02:48:49,837 - INFO - file system encoding: utf-8
+2025-03-07 02:48:49,837 - INFO - windows_codepage: Active code page: 65001
+2025-03-07 02:48:49,837 - INFO - 中文测试: 你好，世界！
+2025-03-07 02:48:49,837 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-07 02:48:49,837 - INFO - === 编码测试结束 ===
+2025-03-07 02:48:49,837 - INFO - 应用程序启动时进行了编码检查
+2025-03-07 02:51:07,990 - INFO - === 编码测试开始 ===
+2025-03-07 02:51:07,990 - INFO - sys.stdout.encoding: utf-8
+2025-03-07 02:51:07,990 - INFO - sys.stderr.encoding: utf-8
+2025-03-07 02:51:07,990 - INFO - sys.stdin.encoding: utf-8
+2025-03-07 02:51:07,990 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-07 02:51:07,990 - INFO - locale.getpreferredencoding(): cp936
+2025-03-07 02:51:07,990 - INFO - file system encoding: utf-8
+2025-03-07 02:51:07,990 - INFO - windows_codepage: Active code page: 65001
+2025-03-07 02:51:07,990 - INFO - 中文测试: 你好，世界！
+2025-03-07 02:51:07,990 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-07 02:51:07,990 - INFO - === 编码测试结束 ===
+2025-03-07 02:51:07,990 - INFO - 应用程序启动时进行了编码检查
+2025-03-07 02:55:59,896 - INFO - === 编码测试开始 ===
+2025-03-07 02:55:59,896 - INFO - sys.stdout.encoding: utf-8
+2025-03-07 02:55:59,896 - INFO - sys.stderr.encoding: utf-8
+2025-03-07 02:55:59,896 - INFO - sys.stdin.encoding: utf-8
+2025-03-07 02:55:59,896 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-07 02:55:59,896 - INFO - locale.getpreferredencoding(): cp936
+2025-03-07 02:55:59,896 - INFO - file system encoding: utf-8
+2025-03-07 02:55:59,896 - INFO - windows_codepage: Active code page: 65001
+2025-03-07 02:55:59,896 - INFO - 中文测试: 你好，世界！
+2025-03-07 02:55:59,896 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-07 02:55:59,896 - INFO - === 编码测试结束 ===
+2025-03-07 02:55:59,896 - INFO - 应用程序启动时进行了编码检查
+2025-03-07 03:05:44,367 - INFO - === 编码测试开始 ===
+2025-03-07 03:05:44,367 - INFO - sys.stdout.encoding: utf-8
+2025-03-07 03:05:44,367 - INFO - sys.stderr.encoding: utf-8
+2025-03-07 03:05:44,367 - INFO - sys.stdin.encoding: utf-8
+2025-03-07 03:05:44,367 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-07 03:05:44,367 - INFO - locale.getpreferredencoding(): cp936
+2025-03-07 03:05:44,367 - INFO - file system encoding: utf-8
+2025-03-07 03:05:44,367 - INFO - windows_codepage: Active code page: 65001
+2025-03-07 03:05:44,367 - INFO - 中文测试: 你好，世界！
+2025-03-07 03:05:44,367 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-07 03:05:44,367 - INFO - === 编码测试结束 ===
+2025-03-07 03:05:44,367 - INFO - 应用程序启动时进行了编码检查
+2025-03-07 03:06:49,967 - INFO - === 编码测试开始 ===
+2025-03-07 03:06:49,967 - INFO - sys.stdout.encoding: utf-8
+2025-03-07 03:06:49,967 - INFO - sys.stderr.encoding: utf-8
+2025-03-07 03:06:49,967 - INFO - sys.stdin.encoding: utf-8
+2025-03-07 03:06:49,967 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-07 03:06:49,967 - INFO - locale.getpreferredencoding(): cp936
+2025-03-07 03:06:49,967 - INFO - file system encoding: utf-8
+2025-03-07 03:06:49,967 - INFO - windows_codepage: Active code page: 65001
+2025-03-07 03:06:49,967 - INFO - 中文测试: 你好，世界！
+2025-03-07 03:06:49,967 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-07 03:06:49,967 - INFO - === 编码测试结束 ===
+2025-03-07 03:06:49,968 - INFO - 应用程序启动时进行了编码检查
+2025-03-07 03:12:18,407 - INFO - === 编码测试开始 ===
+2025-03-07 03:12:18,408 - INFO - sys.stdout.encoding: utf-8
+2025-03-07 03:12:18,408 - INFO - sys.stderr.encoding: utf-8
+2025-03-07 03:12:18,408 - INFO - sys.stdin.encoding: utf-8
+2025-03-07 03:12:18,408 - INFO - sys.getdefaultencoding(): utf-8
+2025-03-07 03:12:18,408 - INFO - locale.getpreferredencoding(): cp936
+2025-03-07 03:12:18,408 - INFO - file system encoding: utf-8
+2025-03-07 03:12:18,408 - INFO - windows_codepage: Active code page: 65001
+2025-03-07 03:12:18,408 - INFO - 中文测试: 你好，世界！
+2025-03-07 03:12:18,408 - INFO - 特殊字符: ♥★☆※∮◎
+2025-03-07 03:12:18,408 - INFO - === 编码测试结束 ===
+2025-03-07 03:12:18,408 - INFO - 应用程序启动时进行了编码检查

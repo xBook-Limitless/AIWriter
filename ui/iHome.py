@@ -178,7 +178,7 @@ def create_main_window():
         scrollbar.bind("<Leave>", _unbind_mousewheel)
         
         # === 第一部分：基础配置 ===
-        section_title_style = {"font": ("微软雅黑", 12, "bold"), "bg": "#e6e6e6", "pady": 5, "padx": 10}
+        section_title_style = {"font": ("微软雅黑", 11, "bold"), "bg": "#e6e6e6", "pady": 5, "padx": 10}
         
         # 基础配置标题
         base_config_title = tk.Label(scrollable_frame, text="基础配置", **section_title_style)
@@ -189,7 +189,7 @@ def create_main_window():
         base_config_panel.pack(fill=tk.X, padx=15, pady=10)
         
         # 添加分隔线
-        ttk.Separator(scrollable_frame, orient='horizontal').pack(fill='x', padx=10, pady=10)
+        ttk.Separator(scrollable_frame, orient='horizontal').pack(fill='x', padx=10, pady=5)
         
         # === 第二部分：世界观构建 ===
         worldview_title = tk.Label(scrollable_frame, text="世界观构建", **section_title_style)
@@ -200,7 +200,7 @@ def create_main_window():
         worldview_panel.pack(fill=tk.X, padx=15, pady=10)
         
         # 添加分隔线
-        ttk.Separator(scrollable_frame, orient='horizontal').pack(fill='x', padx=10, pady=10)
+        ttk.Separator(scrollable_frame, orient='horizontal').pack(fill='x', padx=10, pady=5)
         
         # === 第三部分：角色配置 ===
         # role_title = tk.Label(scrollable_frame, text="角色配置", **section_title_style)

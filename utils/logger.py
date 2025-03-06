@@ -3,6 +3,7 @@ from logging.handlers import RotatingFileHandler
 import os
 import sys
 from pathlib import Path
+import locale
 
 def setup_logger(name, log_file, level=logging.INFO, console_level=logging.WARNING, 
                 max_size_mb=5, backup_count=5, format_str=None):
@@ -39,21 +40,39 @@ def setup_logger(name, log_file, level=logging.INFO, console_level=logging.WARNI
     
     # 添加文件处理器
     if log_file:
+        # 在Windows上，特别是中文环境，确保正确的编码设置
+        file_encoding = 'utf-8'
+        try:
+            if sys.platform.startswith('win'):
+                # 尝试获取系统编码
+                system_encoding = locale.getpreferredencoding()
+                # 如果系统编码不是UTF-8，记录这个信息但仍使用UTF-8
+                if system_encoding.lower() != 'utf-8':
+                    print(f"系统编码为 {system_encoding}，日志将使用 UTF-8 编码")
+        except Exception as e:
+            print(f"获取系统编码时出错: {str(e)}，将使用 UTF-8")
+            
         file_handler = RotatingFileHandler(
             log_file, 
             maxBytes=1024*1024*max_size_mb,
             backupCount=backup_count,
-            encoding='utf-8'
+            encoding=file_encoding
         )
         file_handler.setFormatter(formatter)
         file_handler.setLevel(level)
         logger.addHandler(file_handler)
     
     # 添加控制台处理器
+    # 检测控制台编码，以确保正确显示
+    console_encoding = sys.stdout.encoding if hasattr(sys.stdout, 'encoding') else 'utf-8'
     console_handler = logging.StreamHandler(sys.stdout)
     console_handler.setFormatter(formatter)
     console_handler.setLevel(console_level)
     logger.addHandler(console_handler)
+    
+    # 记录编码信息
+    if log_file:
+        logger.debug(f"日志文件编码: {file_encoding}, 控制台编码: {console_encoding}")
     
     return logger
 

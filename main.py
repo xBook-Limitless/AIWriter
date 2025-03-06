@@ -1,13 +1,26 @@
 import sys
 import traceback
+import locale
 from ui.iHome import create_main_window
 from utils.env_checker import check_environment
 from utils.logger import setup_logger
 import os
 from pathlib import Path
+from utils.encoding_fix import fix_encoding, check_encoding, configure_logger_encoding
 
 def setup_application():
     """应用程序初始化设置"""
+    # 修复编码问题
+    if sys.platform.startswith('win'):
+        try:
+            # 检查并修复编码
+            fix_encoding()
+            # 配置日志编码
+            encoding_logger = configure_logger_encoding()
+            encoding_logger.info("应用程序启动时进行了编码检查")
+        except Exception as e:
+            print(f"修复编码时出错: {str(e)}")
+    
     # 确保日志目录存在
     log_dir = Path(__file__).parent / 'logs'
     os.makedirs(log_dir, exist_ok=True)
@@ -17,8 +30,14 @@ def setup_application():
     
     # 打印系统信息
     logger.info("=== 系统信息 ===")
+    encoding_info = check_encoding()
     logger.info(f"操作系统: {sys.platform}")
+    logger.info(f"系统编码: {encoding_info['locale.getpreferredencoding()']}")
+    logger.info(f"控制台编码: {encoding_info['sys.stdout.encoding']}")
     logger.info(f"Python版本: {sys.version.split()[0]}")
+    
+    if 'windows_codepage' in encoding_info:
+        logger.info(f"Windows代码页: {encoding_info['windows_codepage']}")
     
     try:
         import tkinter as tk

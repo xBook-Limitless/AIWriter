@@ -1,0 +1,104 @@
+{
+  "parameters": [
+    {
+      "name": "独特性",
+      "description": "阴阳裂变导致灵气潮汐周期，修士需在'人道争命'与'天道无情'间寻找平衡",
+      "default_value": "阴阳裂变导致灵气潮汐周期"
+    },
+    {
+      "name": "世界观差异处理",
+      "description": "网络版强化'境界碾压快感+秘境夺宝'爽点，严肃版侧重'功德业力悖论+长生代价'哲学思辨",
+      "default_value": "网络版强化爽点/严肃版侧重哲学思辨"
+    },
+    {
+      "name": "时空背景_时代",
+      "description": "架空修真文明时代设定",
+      "default_value": "太虚纪元（类明中期社会）"
+    },
+    {
+      "name": "时空背景_地理结构",
+      "description": "世界地理构成体系",
+      "default_value": "九州大陆+八荒妖域+天外天破碎仙界"
+    },
+    {
+      "name": "物理法则_常规物理",
+      "description": "与现实世界相同的物理规则",
+      "default_value": "重力/元素周期表"
+    },
+    {
+      "name": "物理法则_超自然规则",
+      "description": "灵气与因果律的特殊法则",
+      "default_value": "五行相性灵气/言出法随因果律"
+    },
+    {
+      "name": "时间流动特性",
+      "description": "时间规则的特殊设定",
+      "default_value": "光阴长河支流/朔月之夜时空脆弱"
+    },
+    {
+      "name": "社会权力结构",
+      "description": "世界统治体系构成",
+      "default_value": "宗门+王朝+隐世家族三元统治"
+    },
+    {
+      "name": "阶级制度标准",
+      "description": "修士阶级划分依据",
+      "default_value": "玉牌制度（白青紫对应筑基→元婴）"
+    },
+    {
+      "name": "经济硬通货",
+      "description": "基础交易媒介",
+      "default_value": "灵石（天地银行发行）"
+    },
+    {
+      "name": "核心争夺资源",
+      "description": "势力争夺的核心资源",
+      "default_value": "灵脉矿/转生池"
+    },
+    {
+      "name": "文化禁忌",
+      "description": "民俗禁忌规范",
+      "default_value": "不可直呼神魔真名/子时不观井"
+    },
+    {
+      "name": "力量本源",
+      "description": "超自然力量起源",
+      "default_value": "先天祖炁分裂阴阳二气"
+    },
+    {
+      "name": "修行境界划分",
+      "description": "修士等级体系",
+      "default_value": "凡境三阶→灵境三阶→仙境三阶"
+    },
+    {
+      "name": "境界突破限制",
+      "description": "修为提升的制约条件",
+      "default_value": "心魔劫+雷劫双重要素"
+    },
+    {
+      "name": "核心冲突",
+      "description": "推动剧情发展的核心矛盾",
+      "default_value": "灵力污染/飞升骗局"
+    },
+    {
+      "name": "特殊生态现象",
+      "description": "世界特殊自然现象",
+      "default_value": "烛阴掌控昼夜/归墟海眼/九幽风"
+    },
+    {
+      "name": "历史大事件",
+      "description": "影响世界格局的重大事件",
+      "default_value": "绝地天通/封神之战/黑潮之灾"
+    },
+    {
+      "name": "伏笔设计",
+      "description": "剧情铺垫要素",
+      "default_value": "青帝斩龙传说→龙脉封印/残缺玉珏→归墟秘钥"
+    },
+    {
+      "name": "日常元素",
+      "description": "特色生活化设定",
+      "default_value": "芥子钱交易/清心茶消费"
+    }
+  ]
+}
